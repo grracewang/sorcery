@@ -5,7 +5,8 @@
 #include "player.h"
 
 class Spell: public Card {
-    
+    public:
+        explicit Spell();
 };
 
 #endif

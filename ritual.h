@@ -10,6 +10,8 @@ class Ritual: public Card {
         int charges, activationCost;
         Player *owner; // the player that owns this ritual card
     public:
+        explicit Ritual(int, int, Player);
+        virtual ~Ritual();
         virtual void notify() = 0;
 };
 

@@ -20,7 +20,6 @@ class Minion: public Card {
 	public:
 		explicit Minion(int, int);
 		virtual ~Minion();
-		Minion(int, int);
 		~Minion();
 		void atkPlayer(Player*);
 		Minion *atkMinion(Minion*);
