@@ -6,4 +6,6 @@
 
 class Spell: public Card {
     
-}
+};
+
+#endif

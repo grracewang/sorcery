@@ -1,8 +1,8 @@
 #ifndef RITUAL_H
 #define RITUAL_H
 
-#include <card.h>
-#include <player.h>
+#include "card.h"
+#include "player.h"
 
 
 class Ritual: public Card {
