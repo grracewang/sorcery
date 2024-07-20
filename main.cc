@@ -30,15 +30,56 @@ bool convertOp(const string &command, Op &op, bool testing) {
 
 int main(int argc, char *argv[]) {
     Op op;
+
+    int i = 0;
+
+    // filenames
+    string initFile;
+    string deck1;
+    string deck2;
+
+    // check for flags
+    bool init = false;
     bool testing = false;
-    
+    bool setDeck1 = false;
+    bool setDeck2 = false;
+    bool graphics = false;
+
     // set up arguments
-    for (int i = 1; i < argc; i++) {
-        string arg = argv[i];
-        if (arg == "-testing") testing = true;
-    }
+    while (i < argc) {
+		string arg = argv[i]; 
+        
+		if (arg == "-init") {
+            init = true;
+            ++i;
+            arg = argv[i];
+            initFile = arg;
+        } else if (arg == "-deck1") {
+            cout << "-deck1 on" << endl;
+            setDeck1 = true;
+            ++i;
+            arg = argv[i];
+            deck1 = arg;
+        } else if (arg == "-deck2") {
+            cout << "-deck2 on" << endl;
+            setDeck2 = true;
+            ++i;
+            arg = argv[i];
+            deck2 = arg;
+        } else if (arg == "graphics") {
+            cout << "graphics on" << endl;
+            graphics = true;
+        } else if (arg == "testing") {
+            cout << "testing mode on" << endl;
+            testing = true;
+        } 
+        else {
+            cerr << "Not a valid command line argument" << endl;
+        }
 
-
+        ++i;
+    } // command line loop
+    
     vector<Player*> players;
 
     // getting both player's names if not provided (but didn't implement the if not provided part)
@@ -50,6 +91,7 @@ int main(int argc, char *argv[]) {
         players.emplace_back(new Player{name});
     }
 
+    i = 0;
 
     while (true) {
         string command;
@@ -75,14 +117,60 @@ int main(int argc, char *argv[]) {
             }
             break;
             case Op::END:
+            {
+                cout << "Command: end" << endl;
+            }
             case Op::DRAW:
+            {
+                cout << "Command: draw (testing mode)" << endl;
+            }
             case Op::DISCARD:
+            {
+                cin >> i;
+                cout << "Command: discard (testing mode)" << i << endl;
+            }
             case Op::ATTACK:
+            {
+                int j;
+                cin >> i;
+                cin >> j;
+                if (cin.fail()) {
+                    cin.clear();
+                    cout << "Command: attack minion" << i << endl;
+                } else {
+                    cout << "Command: attack minion" << i << j << endl;
+                }
+            }
             case Op::PLAY:
+            {
+                int j;
+                cin >> i;
+                cin >> j;
+                if (cin.fail()) {
+                    cin.clear();
+                    cout << "Command: play" << i << endl;
+                } else {
+                    cout << "Command: play" << i << j << endl;
+                }
+            }
             case Op::USE:
+            {
+                cin >> i;
+                cout << "Command: use" << i << endl;    
+            }
             case Op::INSPECT:
+            {
+                cin >> i;
+                cout << "Command: inspect" << i << endl;
+            }
             case Op::HAND:
+            {
+                cout << "Command: hand" << endl;
+            }
             case Op::BOARD:
+            {
+                cout << "Command: board" << endl;
+            }
         }
     }
 
