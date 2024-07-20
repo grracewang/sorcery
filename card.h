@@ -15,7 +15,6 @@ class Card {
 		string getDescription() const;
 		int getCost() const;
 		bool hasTarget() const;
-		
 		virtual void activate() = 0; // activates spell/ritual/enchantment/minion's ability
 };
 
