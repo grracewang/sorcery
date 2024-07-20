@@ -1,6 +1,9 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include "card.h"
+#include "ritual.h"
+#include "minion.h"
+#include "spell.h"
 #include <vector>
 #include <stack>
 #include <string>
@@ -28,8 +31,8 @@ class Player {
         explicit Player(string name);
 
 		// accessor and mutators
-		void changeMagic(int magic);
-		void changeLife(int life);
+		void changeMagic(int newMagic);
+		void changeLife(int newLife);
 		int getLife() const;
 		int getMagic() const;
 		string getName() const;
