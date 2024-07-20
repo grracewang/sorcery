@@ -9,6 +9,7 @@ class Card {
 		int cost;
 		bool hasTarget;
 	public:
+		explicit Card(string, string, string, int, bool);
 		string getName() const;
 		string getType() const;
 		string getDescription() const;

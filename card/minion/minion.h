@@ -7,6 +7,7 @@
 #include <spell.h>
 #include <ritual.h>
 #include <vector>
+#include <player.h>
 using namespace std;
 
 
@@ -17,7 +18,8 @@ class Minion: public Card {
 		vector<Enchantment*> enchantments; // enchantments that are casted on this Minion
 
 	public:
-		explicit Minion();
+		explicit Minion(int, int);
+		virtual ~Minion();
 		void atkPlayer(Player*);
 		Minion *atkMinion(Minion*);
 		virtual int getAtk();
