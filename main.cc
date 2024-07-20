@@ -6,7 +6,7 @@ using namespace std;
 
 const int NUM_PLAYERS = 2;
 
-enum Op {HELP, END, QUIT, DRAW, DISCARD, ATTACK, PLAY, USE, INSPECT, HAND, BOARD, INVALID_COMMAND};
+enum Op {HELP = 0, END, QUIT, DRAW, DISCARD, ATTACK, PLAY, USE, INSPECT, HAND, BOARD, INVALID_COMMAND};
 
 bool convertOp(const string &command, Op &op, bool testing) {
     bool result = true;

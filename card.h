@@ -1,13 +1,13 @@
 #ifndef CARD_H
 #define CARD_H
 #include <string>
+#include <fstream>
 using namespace std;
 
 class Card { 
 	private:
-		string name, type, description;
+		string name, type, filename;
 		int cost;
-		// bool hasTarget;
 	public:
 		explicit Card(string, string, string, int);
 		string getName() const;
