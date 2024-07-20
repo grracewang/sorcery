@@ -12,7 +12,6 @@ class Enchantment: public Card {
     public:
         Enchantment(string name, string filename, int cost): Card{name, "Enchantment", filename, cost}, target{nullptr} {}
         virtual ~Enchantment() { delete target; };
-        virtual void notify() = 0;
         Minion *getTarget() { return target; }
 };
 

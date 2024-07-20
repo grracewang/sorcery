@@ -6,6 +6,7 @@
 class MagicFatigue: public Enchantment {
     public:
         explicit MagicFatigue(): Enchantment{"Magic Fatigue", "magicfatigue.txt", 0} {}
+        void activate() override {}
 };
 
 #endif

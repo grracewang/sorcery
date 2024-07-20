@@ -6,6 +6,7 @@
 class Haste: public Enchantment {
     public: 
         explicit Haste(): Enchantment{"Haste", "haste.txt", 1} {}
+        void activate() override {}
 };
 
 #endif
