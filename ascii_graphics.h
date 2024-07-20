@@ -1,3 +1,6 @@
+#ifndef ASCII_GRAPHICS_H
+#define ASCII_GRAPHICS_H
+#include "minion.h"
 #include <vector>
 #include <string>
 
@@ -21,6 +24,14 @@ card_template_t display_enchantment_attack_defence(std::string name,int cost,std
 card_template_t display_enchantment(std::string name,int cost,std::string desc);
 card_template_t display_player_card(int player_num,std::string name,int life,int mana);
 
+// general display functions that display the correct one regardless of the card
+card_template_t minion_display(const Minion &minion);
+card_template_t ritual_display(const Ritual &ritual);
+card_template_t spell_display(const Spell &spell);
+card_template_t enchantment_display(const Enchantment &enchantment);
+card_template_t player_display(const Player &player, int player_num);
+
+
 extern const card_template_t CARD_TEMPLATE_MINION_NO_ABILITY;
 extern const card_template_t CARD_TEMPLATE_MINION_WITH_ABILITY;
 extern const card_template_t CARD_TEMPLATE_BORDER;
@@ -41,3 +52,5 @@ extern const std::string EXTERNAL_BORDER_CHAR_TOP_LEFT;
 extern const std::string EXTERNAL_BORDER_CHAR_TOP_RIGHT;
 extern const std::string EXTERNAL_BORDER_CHAR_BOTTOM_LEFT;
 extern const std::string EXTERNAL_BORDER_CHAR_BOTTOM_RIGHT;
+
+#endif

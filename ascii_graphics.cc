@@ -1,4 +1,5 @@
 #include "ascii_graphics.h"
+#include "minion.h"
 #include <sstream>
 
 static void prepare_for_replace(card_template_t &);
@@ -121,6 +122,42 @@ static card_template_t display_minion_general(card_template_t out,std::string na
   oss << ability_cost;
   replace_text_left(out,'K',oss.str());
   return out;
+}
+
+card_template_t minion_display(const Minion &minion) {
+  if (minion.getSpells()->empty() && minion.getRituals()->empty()) {
+    return display_minion_no_ability(minion.getName(), minion.getCost(), minion.getAtk(),
+                                     minion.getDef());
+  } else if (!minion.getSpells()->empty()) {
+    return display_minion_activated_ability(minion.getName(), minion.getCost(), minion.getDef(),
+                                            minion.getAtk(), minion.getSpells()[0]->getDescription());
+  } else {
+    return display_minion_triggered_ability(minion.getName(), minion.getCost(), minion.getAtk(),
+                                            minion.getDef(), minion.getRituals()[0]->getDescription());
+  }
+}
+
+card_template_t ritual_display(const Ritual &ritual) {
+  return display_ritual(ritual.getName(), ritual.getCost(), ritual.getDescription(),
+                        ritual.getCharges());
+}
+
+card_template_t spell_display(const Spell &spell) {
+  return display_spell(spell.getName(), spell.getCost(), spell.getDescription());
+}
+
+card_template_t enchantment_display(const Enchantment &enchantment) {
+  if (enchantment.getAtk() == "" && enchantment.getDef() == "") {
+    return display_enchantment(enchantment.getName(), enchantment.getCost(), enchantment.getDescription());
+  } else {
+    return display_enchantment_attack_defence(enchantment.getName(), enchantment.getCost(),
+                                              enchantment.getDescription(), enchantment.getAtk(),
+                                              enchantment.getDef());
+  }
+}
+
+card_template_t player_display(const Player &player, int player_num) {
+  return display_player_card(player_num, player.getName(), player.getLife(), player.getMagic());
 }
 
 const card_template_t CARD_TEMPLATE_MINION_NO_ABILITY =
