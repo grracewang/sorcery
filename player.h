@@ -1,9 +1,9 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include "card.h"
-#include "ritual.h"
-#include "minion.h"
-#include "spell.h"
+#include "card/minion/ritual.h"
+#include "card/minion/minion.h"
+#include "card/minion/spell.h"
 #include <vector>
 #include <stack>
 #include <string>
