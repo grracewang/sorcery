@@ -10,7 +10,8 @@ class Enchantment: public Card {
     private:
         Minion *minion;
     public:
-        
+        explicit Enchantment(Minion*);
+        virtual void notify() = 0;
 };
 
 #endif

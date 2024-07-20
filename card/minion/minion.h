@@ -6,21 +6,18 @@
 #include <enchantment.h>
 #include <spell.h>
 #include <ritual.h>
+#include <vector>
 using namespace std;
 
 
 class Minion: public Card {
 	private: 
-		bool actions;
+		bool actions = 1;
 		int atk, def;
-		vector<Enchantment*> enchantments // enchantments that are casted on this Minion
-
-		// minion abilities
-		vector<Spell*> spells;
-		vector<Ritual*> rituals;
+		vector<Enchantment*> enchantments; // enchantments that are casted on this Minion
 
 	public:
-		
+		explicit Minion();
 		void atkPlayer(Player*);
 		Minion *atkMinion(Minion*);
 		virtual int getAtk();
