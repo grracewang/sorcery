@@ -15,8 +15,7 @@ class Card {
 		int getCost() const;
 		bool hasTarget() const;
 		
-		virtual void activate() = 0;
-		//void printCard();
+		virtual void activate() = 0; // activates spell/ritual/enchantment/minion's ability
 };
 
 #endif
