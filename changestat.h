@@ -6,7 +6,7 @@
 
 class ChangeStat: public Decorator {
     public:
-        ChangeStat(Minion *m);
+        ChangeStat(Minion *target, char op): Decorator{target, op} {}
         int getAtk() override;
         int getDef() override;
 };

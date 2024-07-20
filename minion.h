@@ -20,7 +20,7 @@ class Minion: public Card {
 		vector<Enchantment*> enchantments; // enchantments that are casted on this Minion
 
 	public:
-		explicit Minion(string, string, string, int, int, int): 
+		explicit Minion(string, string, int, int, int); 
 		virtual ~Minion();
 		~Minion();
 		void atkPlayer(Player*);

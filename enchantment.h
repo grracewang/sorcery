@@ -8,11 +8,12 @@
 
 class Enchantment: public Card {
     private:
-        Minion *minion;
+        Minion *target;
     public:
-        Enchantment(Minion*);
-        virtual ~Enchantment();
+        Enchantment(string name, string filename, int cost): Card{name, "Enchantment", filename, cost}, target{nullptr} {}
+        virtual ~Enchantment() { delete target; };
         virtual void notify() = 0;
+        Minion *getTarget() { return target; }
 };
 
 #endif

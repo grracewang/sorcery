@@ -5,10 +5,10 @@
 
 class Decorator: public Minion {
     protected:
-        Minion *minion;
+        Minion *target;
         char op; // operator for changing stats for minion: can be '*' or '+'
     public:
-        Decorator(Minion *);
+        Decorator(Minion *target, char op): target{target}, op{op} {}
         virtual ~Decorator();
 };
 
