@@ -1,6 +1,7 @@
 #include "minion.h"
 
-Minion::Minion(int atk, int def): Card{}, atk{atk}, def{def} {}
+Minion::Minion(string name, string type, string description, int cost, int atk, int def): 
+    Card{string name, string type, string description, int cost}, atk{atk}, def{def} {}
 
 int Minion::getAtk() { return atk; }
 

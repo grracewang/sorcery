@@ -15,6 +15,8 @@ class Minion: public Card {
 	private: 
 		bool actions = 1;
 		int atk, def;
+		vector<Spell*> spells;
+		vector<Ritual*> rituals;
 		vector<Enchantment*> enchantments; // enchantments that are casted on this Minion
 
 	public:
