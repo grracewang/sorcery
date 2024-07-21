@@ -25,11 +25,11 @@ class Minion: public Card {
 		~Minion();
 		void atkPlayer(Player*);
 		Minion *atkMinion(Minion*);
-		virtual int getAtk();
-		virtual int getDef();
-		virtual bool getActions();
-		vector<Spell*> getSpells();
-		vector<Ritual*> getRituals();
+		virtual int getAtk() const;
+		virtual int getDef() const;
+		virtual bool getActions() const;
+		vector<Spell*> getSpells() const;
+		vector<Ritual*> getRituals() const;
 };
 
 #endif

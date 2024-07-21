@@ -7,9 +7,9 @@
 class ChangeStat: public Decorator {
     public:
         ChangeStat(Minion *target, char op): Decorator{target, op} {}
-        int getAtk() override;
-        int getDef() override;
-        void activate() override {}
+        int getAtk() const override {}
+        int getDef() const override {}
+        void activate() const override {}
 };
 
 #endif

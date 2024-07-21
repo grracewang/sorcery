@@ -13,8 +13,8 @@ class Ritual: public Card {
         explicit Ritual(string, string, int, int, int, Player *);
         virtual ~Ritual();
         virtual void notify() = 0;
-        int getCharges();
-        int getActivationCost();
+        int getCharges() const;
+        int getActivationCost() const;
 };
 
 #endif

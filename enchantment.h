@@ -13,8 +13,8 @@ class Enchantment: public Card {
     public:
         Enchantment(string name, string filename, int cost, string atkStr = "", string defStr = ""): 
             Card{name, "Enchantment", filename, cost}, atkStr{atkStr}, defStr{defStr} {}
-        string getAtkStr() { return atkStr; }
-        string getDefStr() { return defStr; }
+        string getAtkStr() const { return atkStr; }
+        string getDefStr() const { return defStr; }
 };
 
 #endif

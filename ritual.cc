@@ -5,6 +5,6 @@ explicit Ritual::Ritual(string name, string filename, int cost, int charges, int
 
 Ritual::~Ritual() { delete owner; }
 
-int Ritual::getCharges() { return charges; }
+int Ritual::getCharges() const { return charges; }
 
-int Ritual::getActivationCost() { return activationCost; }
+int Ritual::getActivationCost() const { return activationCost; }
