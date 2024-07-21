@@ -8,7 +8,7 @@ class Decorator: public Minion {
         Minion *target;
         char op; // operator for changing stats for minion: can be '*' or '+'
     public:
-        Decorator(Minion *target, char op): target{target}, op{op} {}
+        Decorator(Minion *target, char op): Minion{target->getName(), target->getType(), target->get
         virtual ~Decorator();
 };
 
