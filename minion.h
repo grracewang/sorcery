@@ -1,13 +1,12 @@
 #ifndef MINION_H
 #define MINION_H
-
-#include <string>
-#include "card.h"
+#include "player.h"
 #include "enchantment.h"
+#endif
+#include "card.h"
 #include "spell.h"
 #include "ritual.h"
-#include "player.h"
-
+#include <string>
 using namespace std;
 
 
@@ -21,7 +20,7 @@ class Minion: public Card {
 	public:
 		explicit Minion(string, string, string, int); 
 		virtual ~Minion();
-		~Minion();
+		// ~Minion();
 		void atkPlayer(Player*);
 		Minion *atkMinion(Minion*);
 		virtual int getAtk() const = 0;
@@ -31,4 +30,3 @@ class Minion: public Card {
 		vector<Ritual*> getRituals() const;
 };
 
-#endif

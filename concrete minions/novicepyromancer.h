@@ -1,4 +1,4 @@
-#include "minion.h"
+#include "../minion.h"
 
 class NovicePyromancer : public Minion {
     public:

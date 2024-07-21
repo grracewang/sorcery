@@ -1,7 +1,7 @@
 #ifndef BLIZZARD_H
 #define BLIZZARD_H
 
-#include "spell.h"
+#include "../spell.h"
 
 class Blizzard: public Spell {
     public:

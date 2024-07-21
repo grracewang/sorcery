@@ -1,7 +1,7 @@
 #ifndef STANDSTILL_H
 #define STANDSTILL_H
 
-#include "ritual.h"
+#include "../ritual.h"
 
 class Standstill: public Ritual {
     public:

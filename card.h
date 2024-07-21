@@ -2,6 +2,8 @@
 #define CARD_H
 #include <string>
 #include <fstream>
+#include "player.h"
+
 using namespace std;
 
 class Card { 

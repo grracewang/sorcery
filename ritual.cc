@@ -1,4 +1,5 @@
 #include "ritual.h"
+#include "player.h"
 
 explicit Ritual::Ritual(string name, string description, int cost, int charges, int activationCost, Player *owner):
     Card{name, "Ritual", description, cost}, charges{charges}, activationCost{activationCost} {}

@@ -1,7 +1,7 @@
 #ifndef BANISH_H
 #define BANISH_H
 
-#include "spell.h"
+#include "../spell.h"
 using namespace std;
 
 class Banish: public Spell {

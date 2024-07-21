@@ -1,8 +1,9 @@
 #ifndef RITUAL_H
 #define RITUAL_H
-
 #include "card.h"
 #include "player.h"
+#endif
+
 
 
 class Ritual: public Card {
@@ -16,4 +17,3 @@ class Ritual: public Card {
         int getActivationCost() const;
 };
 
-#endif

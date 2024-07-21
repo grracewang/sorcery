@@ -1,4 +1,6 @@
-#include "minion.h"
+#ifndef AIRELEMENTAL_H
+#define AIRELEMENTAL_H
+#include "../minion.h"
 #include <string>
 
 class AirElemental : public Minion {

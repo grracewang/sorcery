@@ -1,7 +1,7 @@
 #ifndef DISENCHANT_H
 #define DISENCHANT_H
 
-#include "spell.h"
+#include "../spell.h"
 
 class Disenchant: public Spell {
     public:

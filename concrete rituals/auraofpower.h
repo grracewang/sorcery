@@ -1,7 +1,7 @@
 #ifndef AURAOFPOWER_H
 #define AURAOFPOWER_H
 
-#include "ritual.h"
+#include "../ritual.h"
 
 class AuraOfPower: public Ritual {
     public:

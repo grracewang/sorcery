@@ -49,7 +49,9 @@ class Player {
 		void draw(); // transfers deck card to hand iff fullHand = false
 		void placeCard(int i); // places hand card to board
 		void addToDeck(Card*);
-		bool playCard(int i); // places down the i-th card in hand
+		bool playCard(int i, Player* curr, Player* target); // places down the i-th card in hand
+		bool playCard(int i, Player* target, char t);
+		void discard(int i); // discards i-th card, doesn't move to graveyard, just trashes it
 		// void remove(int i); // removes ith element from hand
 
 		//observer pattern methods

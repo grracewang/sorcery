@@ -1,7 +1,7 @@
 #ifndef RECHARGE_H
 #define RECHARGE_H
 
-#include "spell.h"
+#include "../spell.h"
 
 class Recharge: public Spell {
     public:

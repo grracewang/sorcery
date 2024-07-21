@@ -51,17 +51,27 @@ void Player::placeCard(int i) {
     hand.erase(hand.begin() + i);
 }
 
-bool Player::playCard(int i) { // places down i-th card in hand
+bool Player::playCard(int i, Player* curr, Player* target) { // places down i-th card in hand
     Card* card = hand[i];
     if (card->getType() == "Minion") {
         placeCard(i);
         return true;
     } else { // minion
         placeCard(i);
-        return card->activate(i); // idk what type it takes
+        //return card->activate(i); // idk what type it takes
+        return true;
     }
 }
 
+bool playCard(int i, Player* target, char t) {
+    return true;
+}
+
+void Player::discard(int i) {
+    Card* temp = hand[i];
+    hand.erase(hand.begin() + i);
+    delete temp;
+}
 // void remove(int i) {
 //     deck.erase(i);
 // }

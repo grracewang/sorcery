@@ -1,7 +1,7 @@
 #ifndef RAISEDEAD_H
 #define RAISEDEAD_H
 
-#include "spell.h"
+#include "../spell.h"
 
 class RaiseDead: public Spell {
     public:

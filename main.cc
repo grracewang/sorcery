@@ -119,17 +119,22 @@ int main(int argc, char *argv[]) {
     while (getline(d1, card)) {
         // players[0]->addToCards(players[0]->getDeck(), loadCard(card, players[0])); // adds cards to deck
         players[0]->addToDeck(loadCard(card, players[0]));
-        shuffle(player[0])
+        //shuffle(player[0])
     }
     while (getline(d2, card)) {
         players[1]->addToDeck(loadCard(card, players[1]));
     }
 
     i = 0;
-    curr = 0;
-
+    int curr = 0;
+    int next = 1;
     while (true) {
-        if (curr == players.size()) { curr = 0; } // helps us count whose turn it is
+        if (curr == players.size()) { // helps us count whose turn it is
+            curr = 0; 
+            next = 1;
+        } else if (next == players.size()) {
+            next = 0;
+        }
         string command;
 
         cin >> command;
@@ -197,15 +202,21 @@ int main(int argc, char *argv[]) {
                 if (cin.fail()) {
                     cin.clear();
                     // check if card played is minion, if it's a minion we call all the spells/rituals minion related
-                    if (players[curr]->playCard(i)) {
+                    if (players[curr]->playCard(i, players[curr], players[next]) {
                         cout << "Command: Played card " << i << endl;
                     } else {
                         cout << "Card can't be played." << endl;
                     }
                 } else {
-                    char t; // t can only be 
+                    char t; // t can only be 30, 31, 32, 33, 34, 114 (= r)
                     cin >> t;
-                    cout << "Command: Played card" << i << p << t << endl;
+                    //if (players[curr]->playCard(i, players[next], t)) {
+                    if (true) {
+                       cout << "Command: Played card " << i << p << t << endl; 
+                    } else {
+                        cout << "Card can't be played." << endl;
+                    }
+                    
                 }
             }
             break;
@@ -249,7 +260,7 @@ int main(int argc, char *argv[]) {
         } //switch
 
         ++curr; // next player's turn
-
+        ++next;
     } //while
 
     // delete everything created on the stack
