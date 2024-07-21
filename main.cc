@@ -1,4 +1,4 @@
-#include "player.h"
+// #include "player.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -6,7 +6,11 @@ using namespace std;
 
 const int NUM_PLAYERS = 2;
 
+<<<<<<< HEAD
 enum Op {HELP = 0, END, QUIT, DRAW, DISCARD, ATTACK, PLAY, USE, INSPECT, HAND, BOARD, INVALID_COMMAND};
+=======
+enum class Op {HELP, END, QUIT, DRAW, DISCARD, ATTACK, PLAY, USE, INSPECT, HAND, BOARD, INVALID_COMMAND};
+>>>>>>> b643136 (fixed main while loop)
 
 bool convertOp(const string &command, Op &op, bool testing) {
     bool result = true;
@@ -50,6 +54,7 @@ int main(int argc, char *argv[]) {
 		string arg = argv[i]; 
         
 		if (arg == "-init") {
+            cout << "-init on" << endl;
             init = true;
             ++i;
             arg = argv[i];
@@ -66,30 +71,30 @@ int main(int argc, char *argv[]) {
             ++i;
             arg = argv[i];
             deck2 = arg;
-        } else if (arg == "graphics") {
+        } else if (arg == "-graphics") {
             cout << "graphics on" << endl;
             graphics = true;
-        } else if (arg == "testing") {
+        } else if (arg == "-testing") {
             cout << "testing mode on" << endl;
             testing = true;
         } 
-        else {
-            cerr << "Not a valid command line argument" << endl;
-        }
+        // else {
+        //     cerr << "Not a valid command line argument" << endl;
+        // }
 
         ++i;
     } // command line loop
     
-    vector<Player*> players;
+    // vector<Player*> players;
 
     // getting both player's names if not provided (but didn't implement the if not provided part)
-    for (int i = 1; i <= NUM_PLAYERS; i++) {
-        string name;
+    // for (int i = 1; i <= NUM_PLAYERS; i++) {
+    //     string name;
 
-        cout << "What's player " << i << "'s name?" << endl;
-        cin >> name;
-        players.emplace_back(new Player{name});
-    }
+    //     cout << "What's player " << i << "'s name?" << endl;
+    //     cin >> name;
+    //     players.emplace_back(new Player{name});
+    // }
 
     i = 0;
 
@@ -103,7 +108,7 @@ int main(int argc, char *argv[]) {
             continue;
         }
 
-        if (op == Op::QUIT) break;
+        // if (op == Op::QUIT) break;
 
         switch (op) {
             case Op::HELP:
@@ -116,19 +121,26 @@ int main(int argc, char *argv[]) {
                 }
             }
             break;
+
             case Op::END:
             {
                 cout << "Command: end" << endl;
             }
+            break;
+
             case Op::DRAW:
             {
                 cout << "Command: draw (testing mode)" << endl;
             }
+            break;
+
             case Op::DISCARD:
             {
                 cin >> i;
                 cout << "Command: discard (testing mode)" << i << endl;
             }
+            break;
+
             case Op::ATTACK:
             {
                 int j;
@@ -141,6 +153,8 @@ int main(int argc, char *argv[]) {
                     cout << "Command: attack minion" << i << j << endl;
                 }
             }
+            break;
+
             case Op::PLAY:
             {
                 int j;
@@ -153,24 +167,43 @@ int main(int argc, char *argv[]) {
                     cout << "Command: play" << i << j << endl;
                 }
             }
+            break;
+
             case Op::USE:
             {
                 cin >> i;
                 cout << "Command: use" << i << endl;    
             }
+            break;
+
             case Op::INSPECT:
             {
                 cin >> i;
                 cout << "Command: inspect" << i << endl;
             }
+            break;
+
             case Op::HAND:
             {
                 cout << "Command: hand" << endl;
             }
+            break;
+
             case Op::BOARD:
             {
                 cout << "Command: board" << endl;
+            } 
+            break;
+
+            case Op::QUIT:
+            {
+                break;
             }
+            break;
+            // case Op::INVALID_COMMAND:
+            // {
+
+            // }
         }
     }
 
