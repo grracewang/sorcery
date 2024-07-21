@@ -25,6 +25,8 @@ vector<Card*> Player::getHand() const { return hand; }
 
 vector<Minion*> Player::getMinions() const { return minions; }
 
+stack<Minion*> Player::getGraveyard() const { return graveyard; }
+
 // vector<Card*> getDeck() const { return deck };
 
 void Player::addToDeck(Card* card) {

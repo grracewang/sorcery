@@ -40,6 +40,7 @@ class Player {
 		string getName() const;
 		vector<Card*> getHand() const;
 		vector<Minion*> getMinions() const;
+		stack<Minion*> getGraveyard() const;
 		// vector<Card*> getDeck() const;
 
 		// other method
