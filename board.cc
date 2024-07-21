@@ -6,47 +6,61 @@ using namespace std;
 
 Board::Board(vector<Player*> players) : players{players} {}
 
-void printPlayerRow(ostream &out, const Player &player, int playerNum) {
-    card_template_t ritual = (player.getRitual()) ? CARD_TEMPLATE_BORDER :
-        ritual_display(*player.getRitual());
+// prints 5 card_template_t in a row with the border if border is true
+//    and without it otherwise
+void printRowCards(ostream &out, const vector<card_template_t> cards, bool border) {
+    int numLines = cards[0].size();
 
-    card_template_t playerCard = player_display(player, playerNum);
+    for (int i = 0; i < numLines; i++) {
+        if (border) out << EXTERNAL_BORDER_CHAR_UP_DOWN;
 
-    card_template_t graveyard = (player.getGraveyard().empty()) ?
-        CARD_TEMPLATE_BORDER : minion_display(*player.getGraveyard().top());
+        for (const auto &card : cards) {
+            out << card[i];
+        }
 
-    card_template_t empty = CARD_TEMPLATE_EMPTY;
-
-    for (int i = 0; i < empty.size(); i++) {
-        out << EXTERNAL_BORDER_CHAR_UP_DOWN
-            << ritual[i]
-            << empty[i]
-            << playerCard[i]
-            << empty[i]
-            << graveyard[i]
-            << EXTERNAL_BORDER_CHAR_UP_DOWN
-            << endl;
+        if (border) out << EXTERNAL_BORDER_CHAR_UP_DOWN;
+        out << endl;
     }
 }
 
+void printPlayerRow(ostream &out, const Player &player, int playerNum) {
+    // ritual into printable format
+    card_template_t ritual = (player.getRitual()) ? CARD_TEMPLATE_BORDER :
+        ritual_display(*player.getRitual());
+
+    // player into printable format
+    card_template_t playerCard = player_display(player, playerNum);
+
+    // graveyard into printable format
+    card_template_t graveyard = (player.getGraveyard().empty()) ?
+        CARD_TEMPLATE_BORDER : minion_display(*player.getGraveyard().top());
+
+    // convert cards into a card_template_t[5]
+    vector<card_template_t> cards = {ritual,
+                                    CARD_TEMPLATE_EMPTY,
+                                    playerCard,
+                                    CARD_TEMPLATE_EMPTY,
+                                    graveyard};
+
+    // print the row
+    printRowCards(out, cards, true);
+}
+
 void printMinionRow(ostream &out, const vector<Minion*> minions) {
-    card_template_t minionCards[5] = {CARD_TEMPLATE_BORDER,
-                                      CARD_TEMPLATE_BORDER,
-                                      CARD_TEMPLATE_BORDER,
-                                      CARD_TEMPLATE_BORDER,
-                                      CARD_TEMPLATE_BORDER};
+    vector<card_template_t> minionCards;
 
     int i = 0;
+    // all possible minions into printable format
     for (const auto &minion : minions) {
-        minionCards[i] = minion_display(*minion);
+        minionCards.emplace_back(minion_display(*minion));
         i++;
     }
-
-    for (i = 0; i < minionCards[0].size(); i++) {
-        out << EXTERNAL_BORDER_CHAR_UP_DOWN;
-        for (const auto &minionCard : minionCards) out << minionCard[i];
-        out << EXTERNAL_BORDER_CHAR_UP_DOWN << endl;
+    // fill remaining spots with empty squares
+    for ( ; i < 5; i++) {
+        minionCards.emplace_back(CARD_TEMPLATE_BORDER);
     }
+
+    printRowCards(out, minionCards, true);
 }
 
 ostream &Board::printBoard(ostream &out) {
@@ -55,10 +69,41 @@ ostream &Board::printBoard(ostream &out) {
     for (int i = 0; i < 165; i++) out << EXTERNAL_BORDER_CHAR_LEFT_RIGHT;
     out << EXTERNAL_BORDER_CHAR_TOP_RIGHT << endl;
 
+    // player 1's rows
     printPlayerRow(out, *players[0], 1);
     printMinionRow(out, players[0]->getMinions());
+
+    // centre graphic
     for (const auto &line : CENTRE_GRAPHIC) cout << line << endl;
+
+    // player 2's rows
     printMinionRow(out, players[1]->getMinions());
     printPlayerRow(out, *players[1], 2);
+
+    // bottom border
+    out << EXTERNAL_BORDER_CHAR_BOTTOM_LEFT;
+    for (int i = 0; i < 165; i++) out << EXTERNAL_BORDER_CHAR_LEFT_RIGHT;
+    out << EXTERNAL_BORDER_CHAR_BOTTOM_RIGHT << endl;
+
+    return out;
+}
+
+ostream &Board::printHand(ostream &out, int playerNum) {
+    vector<card_template_t> cards;
+
+    int i = 0;
+    // all possible minions into printable format
+    for (const auto &card : players[playerNum]->getHand()) {
+        if (card->getType() == "minion") cards.emplace_back(minion_display(*card));
+        else if (card->getType() == "enchantment") cards.emplace_back(enchantment_display(*card));
+        i++;
+    }
+    // fill remaining spots with empty squares
+    for ( ; i < 5; i++) {
+        cards.emplace_back(CARD_TEMPLATE_BORDER);
+    }
+
+    printRowCards(out, cards, true);
+
     return out;
 }

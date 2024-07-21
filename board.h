@@ -14,6 +14,7 @@ class Board {
 
         // printing functions
 		ostream &printBoard(ostream &out);
+		ostream &printHand(ostream &out, int playerNum);
 };
 
 #endif

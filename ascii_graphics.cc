@@ -125,12 +125,13 @@ static card_template_t display_minion_general(card_template_t out,std::string na
 }
 
 card_template_t minion_display(const Minion &minion) {
-  if (minion.getSpells()->empty() && minion.getRituals()->empty()) {
+  if (minion.getSpells().empty() && minion.getRituals().empty()) {
     return display_minion_no_ability(minion.getName(), minion.getCost(), minion.getAtk(),
                                      minion.getDef());
-  } else if (!minion.getSpells()->empty()) {
-    return display_minion_activated_ability(minion.getName(), minion.getCost(), minion.getDef(),
-                                            minion.getAtk(), minion.getSpells()[0]->getDescription());
+  } else if (!minion.getSpells().empty()) {
+    return display_minion_activated_ability(minion.getName(), minion.getCost(), minion.getAtk(),
+                                            minion.getDef(), minion.getSpells()[0]->getCost(),
+                                            minion.getSpells()[0]->getDescription());
   } else {
     return display_minion_triggered_ability(minion.getName(), minion.getCost(), minion.getAtk(),
                                             minion.getDef(), minion.getRituals()[0]->getDescription());
@@ -138,7 +139,7 @@ card_template_t minion_display(const Minion &minion) {
 }
 
 card_template_t ritual_display(const Ritual &ritual) {
-  return display_ritual(ritual.getName(), ritual.getCost(), ritual.getDescription(),
+  return display_ritual(ritual.getName(), ritual.getCost(), ritual.getActivationCost(), ritual.getDescription(),
                         ritual.getCharges());
 }
 
@@ -147,12 +148,13 @@ card_template_t spell_display(const Spell &spell) {
 }
 
 card_template_t enchantment_display(const Enchantment &enchantment) {
-  if (enchantment.getAtk() == "" && enchantment.getDef() == "") {
+  if (enchantment.getAtkStr() == "" && enchantment.getDefStr() == "") {
     return display_enchantment(enchantment.getName(), enchantment.getCost(), enchantment.getDescription());
   } else {
     return display_enchantment_attack_defence(enchantment.getName(), enchantment.getCost(),
-                                              enchantment.getDescription(), enchantment.getAtk(),
-                                              enchantment.getDef());
+                                              enchantment.getDe
+                                              scription(), enchantment.getAtkStr(),
+                                              enchantment.getDefStr());
   }
 }
 
