@@ -1,6 +1,7 @@
 #ifndef ENCHANTMENT_H
 #define ENCHANTMENT_H
 
+#include <string>
 #include "card.h"
 #include "minion.h"
 #include "spell.h"
@@ -8,11 +9,12 @@
 
 class Enchantment: public Card {
     private:
-        Minion *target;
+        string atkStr, defStr;
     public:
-        Enchantment(string name, string filename, int cost): Card{name, "Enchantment", filename, cost}, target{nullptr} {}
-        virtual ~Enchantment() { delete target; };
-        Minion *getTarget() { return target; }
+        Enchantment(string name, string filename, int cost, string atkStr, string defStr): 
+            Card{name, "Enchantment", filename, cost}, atkStr{atkStr}, defStr{defStr} {}
+        string getAtkStr() { return atkStr; }
+        string getDefStr() { return defStr; }
 };
 
 #endif

@@ -8,8 +8,8 @@
 class GiantStrength: public Enchantment {
     public:
         explicit GiantStrength(): 
-            Enchantment{"Giant Strength", "giantstrength.txt", 1} {}
-        void activate() override {}
+            Enchantment{"Giant Strength", "giantstrength.txt", 1, "+2", "+2"} {}
+        void activate(Player *p, Card *t) override {}
 };
 
 #endif

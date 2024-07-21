@@ -12,7 +12,7 @@ using namespace std;
 
 
 class Minion: public Card {
-	private: 
+	protected: 
 		bool actions = 1;
 		int atk, def;
 		vector<Spell*> spells;

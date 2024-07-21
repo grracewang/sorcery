@@ -9,6 +9,7 @@ class ChangeStat: public Decorator {
         ChangeStat(Minion *target, char op): Decorator{target, op} {}
         int getAtk() override;
         int getDef() override;
+        void activate() override {}
 };
 
 #endif

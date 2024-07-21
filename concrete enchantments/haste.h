@@ -5,8 +5,8 @@
 
 class Haste: public Enchantment {
     public: 
-        explicit Haste(): Enchantment{"Haste", "haste.txt", 1} {}
-        void activate() override {}
+        explicit Haste(): Enchantment{"Haste", "haste.txt", 1, "", ""} {}
+        void activate(Player *p, Card *t) override {}
 };
 
 #endif
