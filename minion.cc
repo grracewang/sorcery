@@ -1,11 +1,7 @@
 #include "minion.h"
 
-Minion::Minion(string name, string type, string filename, int cost, int atk, int def): 
-    Card{name, "Minion", filename, cost}, actions{true}, atk{atk}, def{def} {}
-
-int Minion::getAtk() const { return atk; }
-
-int Minion::getDef() const { return def; }
+Minion::Minion(string name, string type, string filename, int cost): 
+    Card{name, "Minion", filename, cost}, actions{true} {}
 
 bool Minion::getActions() const { return actions; }
 
