@@ -40,13 +40,19 @@ class Player {
 		string getName() const;
 		vector<Card*> getHand() const;
 		vector<Minion*> getMinions() const;
-		stack<Minion*> getGraveyard() const;
+		// vector<Card*> getDeck() const;
+
+		void addToDeck(Card*);
+
 
 		// other method
 		Minion* revive(); // returns top of stack
 		bool fullHand(); // draw another card if non full hand
 		void draw(); // transfers deck card to hand iff fullHand = false
-		
+		void placeCard(int i); // places hand card to board
+		// void remove(int i); // removes ith element from hand
+
+
 		//observer pattern methods
 		void notifyCards(vector<Card*>) const;
 		void attach(Card*);

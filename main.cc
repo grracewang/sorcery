@@ -1,16 +1,20 @@
-// #include "player.h"
+#include "player.h"
+#include "card.h"
+#include "minion.h"
+#include "ritual.h"
+#include "enchantment.h"
+#include "spell.h"
+
+#include "loaddeck.h"
 #include <iostream>
 #include <fstream>
 #include <string>
 using namespace std;
 
+
 const int NUM_PLAYERS = 2;
 
-<<<<<<< HEAD
-enum Op {HELP = 0, END, QUIT, DRAW, DISCARD, ATTACK, PLAY, USE, INSPECT, HAND, BOARD, INVALID_COMMAND};
-=======
 enum class Op {HELP, END, QUIT, DRAW, DISCARD, ATTACK, PLAY, USE, INSPECT, HAND, BOARD, INVALID_COMMAND};
->>>>>>> b643136 (fixed main while loop)
 
 bool convertOp(const string &command, Op &op, bool testing) {
     bool result = true;
@@ -32,15 +36,16 @@ bool convertOp(const string &command, Op &op, bool testing) {
     return result;
 }
 
+
 int main(int argc, char *argv[]) {
     Op op;
 
     int i = 0;
 
     // filenames
-    string initFile;
-    string deck1;
-    string deck2;
+    string initFile = "";
+    string deck1 = "";
+    string deck2 = "";
 
     // check for flags
     bool init = false;
@@ -85,20 +90,45 @@ int main(int argc, char *argv[]) {
         ++i;
     } // command line loop
     
-    // vector<Player*> players;
+    vector<Player*> players;
 
     // getting both player's names if not provided (but didn't implement the if not provided part)
-    // for (int i = 1; i <= NUM_PLAYERS; i++) {
-    //     string name;
+    for (int i = 1; i <= NUM_PLAYERS; i++) {
+        string name;
 
-    //     cout << "What's player " << i << "'s name?" << endl;
-    //     cin >> name;
-    //     players.emplace_back(new Player{name});
-    // }
+        cout << "What's player " << i << "'s name?" << endl;
+        cin >> name;
+        players.emplace_back(new Player{name});
+    }
+
+    ifstream d1;
+    if (setDeck1) {
+        d1.open(deck1);
+    } else {
+        d1.open("default.deck");
+    }
+
+    ifstream d2;
+    if (setDeck2) {
+        d1.open(deck2);
+    } else {
+        d1.open("default.deck");
+    }
+
+    string card;
+    while (getline(d1, card)) {
+        // players[0]->addToCards(players[0]->getDeck(), loadCard(card, players[0])); // adds cards to deck
+        players[0]->addToDeck(loadCard(card, players[0]));
+    }
+    while (getline(d2, card)) {
+        players[1]->addToCDeck(loadCard(card, players[1]));
+    }
 
     i = 0;
+    curr = 0;
 
     while (true) {
+        if (curr == players.size()) { curr = 0; } // helps us count whose turn it is
         string command;
 
         cin >> command;
@@ -130,14 +160,16 @@ int main(int argc, char *argv[]) {
 
             case Op::DRAW:
             {
-                cout << "Command: draw (testing mode)" << endl;
+                players[curr]->draw();
+                cout << "Command: Card drawn for player " << curr + 1 << endl;
             }
             break;
 
             case Op::DISCARD:
             {
                 cin >> i;
-                cout << "Command: discard (testing mode)" << i << endl;
+                players[curr]->discard(i);
+                cout << "Command: Discarded card " << i << "of player " << curr + 1 << endl;
             }
             break;
 
@@ -157,14 +189,18 @@ int main(int argc, char *argv[]) {
 
             case Op::PLAY:
             {
-                int j;
+                int p, t; // t-th card owned by player
                 cin >> i;
-                cin >> j;
+                cin >> p;
                 if (cin.fail()) {
                     cin.clear();
-                    cout << "Command: play" << i << endl;
+                    // move minion from hand to board
+                    players[curr]->placeCard(i); // WRONG
+                    cout << "Command: Played card " << i << endl;
+
                 } else {
-                    cout << "Command: play" << i << j << endl;
+                    cin >> t;
+                    cout << "Command: Played card" << i << p << t << endl;
                 }
             }
             break;
@@ -204,8 +240,11 @@ int main(int argc, char *argv[]) {
             // {
 
             // }
-        }
-    }
+        } //switch
+
+        ++curr; // next player's turn
+
+    } //while
 
     // delete everything created on the stack
-}
+} // main
