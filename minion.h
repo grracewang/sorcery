@@ -28,6 +28,8 @@ class Minion: public Card {
 		virtual int getAtk();
 		virtual int getDef();
 		virtual bool getActions();
+		vector<Spell*> getSpells();
+		vector<Ritual*> getRituals();
 };
 
 #endif

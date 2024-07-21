@@ -12,3 +12,7 @@ bool Minion::getActions() { return actions; }
 void atkPlayer(Player*) {};
 
 Minion *atkMinion(Minion*);
+
+vector<Spell*> Minion::getSpells() { return spells; }
+
+vector<Ritual*> Minion::getRituals() { return rituals; }
