@@ -33,11 +33,14 @@ class Player {
 		// accessor and mutators
 		void changeMagic(int newMagic);
 		void changeLife(int newLife);
+		void changeRitual(Ritual *ritual);
 		int getLife() const;
 		int getMagic() const;
+		Ritual *getRitual() const;
 		string getName() const;
 		vector<Card*> getHand() const;
 		vector<Minion*> getMinions() const;
+		stack<Minion*> getGraveyard() const;
 
 		// other method
 		Minion* revive(); // returns top of stack

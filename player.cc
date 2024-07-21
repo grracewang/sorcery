@@ -7,24 +7,33 @@ void Player::changeMagic(int newMagic) { magic += newMagic; }
 
 void Player::changeLife(int newLife) { life += newLife; }
 
+void Player::changeRitual(Ritual *ritual) {
+    delete this->ritual;
+    this->ritual = ritual;
+}
+
 int Player::getLife() const { return life; }
 
 int Player::getMagic() const { return magic; }
 
+Ritual *Player::getRitual() const { return ritual; }
+
 string Player::getName() const { return name; }
 
-vector<Card*> getHand() const { return hand; }
+vector<Card*> Player::getHand() const { return hand; }
 
-vector<Minion*> getMinions() const { return minions; }
+vector<Minion*> Player::getMinions() const { return minions; }
 
-Minion* revive() {
+stack<Minion*> Player::getGraveyard() const { return graveyard; }
+
+Minion* Player::revive() {
     return graveyard.top();
 }
-bool fullHand() { return hand.size() == 5; }
+bool Player::fullHand() { return hand.size() == 5; }
 
-void draw(); // transfers deck card to hand iff fullHand = false
+void Player::draw(); // transfers deck card to hand iff fullHand = false
 
 //observer pattern methods
-void notifyCards(vector<Card*>) const;
-void attach(Card*);
-void detach(Card*);
+void Player::notifyCards(vector<Card*>) const;
+void Player::attach(Card*);
+void Player::detach(Card*);
