@@ -9,9 +9,9 @@
 
 class Enchantment: public Card {
     private:
-        string atkStr, defStr;
+        const string atkStr, defStr;
     public:
-        Enchantment(string name, string filename, int cost, string atkStr, string defStr): 
+        Enchantment(string name, string filename, int cost, string atkStr = "", string defStr = ""): 
             Card{name, "Enchantment", filename, cost}, atkStr{atkStr}, defStr{defStr} {}
         string getAtkStr() { return atkStr; }
         string getDefStr() { return defStr; }

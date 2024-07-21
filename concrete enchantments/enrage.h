@@ -8,7 +8,7 @@
 class Enrage: public Enchantment {
     public:
         explicit Enrage(): Enchantment{"Enrage", "enrage.txt", 2, "*2", "*2"} {}
-        void activate(Player *p, Card *t) override {}
+        bool activate(Player *p, Card *t) override {}
 };
 
 #endif

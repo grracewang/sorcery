@@ -7,7 +7,7 @@ using namespace std;
 class Banish: public Spell {
     public:
         explicit Banish(): Spell{"Banish", "banish.txt", 2} {}
-        void activate(Player *p, Card *t) override {
+        bool activate(Player *p, Card *t) override {
             if (p && t) {
                 if (t->getType() == "Ritual") {
                     delete t;
