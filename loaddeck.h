@@ -1,4 +1,8 @@
 #include "card.h"
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <random>
 #include "player.h"
 
 #include "airelemental.h"
@@ -25,7 +29,7 @@
 #include "magicfatigue.h"
 #include "silence.h"
 
-export Card* loadCard(string card, Player* owner) {
+Card* loadCard(string card, Player* owner) {
     if (card == "Air Elemental") { // Minions
         return new AirElemental();
     } else if (card == "Earth Elemental") {
@@ -72,3 +76,4 @@ export Card* loadCard(string card, Player* owner) {
         return new Silence();
     }
 }
+

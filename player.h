@@ -42,16 +42,14 @@ class Player {
 		vector<Minion*> getMinions() const;
 		// vector<Card*> getDeck() const;
 
-		void addToDeck(Card*);
-
-
 		// other method
 		Minion* revive(); // returns top of stack
 		bool fullHand(); // draw another card if non full hand
 		void draw(); // transfers deck card to hand iff fullHand = false
 		void placeCard(int i); // places hand card to board
+		void addToDeck(Card*);
+		bool playCard(int i); // places down the i-th card in hand
 		// void remove(int i); // removes ith element from hand
-
 
 		//observer pattern methods
 		void notifyCards(vector<Card*>) const;

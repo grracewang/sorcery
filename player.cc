@@ -32,27 +32,40 @@ void Player::addToDeck(Card* card) {
 }
 
 Minion* Player::revive() {
-Minion* Player::revive() {
     return graveyard.top();
 }
 bool Player::fullHand() { return hand.size() == 5; }
-bool Player::fullHand() { return hand.size() == 5; }
 
 void Player::draw() { // transfers deck card to hand iff fullHand = false
-    Card* card = deck[0]; // take top of deck
+    Card* card = deck[deck.size() - 1]; // take top of deck
     hand.emplace_back(card);
-    deck.erase(0);
+    // do i need to delete memory?: call delete on last elem
+    deck.erase(hand.begin() + deck.size() - 1);
 }
 
 void Player::placeCard(int i) {
-    Card* temp = hand(i);
+    Card* temp = hand[i];
     minions.emplace_back(temp);
-    hand.erase(i);
+    hand.erase(hand.begin() + i);
+}
+
+bool Player::playCard(int i) { // places down i-th card in hand
+    Card* card = hand[i];
+    if (card->getType() == "Minion") {
+        placeCard(i);
+        return true;
+    } else { // minion
+        placeCard(i);
+        return card->activate(i); // idk what type it takes
+    }
 }
 
 // void remove(int i) {
 //     deck.erase(i);
 // }
+
+
+
 //observer pattern methods
 void Player::notifyCards(vector<Card*>) const {}
 void Player::attach(Card*) {}

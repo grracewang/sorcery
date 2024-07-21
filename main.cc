@@ -119,9 +119,10 @@ int main(int argc, char *argv[]) {
     while (getline(d1, card)) {
         // players[0]->addToCards(players[0]->getDeck(), loadCard(card, players[0])); // adds cards to deck
         players[0]->addToDeck(loadCard(card, players[0]));
+        shuffle(player[0])
     }
     while (getline(d2, card)) {
-        players[1]->addToCDeck(loadCard(card, players[1]));
+        players[1]->addToDeck(loadCard(card, players[1]));
     }
 
     i = 0;
@@ -155,6 +156,7 @@ int main(int argc, char *argv[]) {
             case Op::END:
             {
                 cout << "Command: end" << endl;
+                // trigger all spells and rituals at the end
             }
             break;
 
@@ -189,16 +191,19 @@ int main(int argc, char *argv[]) {
 
             case Op::PLAY:
             {
-                int p, t; // t-th card owned by player
+                int p; // t-th card owned by player
                 cin >> i;
                 cin >> p;
                 if (cin.fail()) {
                     cin.clear();
-                    // move minion from hand to board
-                    players[curr]->placeCard(i); // WRONG
-                    cout << "Command: Played card " << i << endl;
-
+                    // check if card played is minion, if it's a minion we call all the spells/rituals minion related
+                    if (players[curr]->playCard(i)) {
+                        cout << "Command: Played card " << i << endl;
+                    } else {
+                        cout << "Card can't be played." << endl;
+                    }
                 } else {
+                    char t; // t can only be 
                     cin >> t;
                     cout << "Command: Played card" << i << p << t << endl;
                 }
@@ -207,6 +212,7 @@ int main(int argc, char *argv[]) {
 
             case Op::USE:
             {
+
                 cin >> i;
                 cout << "Command: use" << i << endl;    
             }
