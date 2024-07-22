@@ -5,7 +5,7 @@
 
 class Standstill: public Ritual {
     public:
-        explicit Standstill(Player *owner): Ritual{"Standstill", "standstill.txt", 3, 4, 2, owner} {}
+        explicit Standstill(Player *owner): Ritual{"Standstill", "Whenever a minion enters play, destroy it", 3, 4, 2, owner} {}
         bool activate(Card *) override {}
         void notify() override {}
 };
