@@ -30,8 +30,10 @@ class Minion: public Card {
 		string getDescription() const;
 		vector<Spell*> getSpells() const;
 		vector<Ritual*> getRituals() const;
-
 		card_template_t display() const override;
 };
+
+void attack(const Minion *, Minion *); // attack another minion
+void attack(const Minion *, Player *); // attack another player
 
 #endif

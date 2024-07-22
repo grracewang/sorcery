@@ -4,15 +4,11 @@
 // Implement Minion methods here
 
 Minion::Minion(string name, string type, string description, int cost): 
-    Card{name, "Minion", description, cost}, actions{true} {}
+  Card{name, "Minion", description, cost}, actions{true} {}
 
 bool Minion::getActions() const { return actions; }
 
 void Minion::setActions(bool b) { actions = b; }
-
-void Minion::attack(Player* target) {
-    target->changeLife(0 - this->getAtk());
-}
 
 string Minion::getDescription() const { return description; }
 
@@ -30,4 +26,12 @@ card_template_t Minion::display() const {
     return display_minion_triggered_ability(name, cost, getAtk(),
         getDef(), rituals[0]->getDescription());
   }
+}
+
+void attack(const Minion *attacker, Minion *target) {
+  target = new ChangeStat{target, '+', 0, -1 * attacker->getAtk, 0};
+}
+
+void attack(const Minion *attacker, Player *target) {
+  target->changeLife(-1 * attacker->getAtk());
 }

@@ -12,9 +12,6 @@ class AirElemental : public Minion {
         int getAtk() const override { return 1; }
         int getDef() const override { return 1; }
         int getCost() const override { return 0; }
-        void attack(Minion *target) override {
-            target = new ChangeStat{target, '+', 0, -1, 0};
-        }
 };
 
 #endif

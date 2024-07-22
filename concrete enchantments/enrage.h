@@ -11,14 +11,8 @@ using namespace std;
 class Enrage: public Enchantment {
     public:
         explicit Enrage(): Enchantment{"Enrage", "", 2, "*2", "*2"} {}
-        bool activate(Minion *t = nullptr) {
-            if (t) {
-                t = new ChangeStat{t, '*', 2, 2, 0};
-                return 1;
-            } else {
-                cerr << "You must provide a target." << endl;
-                return 0;
-            }
+        void activate(Minion *t) {
+            t = new ChangeStat{t, '*', 2, 2, 0};
         }
 };
 
