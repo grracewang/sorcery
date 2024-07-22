@@ -39,5 +39,4 @@ int ChangeStat::getCost() const {
     }
 }
 
-bool ChangeStat::activate(Card*) { return true; }
 bool ChangeStat::attack(Minion *) { return true; }

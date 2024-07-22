@@ -18,7 +18,6 @@ class AirElemental : public Minion {
                 return false;
             }
         }
-        bool activate(Card *target) override { return true; }
         int getAtk() const override { return 1; }
         int getDef() const override { return 1; }
         int getCost() const override { return 0; }
