@@ -7,14 +7,16 @@
 
 // Implement Minion methods here
 
-Minion::Minion(string name, string type, string filename, int cost): 
-    Card{name, "Minion", filename, cost}, actions{true} {}
+Minion::Minion(string name, string type, string description, int cost): 
+    Card{name, "Minion", description, cost}, actions{true} {}
 
 bool Minion::getActions() const { return actions; }
 
-void Minion::atkPlayer(Player*) {};
+void Minion::atkPlayer(Player*) {}
 
 Minion *Minion::atkMinion(Minion*) {}
+
+string getDescription() const { return description; }
 
 vector<Spell*> Minion::getSpells() const { return spells; }
 
