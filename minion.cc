@@ -1,10 +1,4 @@
 #include "minion.h"
-// #include "changestat.h"
-#include "player.h" // Include Player if needed in definitions
-#include "card.h"
-#include "spell.h"
-#include "ritual.h"
-#include "enchantment.h"
 
 // Implement Minion methods here
 
@@ -17,12 +11,8 @@ bool Minion::getActions() const { return actions; }
 
 void Minion::setActions(bool b) { actions = b; }
 
-void Minion::atkPlayer(Player* target) {
+void Minion::attack(Player* target) {
     target->changeLife(0 - this->getAtk());
-}
-
-Minion *Minion::atkMinion(Minion* target) {
-    // target = new ChangeStat(target, "+", 0, 0 - this->getAtk());
 }
 
 string Minion::getDescription() const { return description; }
