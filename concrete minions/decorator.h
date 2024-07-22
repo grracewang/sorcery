@@ -1,7 +1,7 @@
 #ifndef DECORATOR_H
 #define DECORATOR_H
 
-#include "minion.h"
+#include "../minion.h"
 
 class Decorator: public Minion {
     protected:

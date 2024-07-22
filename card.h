@@ -12,12 +12,12 @@ class Card {
 		int cost;
 	public:
 		explicit Card(string, string, string, int);
-		virtual ~Card();
+		virtual ~Card() = default;
 		string getName() const;
 		string getType() const;
 		string getDescription() const;
 		int getCost() const;
-		
+		virtual bool activate(Card*) = 0;
 		virtual card_template_t display() const = 0;
 };
 

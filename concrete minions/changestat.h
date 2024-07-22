@@ -2,7 +2,7 @@
 #define CHANGESTAT_H
 
 #include "decorator.h"
-#include "minion.h"
+#include "../minion.h"
 using namespace std;
 
 class ChangeStat: public Decorator {
@@ -16,6 +16,11 @@ class ChangeStat: public Decorator {
         int getAtk() const override;
         int getDef() const override;
         int getCost() const override;
+
+        // overriden virtual fcn that do nothing
+        bool activate(Card*) override;
+        bool attack(Minion *) override;
+
 };
 
 #endif

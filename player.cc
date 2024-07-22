@@ -49,25 +49,30 @@ void Player::draw() { // transfers deck card to hand iff fullHand = false
     deck.erase(deck.begin() + (deck.size() - 1));
 }
 
-void Player::placeCard(int i) {
+void Player::placeMinion(int i) { // places minion from hand on board
     Card* temp = hand[i];
     minions.emplace_back(temp);
     hand.erase(hand.begin() + i);
 }
 
-bool Player::playCard(int i, Player* curr, Player* target) { // places down i-th card in hand
+bool Player::playCard(int i) { // places down i-th card in hand
     Card* card = hand[i];
     if (card->getType() == "Minion") {
-        placeCard(i);
+        placeMinion(i);
         return true;
     } else { // minion
-        placeCard(i);
+        placeMinion(i);
         //return card->activate(i); // idk what type it takes
         return true;
     }
 }
 
-bool playCard(int i, Player* target, char t) {
+bool Player::playCard(int i, Player* target, char t) { 
+    if (t == 114) { // t = r
+        this->hand[i]->activate((target->getRitual()));
+    } else {
+        this->hand[i]->activate((target->getMinions[i]));
+    }
     return true;
 }
 

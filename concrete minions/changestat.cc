@@ -6,7 +6,7 @@ using namespace std;
 ChangeStat::ChangeStat(Minion *target, char op, int changeAtk, int changeDef, int changeCost): 
     Decorator{target}, op{op}, changeAtk{changeAtk}, changeDef{changeDef}, changeCost{changeCost} {}
 
-int ChangeStat::getDef() const  {
+int ChangeStat::getAtk() const  {
     if (op == '+') {
         return target->getAtk() + changeAtk;
     } else if (op == '*') {
@@ -30,11 +30,14 @@ int ChangeStat::getDef() const {
 
 int ChangeStat::getCost() const {
     if (op == '+') {
-        return target->getDef() + changeCost;
+        return target->getCost() + changeCost;
     } else if (op == '*') {
-        return target->getDef() * changeCost;
+        return target->getCost() * changeCost;
     } else {
         cerr << "op is neither + nor *" << endl;
         return 0;
     }
 }
+
+bool ChangeStat::activate(Card*) { return true; }
+bool ChangeStat::attack(Minion *) { return true; }

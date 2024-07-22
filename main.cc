@@ -218,7 +218,7 @@ int main(int argc, char *argv[]) {
                 if (cin.fail()) {
                     cin.clear();
                     // check if card played is minion, if it's a minion we call all the spells/rituals minion related
-                    if (players[curr]->playCard(i, players[curr], players[next])) {
+                    if (players[curr]->playCard(i)) {
                         cout << "Command: Played card " << i << endl;
                     } else {
                         cout << "Card can't be played." << endl;
