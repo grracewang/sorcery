@@ -35,10 +35,11 @@ class Player {
 		int getMagic() const;
 		Card *getRitual() const;
 		string getName() const;
+		vector<Card*>& getDeck();
 		vector<Card*> getHand() const;
 		vector<Card*> getMinions() const;
 		stack<Card*> getGraveyard() const;
-		// vector<Card*> getDeck() const;
+		
 
 		// other method
 		Card* revive(); // returns top of stack

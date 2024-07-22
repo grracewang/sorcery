@@ -1,5 +1,6 @@
 #include "player.h"
-#include "card.h"
+// #include "card.h"
+#include <iostream>
 using namespace std;
 
 Player::Player(string name) : name{name}, ritual{nullptr} {}
@@ -29,7 +30,7 @@ vector<Card*> Player::getMinions() const { return minions; }
 
 stack<Card*> Player::getGraveyard() const { return graveyard; }
 
-// vector<Card*> getDeck() const { return deck };
+vector<Card*>& Player::getDeck() { return deck; }
 
 void Player::addToDeck(Card* card) {
     deck.emplace_back(card); 
@@ -41,10 +42,13 @@ Card* Player::revive() {
 bool Player::fullHand() { return hand.size() == 5; }
 
 void Player::draw() { // transfers deck card to hand iff fullHand = false
+    
     Card* card = deck[deck.size() - 1]; // take top of deck
     hand.emplace_back(card);
+    
     // do i need to delete memory?: call delete on last elem
-    deck.erase(hand.begin() + deck.size() - 1);
+    // cerr << hand.size() << endl;
+    deck.erase(deck.begin() + (deck.size() - 1));
 }
 
 void Player::placeCard(int i) {
@@ -74,11 +78,10 @@ void Player::discard(int i) {
     hand.erase(hand.begin() + i);
     delete temp;
 }
+
 // void remove(int i) {
 //     deck.erase(i);
 // }
-
-
 
 //observer pattern methods
 void Player::notifyCards(vector<Card*>) const {}

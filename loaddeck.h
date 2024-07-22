@@ -1,8 +1,10 @@
-#include "card.h"
 #include <iostream>
 #include <vector>
 #include <algorithm>
 #include <random>
+#include <chrono>
+
+#include "card.h"
 #include "player.h"
 // #include "minion.h"
 #include "./concrete minions/airelemental.h"
@@ -80,3 +82,8 @@ Card* loadCard(string card) {
     // }
 }
 
+void shuffleDeck(std::vector<Card*>& deck) {
+    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    std::default_random_engine rng(seed);
+    std::shuffle(deck.begin(), deck.end(), rng);
+}

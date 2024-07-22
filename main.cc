@@ -105,30 +105,42 @@ int main(int argc, char *argv[]) {
     if (setDeck1) {
         d1.open(deck1);
     } else {
-        d1.open("default.deck");
+        d1.open("tester.deck");
+        cout << "opened"<< endl;
     }
 
     ifstream d2;
     if (setDeck2) {
-        d1.open(deck2);
+        d2.open(deck2);
     } else {
-        d1.open("default.deck");
+        d2.open("tester.deck");
+        cout << "opened"<< endl;
     }
 
     string card;
     while (getline(d1, card)) {
-        // players[0]->addToCards(players[0]->getDeck(), loadCard(card, players[0])); // adds cards to deck
         players[0]->addToDeck(loadCard(card));
-        //shuffle(player[0])
     }
     while (getline(d2, card)) {
         players[1]->addToDeck(loadCard(card));
     }
 
+    // shuffle deck
+    shuffleDeck(players[0]->getDeck());
+    // for (int i = 0; i < players[0]->getDeck().size(); ++i) {
+    //     cerr << players[0]->getDeck()[i]->getName() << endl;
+    // } 
+    shuffleDeck(players[1]->getDeck());
+    // for (int i = 0; i < players[1]->getDeck().size(); ++i) {
+    //     cerr << players[1]->getDeck()[i]->getName() << endl;
+    // } 
+    cout << "Decks shuffled successfully!" << endl;
+
     i = 0;
     int curr = 0;
     int next = 1;
     while (true) {
+        cout << "Type your command: " << endl;
         if (curr == players.size()) { // helps us count whose turn it is
             curr = 0; 
             next = 1;
@@ -169,6 +181,10 @@ int main(int argc, char *argv[]) {
             {
                 players[curr]->draw();
                 cout << "Command: Card drawn for player " << curr + 1 << endl;
+                // cerr << "Hand size is: " << players[curr]->getHand().size() << endl;
+                for (int i = 0; i < players[curr]->getHand().size(); i++) {
+                    cout << "Card drawn is: " << players[curr]->getHand()[i]->getName() << endl;
+                }
             }
             break;
 
@@ -176,7 +192,7 @@ int main(int argc, char *argv[]) {
             {
                 cin >> i;
                 players[curr]->discard(i);
-                cout << "Command: Discarded card " << i << "of player " << curr + 1 << endl;
+                cout << "Command: Discarded card " << i << " of player " << curr + 1 << endl;
             }
             break;
 
@@ -250,7 +266,8 @@ int main(int argc, char *argv[]) {
 
             case Op::QUIT:
             {
-                break;
+                cout << "Quitting the game" << endl;
+                return 1;
             }
             break;
             // case Op::INVALID_COMMAND:
