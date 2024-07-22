@@ -5,8 +5,8 @@
 
 class Haste: public Enchantment {
     public: 
-        explicit Haste(): Enchantment{"Haste", "haste.txt", 1} {}
-        bool activate(Player *p, Card *t) override {}
+        explicit Haste(): Enchantment{"Haste", "Enchanted minion gains +1 action each turn", 1} {}
+        bool activate(Card *t) override {}
 };
 
 #endif

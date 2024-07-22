@@ -6,7 +6,7 @@
 class AuraOfPower: public Ritual {
     public:
         explicit AuraOfPower(Player *owner): Ritual{"Aura of Power", "auraofpower.txt", 1, 5, 1, owner} {}
-        void activate() override {}
+        bool activate(Card *t) override {}
         void notify() override {}
 };
 

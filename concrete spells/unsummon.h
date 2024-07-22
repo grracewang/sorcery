@@ -6,7 +6,7 @@
 class Unsummon: public Spell {
     public:
         explicit Unsummon(): Spell{"Unsummon", "unsummon.txt", 1} {}
-        void activate() override {}
+        bool activate(Card *t) override {}
 };
 
 #endif

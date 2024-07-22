@@ -6,15 +6,15 @@ using namespace std;
 
 class Card { 
 	private:
-		string name, type, filename;
+		string name, type, description;
 		int cost;
 	public:
 		explicit Card(string, string, string, int);
 		string getName() const;
 		string getType() const;
-		string getFilename() const;
+		string getDescription() const;
 		int getCost() const;
-		virtual bool activate(Player *p = nullptr, Card *t = nullptr) = 0; // activates spell/ritual/enchantment/minion's ability
+		virtual bool activate(Card *t = nullptr) = 0; // activates spell/ritual/enchantment/minion's ability
 };
 
 #endif

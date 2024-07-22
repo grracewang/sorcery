@@ -3,6 +3,8 @@
 
 class AirElemental : public Minion {
     public: 
-        AirElemental(): Minion{"Air Elemental", "Minion", "airelemental.txt", 0, 1, 1} {};
-        void activate() override {};
+        AirElemental(): Minion{"Air Elemental", "Minion", "", 0} {};
+        bool activate(Card *t) override {};
+        int getAtk() const override { return 1; }
+        int getDef() const override { return 1; }
 };

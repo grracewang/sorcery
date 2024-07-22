@@ -6,7 +6,7 @@
 class Disenchant: public Spell {
     public:
         explicit Disenchant(): Spell{"Disenchant", "disenchant.txt", 1} {}
-        void activate() override {}
+        bool activate(Card *) override {}
 };
 
 #endif

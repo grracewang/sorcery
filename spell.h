@@ -6,7 +6,7 @@
 
 class Spell: public Card {
     public:
-        explicit Spell(string name, string filename, int cost): Card{name, "Spell", filename, cost} {}
+        explicit Spell(string name, string description, int cost): Card{name, "Spell", description, cost} {}
 };
 
 #endif

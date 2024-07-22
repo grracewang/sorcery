@@ -2,6 +2,8 @@
 
 class ApprenticeSummoner : public Minion {
     public: 
-        ApprenticeSummoner(): Minion{"Apprentice Summoner", "Minion", "apprenticesummoner.txt", 1, 1, 1} {};
-        void activate() override {};
+        ApprenticeSummoner(): Minion{"Apprentice Summoner", "Minion", "Summon a 1/1 air elemental.", 1} {};
+        bool activate(Card *t) override {};
+        int getAtk() const override { return 1; }
+        int getDef() const override { return 1; }
 };

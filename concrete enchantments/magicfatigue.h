@@ -5,8 +5,8 @@
 
 class MagicFatigue: public Enchantment {
     public:
-        explicit MagicFatigue(): Enchantment{"Magic Fatigue", "magicfatigue.txt", 0} {}
-        bool activate(Player *p, Card *t) override {}
+        explicit MagicFatigue(): Enchantment{"Magic Fatigue", "Enchanted minion's activated ability costs 2 more", 0} {}
+        bool activate(Card *t) override {}
 };
 
 #endif

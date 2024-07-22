@@ -2,6 +2,8 @@
 
 class NovicePyromancer : public Minion {
     public:
-        NovicePyromancer(): Minion{"Novice Pyromancer", "Minion", "novicepyromancer.txt", 2, 0, 1} {};
-        void activate() override {};
+        NovicePyromancer(): Minion{"Novice Pyromancer", "Minion", "Deal 1 damage to target minion", 2} {};
+        bool activate(Card *t) override {};
+        int getAtk() const override { return 0; }
+        int getDef() const override { return 1; }
 };

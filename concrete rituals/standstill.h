@@ -6,7 +6,7 @@
 class Standstill: public Ritual {
     public:
         explicit Standstill(Player *owner): Ritual{"Standstill", "standstill.txt", 3, 4, 2, owner} {}
-        void activate() override {}
+        bool activate(Card *) override {}
         void notify() override {}
 };
 

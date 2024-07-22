@@ -5,8 +5,8 @@
 
 class Silence: public Enchantment {
     public:
-        explicit Silence(): Enchantment{"Silence", "silence.txt", 1} {}
-        bool activate(Player *p, Card *t) override {}
+        explicit Silence(): Enchantment{"Silence", "Enchanted minion cannot use abilities", 1} {}
+        bool activate(Card *t) override {}
 };
 
 #endif
