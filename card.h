@@ -16,7 +16,6 @@ class Card {
 		string getType() const;
 		string getDescription() const;
 		int getCost() const;
-		virtual bool activate(Card *t = nullptr) = 0; // activates spell/ritual/enchantment/minion's ability
 };
 
 #endif

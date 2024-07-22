@@ -14,6 +14,8 @@ Minion::~Minion() {}
 
 bool Minion::getActions() const { return actions; }
 
+void Minion::setActions(bool b) { actions = b; }
+
 // void Minion::atkPlayer(Player*) {}
 
 // Minion *Minion::atkMinion(Minion*) {}

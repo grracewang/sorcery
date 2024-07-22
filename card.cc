@@ -9,6 +9,6 @@ string Card::getName() const { return name; }
 
 string Card::getType() const { return type; }
 
-// string getDescription() const { return description; }
+string Card::getDescription() const { return description; }
 
 int Card::getCost() const { return cost; }

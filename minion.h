@@ -20,12 +20,12 @@ class Minion: public Card {
 	public:
 		explicit Minion(string, string, string, int); 
 		virtual ~Minion();
-		// ~Minion();
 		// void atkPlayer(Player*);
 		// Minion *atkMinion(Minion*);
 		virtual int getAtk() const = 0;
 		virtual int getDef() const = 0;
-		virtual bool getActions() const;
+		bool getActions() const;
+		void setActions(bool);
 		string getDescription() const;
 		vector<Spell*> getSpells() const;
 		vector<Ritual*> getRituals() const;

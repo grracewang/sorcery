@@ -10,11 +10,12 @@ class ChangeStat: public Decorator {
         char op; // either '+' or '*'
         int changeAtk;
         int changeDef;
+        int changeCost;
     public:
         ChangeStat(Minion *target, char op, int changeAtk, int changeDef);
         int getAtk() const override;
         int getDef() const override;
-        bool activate(Card *t) override;
+        bool activate(Minion *t);
 };
 
 #endif
