@@ -26,7 +26,7 @@ class Player {
 		
 	public:
         explicit Player(string name);
-
+		virtual ~Player();
 		// accessor and mutators
 		void changeMagic(int newMagic);
 		void changeLife(int newLife);

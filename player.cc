@@ -4,6 +4,8 @@ using namespace std;
 
 Player::Player(string name) : name{name}, ritual{nullptr} {}
 
+Player::~Player() { delete ritual; }
+
 void Player::changeMagic(int newMagic) { magic += newMagic; }
 
 void Player::changeLife(int newLife) { life += newLife; }

@@ -4,8 +4,8 @@
 #include "ritual.h"
 #include "enchantment.h"
 #include "spell.h"
-
 #include "loaddeck.h"
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -118,11 +118,11 @@ int main(int argc, char *argv[]) {
     string card;
     while (getline(d1, card)) {
         // players[0]->addToCards(players[0]->getDeck(), loadCard(card, players[0])); // adds cards to deck
-        players[0]->addToDeck(loadCard(card, players[0]));
+        players[0]->addToDeck(loadCard(card));
         //shuffle(player[0])
     }
     while (getline(d2, card)) {
-        players[1]->addToDeck(loadCard(card, players[1]));
+        players[1]->addToDeck(loadCard(card));
     }
 
     i = 0;
@@ -202,7 +202,7 @@ int main(int argc, char *argv[]) {
                 if (cin.fail()) {
                     cin.clear();
                     // check if card played is minion, if it's a minion we call all the spells/rituals minion related
-                    if (players[curr]->playCard(i, players[curr], players[next]) {
+                    if (players[curr]->playCard(i, players[curr], players[next])) {
                         cout << "Command: Played card " << i << endl;
                     } else {
                         cout << "Card can't be played." << endl;

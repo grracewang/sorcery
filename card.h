@@ -6,12 +6,12 @@
 using namespace std;
 
 class Card { 
-	private:
+	protected:
 		string name, type, description;
 		int cost;
 	public:
 		explicit Card(string, string, string, int);
-		virtual ~Card() ;
+		virtual ~Card();
 		string getName() const;
 		string getType() const;
 		string getDescription() const;

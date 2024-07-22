@@ -21,8 +21,8 @@ class Minion: public Card {
 		explicit Minion(string, string, string, int); 
 		virtual ~Minion();
 		// ~Minion();
-		void atkPlayer(Player*);
-		Minion *atkMinion(Minion*);
+		// void atkPlayer(Player*);
+		// Minion *atkMinion(Minion*);
 		virtual int getAtk() const = 0;
 		virtual int getDef() const = 0;
 		virtual bool getActions() const;

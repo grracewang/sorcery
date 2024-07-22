@@ -3,11 +3,8 @@
 #include "card.h"
 #include "player.h"
 
-
-
-
 class Ritual: public Card {
-    private:  
+    protected:  
         int charges, activationCost;
         Player *owner;
     public:

@@ -8,20 +8,20 @@
 ########## Variables ##########
 
 CXX = g++					# compiler
-CXXFLAGS = -std=c++20 -g -Wall -Werror=vla -MMD			# compiler flags
+CXXFLAGS = -std=c++20 -g -Wall -MMD			# compiler flags
 MAKEFILE_NAME = ${firstword ${MAKEFILE_LIST}}	# makefile name
 
 SOURCES = $(wildcard *.cc)			# source files (*.cc)
 OBJECTS = ${SOURCES:.cc=.o}			# object files forming executable
 DEPENDS = ${OBJECTS:.o=.d}			# substitute ".o" with ".d"
-EXEC = sorcery			# executable name
+EXEC = sorcery							# executable name
 
 ########## Targets ##########
 
 .PHONY : clean					# not file names
 
 ${EXEC} : ${OBJECTS}				# link step
-	${CXX} ${CXXFLAGS} $^ -o $@ -lX11		# additional object files before $^
+	${CXX} ${CXXFLAGS} $^ -o $@		# additional object files before $^
 
 ${OBJECTS} : ${MAKEFILE_NAME}			# OPTIONAL : changes to this file => recompile
 

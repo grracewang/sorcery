@@ -10,13 +10,16 @@
 Minion::Minion(string name, string type, string description, int cost): 
     Card{name, "Minion", description, cost}, actions{true} {}
 
+Minion::~Minion() {}
+
 bool Minion::getActions() const { return actions; }
 
-void Minion::atkPlayer(Player*) {}
+// void Minion::atkPlayer(Player*) {}
 
-Minion *Minion::atkMinion(Minion*) {}
+// Minion *Minion::atkMinion(Minion*) {}
 
-string getDescription() const { return description; }
+string Minion::getDescription() const { return description; }
+
 
 vector<Spell*> Minion::getSpells() const { return spells; }
 
