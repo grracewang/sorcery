@@ -4,15 +4,17 @@
 #include <string>
 #include "card.h"
 #include "minion.h"
+#include "ascii_graphics.h"
 
 class Enchantment: public Card {
     private:
         const string atkStr, defStr;
     public:
-        Enchantment(string name, string description, int cost, string atkStr = "", string defStr = ""): 
-            Card{name, "Enchantment", description, cost}, atkStr{atkStr}, defStr{defStr} {}
-        string getAtkStr() const { return atkStr; }
-        string getDefStr() const { return defStr; }
+        Enchantment(string name, string description, int cost, string atkStr = "", string defStr = "");
+        string getAtkStr() const;
+        string getDefStr() const;
+        
+        card_template_t display() const override;
 };
 
 #endif

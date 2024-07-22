@@ -26,19 +26,16 @@ void printRowCards(ostream &out, const vector<card_template_t> cards, bool borde
 void printPlayerRow(ostream &out, const Player &player, int playerNum) {
     // ritual into printable format
     card_template_t ritual = (player.getRitual()) ? CARD_TEMPLATE_BORDER :
-        ritual_display(*player.getRitual());
-
-    // player into printable format
-    card_template_t playerCard = player_display(player, playerNum);
+        player.getRitual()->display();
 
     // graveyard into printable format
     card_template_t graveyard = (player.getGraveyard().empty()) ?
-        CARD_TEMPLATE_BORDER : minion_display(*player.getGraveyard().top());
+        CARD_TEMPLATE_BORDER : player.getGraveyard().top()->display();
 
     // convert cards into a card_template_t[5]
     vector<card_template_t> cards = {ritual,
                                     CARD_TEMPLATE_EMPTY,
-                                    playerCard,
+                                    player.display(playerNum),
                                     CARD_TEMPLATE_EMPTY,
                                     graveyard};
 
@@ -46,13 +43,13 @@ void printPlayerRow(ostream &out, const Player &player, int playerNum) {
     printRowCards(out, cards, true);
 }
 
-void printMinionRow(ostream &out, const vector<Minion*> minions) {
+void printMinionRow(ostream &out, const vector<Card*> minions) {
     vector<card_template_t> minionCards;
 
     int i = 0;
     // all possible minions into printable format
     for (const auto &minion : minions) {
-        minionCards.emplace_back(minion_display(*minion));
+        minionCards.emplace_back(minion->display());
         i++;
     }
     // fill remaining spots with empty squares
@@ -94,8 +91,7 @@ ostream &Board::printHand(ostream &out, int playerNum) {
     int i = 0;
     // all possible minions into printable format
     for (const auto &card : players[playerNum]->getHand()) {
-        if (card->getType() == "minion") cards.emplace_back(minion_display(*card));
-        else if (card->getType() == "enchantment") cards.emplace_back(enchantment_display(*card));
+        cards.emplace_back(card->display());
         i++;
     }
     // fill remaining spots with empty squares

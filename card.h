@@ -1,5 +1,6 @@
 #ifndef CARD_H
 #define CARD_H
+#include "ascii_graphics.h"
 #include <string>
 #include <fstream>
 
@@ -16,6 +17,8 @@ class Card {
 		string getType() const;
 		string getDescription() const;
 		int getCost() const;
+		
+		virtual card_template_t display() const = 0;
 };
 
 #endif

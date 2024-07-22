@@ -1,6 +1,4 @@
 #include "player.h"
-// #include "card.h"
-#include <iostream>
 using namespace std;
 
 Player::Player(string name) : name{name}, ritual{nullptr} {}
@@ -87,3 +85,8 @@ void Player::discard(int i) {
 void Player::notifyCards(vector<Card*>) const {}
 void Player::attach(Card*) {}
 void Player::detach(Card*) {}
+
+// printing
+card_template_t Player::display(int player_num) const {
+  return display_player_card(player_num, name, life, magic);
+}

@@ -4,6 +4,7 @@
 #include <vector>
 #include <stack>
 #include <string>
+#include "ascii_graphics.h"
 
 using namespace std;
 
@@ -56,6 +57,9 @@ class Player {
 		void notifyCards(vector<Card*>) const;
 		void attach(Card*);
 		void detach(Card*);
+
+		// printing
+		card_template_t display(int player_num) const;
 		
 };
 
