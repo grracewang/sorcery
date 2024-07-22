@@ -2,7 +2,7 @@
 #define MINION_H
 #include "player.h"
 #include "enchantment.h"
-#endif
+
 #include "card.h"
 #include "spell.h"
 #include "ritual.h"
@@ -30,3 +30,4 @@ class Minion: public Card {
 		vector<Ritual*> getRituals() const;
 };
 
+#endif

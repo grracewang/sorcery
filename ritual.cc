@@ -1,10 +1,10 @@
 #include "ritual.h"
+#include "card.h"
 #include "player.h"
+Ritual::Ritual(string name, string filename, int cost, int charges, int activationCost, Player* owner):
+    Card{name, "Ritual", filename, cost}, charges{charges}, activationCost{activationCost} {}
 
-explicit Ritual::Ritual(string name, string description, int cost, int charges, int activationCost, Player *owner):
-    Card{name, "Ritual", description, cost}, charges{charges}, activationCost{activationCost} {}
-
-Ritual::~Ritual() { delete owner; }
+// Ritual::~Ritual() { delete owner; }
 
 int Ritual::getCharges() const { return charges; }
 

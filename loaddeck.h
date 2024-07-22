@@ -28,7 +28,7 @@
 // #include "./concrete enchantments/magicfatigue.h"
 // #include "./concrete enchantments/silence.h"
 
-Card* loadCard(string card, Player* owner) {
+Card* loadCard(string card) {
     if (card == "Air Elemental") { // Minions
         return new AirElemental();
     } else {
@@ -62,11 +62,11 @@ Card* loadCard(string card, Player* owner) {
     // } else if (card == "Unsummon") { 
     //     return new Unsummon();
     // } else if (card == "Aura of Power") { // Rituals
-    //     return new AuraOfPower(owner);
+    //     return new AuraOfPower();
     // } else if (card == "Dark Ritual") { 
-    //     return new DarkRitual(owner);
+    //     return new DarkRitual();
     // } else if (card == "Standstill") { 
-    //     return new Standstill(owner);
+    //     return new Standstill();
     // } else if (card == "Enrage") { // Enchantments
     //     return new Enrage();
     // } else if (card == "Giant Strength") { 

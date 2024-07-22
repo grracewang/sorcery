@@ -2,7 +2,6 @@
 #define CARD_H
 #include <string>
 #include <fstream>
-#include "player.h"
 
 using namespace std;
 
@@ -12,6 +11,7 @@ class Card {
 		int cost;
 	public:
 		explicit Card(string, string, string, int);
+		virtual ~Card() ;
 		string getName() const;
 		string getType() const;
 		string getDescription() const;

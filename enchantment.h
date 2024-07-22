@@ -4,8 +4,8 @@
 #include <string>
 #include "card.h"
 #include "minion.h"
-#include "spell.h"
-#include "ritual.h"
+// #include "spell.h"
+// #include "ritual.h"
 
 class Enchantment: public Card {
     private:

@@ -8,7 +8,7 @@ void Player::changeMagic(int newMagic) { magic += newMagic; }
 
 void Player::changeLife(int newLife) { life += newLife; }
 
-void Player::changeRitual(Ritual *ritual) {
+void Player::changeRitual(Card *ritual) {
     delete this->ritual;
     this->ritual = ritual;
 }
@@ -17,15 +17,15 @@ int Player::getLife() const { return life; }
 
 int Player::getMagic() const { return magic; }
 
-Ritual *Player::getRitual() const { return ritual; }
+Card *Player::getRitual() const { return ritual; }
 
 string Player::getName() const { return name; }
 
 vector<Card*> Player::getHand() const { return hand; }
 
-vector<Minion*> Player::getMinions() const { return minions; }
+vector<Card*> Player::getMinions() const { return minions; }
 
-stack<Minion*> Player::getGraveyard() const { return graveyard; }
+stack<Card*> Player::getGraveyard() const { return graveyard; }
 
 // vector<Card*> getDeck() const { return deck };
 
@@ -33,7 +33,7 @@ void Player::addToDeck(Card* card) {
     deck.emplace_back(card); 
 }
 
-Minion* Player::revive() {
+Card* Player::revive() {
     return graveyard.top();
 }
 bool Player::fullHand() { return hand.size() == 5; }
