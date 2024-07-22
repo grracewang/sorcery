@@ -3,8 +3,8 @@
 
 using namespace std;
 
-ChangeStat::ChangeStat(Minion *target, char op, int changeAtk, int changeDef): 
-    Decorator{target}, op{op}, changeAtk{changeAtk}, changeDef{changeDef} {}
+ChangeStat::ChangeStat(Minion *target, char op, int changeAtk, int changeDef, int changeCost): 
+    Decorator{target}, op{op}, changeAtk{changeAtk}, changeDef{changeDef}, changeCost{changeCost} {}
 
 int ChangeStat::getDef() const  {
     if (op == '+') {
@@ -22,6 +22,17 @@ int ChangeStat::getDef() const {
         return target->getDef() + changeDef;
     } else if (op == '*') {
         return target->getDef() * changeDef;
+    } else {
+        cerr << "op is neither + nor *" << endl;
+        return 0;
+    }
+}
+
+int ChangeStat::getCost() const {
+    if (op == '+') {
+        return target->getDef() + changeCost;
+    } else if (op == '*') {
+        return target->getDef() * changeCost;
     } else {
         cerr << "op is neither + nor *" << endl;
         return 0;

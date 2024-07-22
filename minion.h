@@ -24,6 +24,9 @@ class Minion: public Card {
 		// Minion *atkMinion(Minion*);
 		virtual int getAtk() const = 0;
 		virtual int getDef() const = 0;
+		virtual int getCost() const = 0;
+		virtual bool attack(Minion *t) = 0;
+		virtual bool attack(Player *t) = 0;
 		bool getActions() const;
 		void setActions(bool);
 		string getDescription() const;

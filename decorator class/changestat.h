@@ -12,10 +12,10 @@ class ChangeStat: public Decorator {
         int changeDef;
         int changeCost;
     public:
-        ChangeStat(Minion *target, char op, int changeAtk, int changeDef);
+        ChangeStat(Minion *target, char op, int changeAtk, int changeDef, int changeCost);
         int getAtk() const override;
         int getDef() const override;
-        bool activate(Minion *t);
+        int getCost() const override;
 };
 
 #endif

@@ -14,7 +14,7 @@ class GiantStrength: public Enchantment {
             Enchantment{"Giant Strength", "", 1, "+2", "+2"} {}
         bool activate(Minion *t) {
             if (t) {
-                t = new ChangeStat{t, '+', 2, 2};
+                t = new ChangeStat{t, '+', 2, 2, 0};
                 return 1;
             } else {
                 cerr << "You must provide a target." << endl;
