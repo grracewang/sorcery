@@ -4,7 +4,7 @@
 class BoneGolem : public Minion {
     public: 
         BoneGolem(): Minion{"Bone Golem", "Minion", "Gain +1/+1 whenever a minion leaves play.", 2} {};
-        bool attack(Minion *target) override {
+        void attack(Minion *target) override {
             if (target) {
                 target = new ChangeStat{target, '+', 0, -1, 0};
                 return true;

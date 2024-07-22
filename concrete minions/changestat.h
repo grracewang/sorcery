@@ -18,7 +18,7 @@ class ChangeStat: public Decorator {
         int getCost() const override;
 
         // overriden virtual fcn that do nothing
-        bool attack(Minion *) override;
+        void attack(Minion *) override;
 
 };
 

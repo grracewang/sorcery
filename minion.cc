@@ -1,11 +1,10 @@
 #include "minion.h"
+#include "changestat.h"
 
 // Implement Minion methods here
 
 Minion::Minion(string name, string type, string description, int cost): 
     Card{name, "Minion", description, cost}, actions{true} {}
-
-Minion::~Minion() {}
 
 bool Minion::getActions() const { return actions; }
 

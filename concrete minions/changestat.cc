@@ -39,4 +39,4 @@ int ChangeStat::getCost() const {
     }
 }
 
-bool ChangeStat::attack(Minion *) { return true; }
+void ChangeStat::attack(Minion *) {}

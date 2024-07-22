@@ -20,12 +20,10 @@ class Minion: public Card {
 	public:
 		explicit Minion(string, string, string, int); 
 		virtual ~Minion() = default;
-		// void atkPlayer(Player*);
-		// Minion *atkMinion(Minion*);
 		virtual int getAtk() const = 0;
 		virtual int getDef() const = 0;
 		virtual int getCost() const = 0;
-		virtual bool attack(Minion *) = 0;
+		virtual void attack(Minion *) = 0;
 		void attack(Player *);
 		bool getActions() const;
 		void setActions(bool);
