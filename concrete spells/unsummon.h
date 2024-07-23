@@ -6,7 +6,11 @@
 class Unsummon: public Spell {
     public:
         explicit Unsummon(): Spell{"Unsummon", "unsummon.txt", 1} {}
-        bool activate(Card *t) override {}
+        void activate(Player *owner, int t) {
+            Card* target = owner->removeSummonedMinion(t);
+            // what if hand is full
+            owner->addToHand(target);
+        }
 };
 
 #endif

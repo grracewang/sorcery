@@ -14,7 +14,7 @@ class Ritual: public Card {
         virtual void notify() = 0;
         int getCharges() const;
         int getActivationCost() const;
-
+        void changeCharges(int i);
         card_template_t display() const override;
 };
 

@@ -234,6 +234,25 @@ int main(int argc, char *argv[]) {
                         }
                         
                     }
+                } else {
+                    char t; // t can only be 30, 31, 32, 33, 34, 114 (= r)
+                    cin >> t;
+                    if (players[curr]->getHand()[i]->getType() == "Enchantment") {
+                        // check if casted on minion type
+
+                        // calls activate function on the enchantment
+                        dynamic_cast<Enchantment*>(players[curr]->getHand()[i])->activate(dynamic_cast<Minion*>(players[p-1]->getHand()[t]));
+                    } else if (players[curr]->getHand()[i]->getName() == "Banish") {
+                        dynamic_cast<Banish*>(players[curr]->getHand()[i])->activate(players[p - 1], t);
+                    } else if (players[curr]->getHand()[i]->getName() == "Disenchant") {
+                        dynamic_cast<Disenchant*>(players[curr]->getHand()[i])->activate(players[p - 1], t);
+                    } else if (players[curr]->getHand()[i]->getName() == "Recharge") {
+                        dynamic_cast<Recharge*>(players[curr]->getHand()[i])->activate(players[p - 1], t);
+                    } else if (players[curr]->getHand()[i]->getName() == "Unsummon") {
+                        dynamic_cast<Unsummon*>(players[curr]->getHand()[i])->activate(players[p - 1], t);
+                    } else {
+                        cout << "Cannot call command on this card." << endl;
+                    }
                 }
                 break;
 

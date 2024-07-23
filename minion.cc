@@ -16,6 +16,18 @@ vector<Spell*> Minion::getSpells() const { return spells; }
 
 vector<Ritual*> Minion::getRituals() const { return rituals; }
 
+vector<Enchantment*> Minion::getEnchantments() const { return enchantments; }
+
+Enchantment* Minion::getEnchantment(int i) {
+  return enchantments[i];
+}
+
+Enchantment* Minion::removeEnchantment(int i) {
+  Enchantment* enchantment = enchantments[i];
+  enchantments.erase(enchantments.begin() + i);
+  return enchantment;
+}
+
 card_template_t Minion::display() const {
   if (spells.empty() && rituals.empty()) {
     return display_minion_no_ability(name, cost, getAtk(), getDef());

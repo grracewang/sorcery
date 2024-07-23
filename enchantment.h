@@ -13,7 +13,7 @@ class Enchantment: public Card {
         Enchantment(string name, string description, int cost, string atkStr = "", string defStr = "");
         string getAtkStr() const;
         string getDefStr() const;
-        
+        virtual void activate(Minion*) = 0;
         card_template_t display() const override;
 };
 

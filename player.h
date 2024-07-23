@@ -37,12 +37,16 @@ class Player {
 		void removeRitual();
 		int getLife() const;
 		int getMagic() const;
-		Card *getRitual() const;
+		Card* getRitual() const;
 		string getName() const;
-		vector<Card*>& getDeck();
+		vector<Card*> getDeck() const;
 		vector<Card*> getHand() const;
 		vector<Minion*> getSummoned() const;
 		stack<Minion*> getGraveyard() const; // returns top value 
+		Card* getHandCard(int i) const;
+		Minion* getSummonedMinion(int i) const;
+		Card* removeHandCard(int i);
+		Minion* removeSummonedMinion(int i);
 
 		// other method
 		Minion* revive(); // returns top of stack and pops it
