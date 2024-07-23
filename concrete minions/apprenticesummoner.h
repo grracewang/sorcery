@@ -5,7 +5,7 @@
 
 class ApprenticeSummoner : public Minion {
     public: 
-        ApprenticeSummoner(): Minion{"Apprentice Summoner", "Minion", "Summon a 1/1 air elemental.", 1} {};
+        ApprenticeSummoner(): Minion{"Apprentice Summoner", "Minion", "Summon a 1/1 air elemental.", 1, false} {};
         void activate(Player *p) {
             if(p->getSummoned().size() < p->MAX_SUMMONED) p->addToSummoned(new AirElemental);
         }

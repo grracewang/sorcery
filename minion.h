@@ -13,19 +13,20 @@ using namespace std;
 class Minion: public Card {
 	protected: 
 		bool actions = 1;
+		bool triggered;
 		vector<Spell*> spells;
 		vector<Ritual*> rituals;
 		vector<Enchantment*> enchantments; // enchantments that are casted on this Minion
 
 	public:
-		explicit Minion(string, string, string, int); 
+		explicit Minion(string, string, string, int, bool); 
 		virtual ~Minion() = default;
 		virtual int getAtk() const = 0;
 		virtual int getDef() const = 0;
 		virtual int getCost() const = 0;
-		// void attack(Player *);
 		bool getActions() const;
 		void setActions(bool);
+		bool getTriggered() const; 
 		string getDescription() const;
 		vector<Spell*> getSpells() const;
 		vector<Ritual*> getRituals() const;

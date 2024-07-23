@@ -8,7 +8,7 @@ using namespace std;
 
 class AirElemental : public Minion {
     public: 
-        AirElemental(): Minion{"Air Elemental", "Minion", "", 0} {};
+        AirElemental(): Minion{"Air Elemental", "Minion", "", 0, false} {};
         int getAtk() const override { return 1; }
         int getDef() const override { return 1; }
         int getCost() const override { return 0; }

@@ -39,8 +39,9 @@ void Player::addToHand(Card* card) {
     hand.emplace_back(card);
 }
 
-void Player::addToSummoned(Minion *card) {
-    summoned.emplace_back(card);
+void Player::addToSummoned(Minion *m) {
+    summoned.emplace_back(m);
+    if (m->getTriggered()) 
 }
 
 Minion* Player::revive() {
