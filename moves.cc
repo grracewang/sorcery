@@ -10,5 +10,3 @@ void attack(const Minion *attacker, Minion *target) {
 void attack(const Minion *attacker, Player *target) {
   target->changeLife(-1 * attacker->getAtk());
 }
-
-void unsummon()

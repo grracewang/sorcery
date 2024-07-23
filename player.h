@@ -27,6 +27,7 @@ class Player {
 		vector<Card*> minionLeave;
 		
 	public:
+		static inline const int MAX_SUMMONED = 5;
         explicit Player(string name);
 		virtual ~Player();
 
