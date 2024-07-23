@@ -8,7 +8,7 @@ class Decorator: public Minion {
         Minion *target;
     public:
         Decorator(Minion *target): 
-            Minion{target->getName(), target->getType(), target->getDescription(), target->getCost(), target->getTriggered()}, 
+            Minion{target->getName(), target->getType(), target->getDescription(), target->getCost()}, 
             target{target} {}
         virtual ~Decorator();
 };

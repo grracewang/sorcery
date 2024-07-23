@@ -10,9 +10,9 @@ class ChangeStat: public Decorator {
         char op; // either '+' or '*'
         int changeAtk;
         int changeDef;
-        int changeCost;
+        bool isEnchantment;
     public:
-        ChangeStat(Minion *target, char op, int changeAtk, int changeDef, int changeCost);
+        ChangeStat(Minion *target, char op, int changeAtk, int changeDef);
         int getAtk() const override;
         int getDef() const override;
         int getCost() const override;

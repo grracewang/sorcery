@@ -12,7 +12,7 @@ class Enrage: public Enchantment {
     public:
         explicit Enrage(): Enchantment{"Enrage", "", 2, "*2", "*2"} {}
         void activate(Minion *t) {
-            t = new ChangeStat{t, '*', 2, 2, 0};
+            t = new ChangeStat{t, '*', 2, 2};
         }
 };
 

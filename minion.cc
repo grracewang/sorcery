@@ -3,14 +3,12 @@
 
 // Implement Minion methods here
 
-Minion::Minion(string name, string type, string description, int cost, bool triggered): 
-  Card{name, "Minion", description, cost}, triggered{triggered} {}
+Minion::Minion(string name, string type, string description, int cost): 
+  Card{name, "Minion", description, cost} {}
 
 bool Minion::getActions() const { return actions; }
 
 void Minion::setActions(bool b) { actions = b; }
-
-bool Minion::getTriggered() const { return triggered; }
 
 string Minion::getDescription() const { return description; }
 
