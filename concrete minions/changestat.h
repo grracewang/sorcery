@@ -15,7 +15,6 @@ class ChangeStat: public Decorator {
         ChangeStat(Minion *target, char op, int changeAtk, int changeDef);
         int getAtk() const override;
         int getDef() const override;
-        int getCost() const override;
 };
 
 #endif
