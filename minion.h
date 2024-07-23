@@ -22,9 +22,6 @@ class Minion: public Card {
 		virtual ~Minion() = default;
 		virtual int getAtk() const = 0;
 		virtual int getDef() const = 0;
-		virtual int getCost() const = 0;
-		virtual void attack(Minion *) = 0;
-		// void attack(Player *);
 		vector<Enchantment*> getEnchantments() const;
 		Enchantment* getEnchantment(int i);
 		Enchantment* removeEnchantment(int i);
