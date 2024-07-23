@@ -24,7 +24,7 @@ string Player::getName() const { return name; }
 
 vector<Card*> Player::getHand() const { return hand; }
 
-vector<Card*> Player::getMinions() const { return summoned; }
+vector<Minion*> Player::getSummoned() const { return summoned; }
 
 Card* Player::getGraveyard() { 
     if (!graveyard.empty()) {
@@ -40,6 +40,14 @@ vector<Card*>& Player::getDeck() { return deck; }
 
 void Player::addToDeck(Card* card) {
     deck.emplace_back(card); 
+}
+
+void Player::addToHand(Card* card) {
+    hand.emplace_back(card);
+}
+
+void Player::addToSummoned(Minion *card) {
+    summoned.emplace_back(card);
 }
 
 Card* Player::revive() {
@@ -59,7 +67,7 @@ void Player::draw() { // transfers deck card to hand iff fullHand = false
 
 void Player::placeMinion(int i) { // places minion from hand on board
     Card* temp = hand[i];
-    playedMinions.emplace_back(temp);
+    summoned.emplace_back(temp);
     hand.erase(hand.begin() + i);
 }
 

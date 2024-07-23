@@ -17,8 +17,8 @@ class Player {
 		
 		vector<Card*> hand; // vector of 5 cards MAX
 		vector<Card*> deck;
-		vector<Card*> summoned; // minions that have been played
-		stack<Card*> graveyard;
+		vector<Minion*> summoned; // minions that have been played
+		stack<Minion*> graveyard;
 		
 		//observer pattern fields
 		vector<Card*> preTurn;
@@ -40,8 +40,8 @@ class Player {
 		string getName() const;
 		vector<Card*>& getDeck();
 		vector<Card*> getHand() const;
-		vector<Card*> getMinions() const;
-		Card* getGraveyard(); // returns top value and pops it
+		vector<Minion*> getSummoned() const;
+		Minion* getGraveyard(); // returns top value and pops it
 
 		// other method
 		Card* revive(); // returns top of stack
@@ -50,6 +50,8 @@ class Player {
 		void placeMinion(int i); // places hand card to board
 		void placeRitual(int i); // places hand card to board
 		void addToDeck(Card*);
+		void addToHand(Card*);
+		void addToSummoned(Minion*);
 		bool playCard(int i); // places down the i-th card in hand
 		bool playCard(int i, Player* target, char t);
 		void discard(int i); // discards i-th card, doesn't move to graveyard, just trashes it

@@ -24,7 +24,7 @@ class Minion: public Card {
 		virtual int getDef() const = 0;
 		virtual int getCost() const = 0;
 		virtual void attack(Minion *) = 0;
-		void attack(Player *);
+		// void attack(Player *);
 		bool getActions() const;
 		void setActions(bool);
 		string getDescription() const;
