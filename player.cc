@@ -82,17 +82,6 @@ void Player::placeRitual(int i) {
     hand.erase(hand.begin() + i);
 }
 
-bool Player::playCard(int i) { // places down i-th card in hand
-    Card* card = hand[i];
-    if (card->getType() == "Minion") {
-        placeMinion(i);
-        return true;
-    } else { // minion
-        placeMinion(i);
-        //return card->activate(i); // idk what type it takes
-        return true;
-    }
-}
 
 bool Player::playCard(int i, Player* target, char t) { 
     // if (t == 114) { // t = r

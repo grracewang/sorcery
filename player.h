@@ -32,32 +32,42 @@ class Player {
 		virtual ~Player();
 
 		// accessor and mutators
+		string getName() const;
+
 		void changeMagic(int newMagic);
 		void changeLife(int newLife);
-		void removeRitual();
 		int getLife() const;
 		int getMagic() const;
+		
 		Card* getRitual() const;
-		string getName() const;
+		void removeRitual();
+
+		
 		vector<Card*> getDeck() const;
 		vector<Card*> getHand() const;
 		vector<Minion*> getSummoned() const;
 		stack<Minion*> getGraveyard() const; // returns top value 
-		Card* getHandCard(int i) const;
-		Minion* getSummonedMinion(int i) const;
-		Card* removeHandCard(int i);
-		Minion* removeSummonedMinion(int i);
 
+		Card* getHandCard(int i) const;
+		Card* removeHandCard(int i);
+		Minion* getSummonedMinion(int i) const;
+		Minion* removeSummonedMinion(int i);
+		
 		// other method
 		Minion* revive(); // returns top of stack and pops it
-		bool fullHand(); // draw another card if non full hand
+		bool fullHand(); // checks if hand is full
 		void draw(); // transfers deck card to hand iff fullHand = false
+
+
+
 		void placeMinion(int i); // places hand card to board
 		void placeRitual(int i); // swaps ritual
+
 		void addToDeck(Card*);
 		void addToHand(Card*);
 		void addToSummoned(Minion*);
-		bool playCard(int i); // places down the i-th card in hand
+
+	
 		bool playCard(int i, Player* target, char t);
 		void discard(int i); // discards i-th card, doesn't move to graveyard, just trashes it
 		void moveToGraveyard(int i);
