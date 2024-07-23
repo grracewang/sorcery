@@ -13,7 +13,7 @@ class GiantStrength: public Enchantment {
         explicit GiantStrength(): 
             Enchantment{"Giant Strength", "", 1, "+2", "+2"} {}
         void activate(Minion *t) {
-            if (t) t = new ChangeStat{t, '+', 2, 2, 0};
+            if (t) t = new ChangeStat{t, '+', 2, 2};
         }
 };
 
