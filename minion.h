@@ -1,14 +1,14 @@
 #ifndef MINION_H
 #define MINION_H
-#include "player.h"
+
 #include "enchantment.h"
 #include "card.h"
 #include "spell.h"
 #include "ritual.h"
 #include "ascii_graphics.h"
 #include <string>
-using namespace std;
 
+using namespace std;
 
 class Minion: public Card {
 	protected: 
@@ -32,8 +32,5 @@ class Minion: public Card {
 		vector<Ritual*> getRituals() const;
 		card_template_t display() const override;
 };
-
-void attack(const Minion *, Minion *); // attack another minion
-void attack(const Minion *, Player *); // attack another player
 
 #endif

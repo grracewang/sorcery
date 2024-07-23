@@ -16,7 +16,7 @@ class Player {
 		
 		vector<Card*> hand; // vector of 5 cards MAX
 		vector<Card*> deck;
-		vector<Card*> minions; // minions that have been played
+		vector<Card*> summoned; // minions that have been played
 		stack<Card*> graveyard;
 		
 		//observer pattern fields
@@ -28,6 +28,7 @@ class Player {
 	public:
         explicit Player(string name);
 		virtual ~Player();
+
 		// accessor and mutators
 		void changeMagic(int newMagic);
 		void changeLife(int newLife);
