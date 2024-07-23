@@ -6,7 +6,9 @@
 class Recharge: public Spell {
     public:
         explicit Recharge(): Spell{"Recharge", "recharge.txt", 1} {}
-        bool activate(Card *t) override {}
+        bool activate(Card *t) {
+
+        }
 };
 
 #endif

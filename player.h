@@ -33,7 +33,7 @@ class Player {
 		// accessor and mutators
 		void changeMagic(int newMagic);
 		void changeLife(int newLife);
-		void changeRitual(Card *ritual);
+		void removeRitual();
 		int getLife() const;
 		int getMagic() const;
 		Card *getRitual() const;
@@ -48,7 +48,7 @@ class Player {
 		bool fullHand(); // draw another card if non full hand
 		void draw(); // transfers deck card to hand iff fullHand = false
 		void placeMinion(int i); // places hand card to board
-		void placeRitual(int i); // places hand card to board
+		void placeRitual(int i); // swaps ritual
 		void addToDeck(Card*);
 		void addToHand(Card*);
 		void addToSummoned(Minion*);
