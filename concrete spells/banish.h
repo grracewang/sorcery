@@ -11,8 +11,8 @@ class Banish: public Spell {
             if (t == 'r') {
                 owner->removeRitual();
             } else {
-                Minion* temp = owner->getSummoned()[t]; // 
-                owner->getSummoned().erase(owner->getSummoned().begin() + t);
+                Minion* temp = owner->getSummoned()[t - 1]; // 
+                owner->getSummoned().erase(owner->getSummoned().begin() + t - 1);
                 delete temp;
                 temp = nullptr;
             }

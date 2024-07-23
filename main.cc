@@ -199,11 +199,15 @@ int main(int argc, char *argv[]) {
                 {
                     int j;
                     cin >> i;
+                    i -= 1;
                     cin >> j;
                     if (cin.fail()) {
                         cin.clear();
+                        attack(players[curr]->getSummonedMinion(i), players[next]);
                         cout << "Command: attack minion" << i << endl;
                     } else {
+                        j -= 1;
+                        attack(players[curr]->getSummonedMinion(i), players[next]->getSummonedMinion(j));
                         cout << "Command: attack minion" << i << j << endl;
                     }
                 }
@@ -213,11 +217,11 @@ int main(int argc, char *argv[]) {
                 {
                     int p; // t-th card owned by player
                     cin >> i;
+                    i -= 1;
                     cin >> p;
                     if (cin.fail()) {
                         cin.clear();
                         // check if card played is minion, if it's a minion we call all the spells/rituals minion related
-
                         if (players[curr]->getHand()[i]->getType() == "Minion") { // places ith card in hand
                             Minion* card = dynamic_cast<Minion*>(players[curr]->removeHandCard(i));
                             players[curr]->addToSummoned(card);
@@ -232,6 +236,7 @@ int main(int argc, char *argv[]) {
                     } else {
                         char t; // t can only be 30, 31, 32, 33, 34, 114 (= r)
                         cin >> t;
+                        p -= 1;
                         if (players[curr]->getHand()[i]->getType() == "Enchantment") {
                             // check if casted on minion type
 
@@ -240,11 +245,11 @@ int main(int argc, char *argv[]) {
                         } else if (players[curr]->getHand()[i]->getName() == "Banish") {
                             dynamic_cast<Banish*>(players[curr]->getHand()[i])->activate(players[p - 1], t);
                         } else if (players[curr]->getHand()[i]->getName() == "Disenchant") {
-                            dynamic_cast<Disenchant*>(players[curr]->getHand()[i])->activate(players[p - 1], t);
+                            dynamic_cast<Disenchant*>(players[curr]->getHand()[i])->activate(players[p - 1], t - 1);
                         } else if (players[curr]->getHand()[i]->getName() == "Recharge") {
-                            dynamic_cast<Recharge*>(players[curr]->getHand()[i])->activate(players[p - 1], t);
+                            dynamic_cast<Recharge*>(players[curr]->getHand()[i])->activate(players[p - 1], t - 1);
                         } else if (players[curr]->getHand()[i]->getName() == "Unsummon") {
-                            dynamic_cast<Unsummon*>(players[curr]->getHand()[i])->activate(players[p - 1], t);
+                            dynamic_cast<Unsummon*>(players[curr]->getHand()[i])->activate(players[p - 1], t - 1);
                         } else {
                             cout << "Cannot call command on this card." << endl;
                         }
@@ -254,8 +259,18 @@ int main(int argc, char *argv[]) {
 
                 case Op::USE:
                 {
+                    int p;
+                    cin >> i >> p;
+                    i -= 1;
+                    if (cin.fail()) {
+                        cin.clear();
 
-                    cin >> i;
+                    } else {
+                        char t; // t can only be 30, 31, 32, 33, 34, 114 (= r)
+                        cin >> t;
+                        p -= 1;
+
+                    }
                     cout << "Command: use" << i << endl;    
                 }
                 break;
