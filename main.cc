@@ -6,6 +6,10 @@
 #include "spell.h"
 #include "loaddeck.h"
 
+// concretes
+#include "concrete spells/blizzard.h"
+#include "concrete spells/raisedead.h"
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -218,10 +222,33 @@ int main(int argc, char *argv[]) {
                 if (cin.fail()) {
                     cin.clear();
                     // check if card played is minion, if it's a minion we call all the spells/rituals minion related
-                    if (players[curr]->playCard(i)) {
-                        cout << "Command: Played card " << i << endl;
+                    // if (players[curr]->playCard(i)) {
+                    //     cout << "Command: Played card " << i << endl;
+                    // } else {
+                    //     cout << "Card can't be played." << endl;
+                    // }
+                    if (players[curr]->getHand()[i]->getType() == "Minion") { // type is minion
+                        players[curr]->placeMinion(i);
+                    } else if (players[curr]->getHand()[i]->getType() == "Ritual") { // type is ritual
+                        players[curr]->placeRitual(i);
+                    } else if (players[curr]->getHand()[i]->getName() == "Blizzard") {
+                        Blizzard* card = dynamic_cast<Blizzard*>(players[curr]->getHand()[i]);
+                        if (card) {
+                            card->activate(players[curr], players[next]);
+                            cout << "Played Blizzard." << endl;
+                        } else {
+                            cout << "Cannot call command on this card." << endl;
+                        }
+                    } else if (players[curr]->getHand()[i]->getName() == "Raise Dead") {
+                        RaiseDead* card = dynamic_cast<RaiseDead*>(players[curr]->getHand()[i]);
+                        if (card) {
+                            card->activate(players[curr]);
+                            cout << "Played Raise Dead." << endl;
+                        } else {
+                            cout << "Cannot call command on this card." << endl;
+                        }
                     } else {
-                        cout << "Card can't be played." << endl;
+                        cout << "Cannot call command on this card." << endl;
                     }
                 } else {
                     char t; // t can only be 30, 31, 32, 33, 34, 114 (= r)

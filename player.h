@@ -1,6 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include "card.h"
+#include "minion.h"
 #include <vector>
 #include <stack>
 #include <string>
@@ -40,18 +41,19 @@ class Player {
 		vector<Card*>& getDeck();
 		vector<Card*> getHand() const;
 		vector<Card*> getMinions() const;
-		stack<Card*> getGraveyard() const;
-		
+		Card* getGraveyard(); // returns top value and pops it
 
 		// other method
 		Card* revive(); // returns top of stack
 		bool fullHand(); // draw another card if non full hand
 		void draw(); // transfers deck card to hand iff fullHand = false
 		void placeMinion(int i); // places hand card to board
+		void placeRitual(int i); // places hand card to board
 		void addToDeck(Card*);
 		bool playCard(int i); // places down the i-th card in hand
 		bool playCard(int i, Player* target, char t);
 		void discard(int i); // discards i-th card, doesn't move to graveyard, just trashes it
+		void moveToGraveyard(int i);
 		// void remove(int i); // removes ith element from hand
 
 		//observer pattern methods
