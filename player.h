@@ -41,10 +41,10 @@ class Player {
 		vector<Card*>& getDeck();
 		vector<Card*> getHand() const;
 		vector<Minion*> getSummoned() const;
-		Minion* getGraveyard(); // returns top value and pops it
+		stack<Minion*> getGraveyard() const; // returns top value 
 
 		// other method
-		Card* revive(); // returns top of stack
+		Minion* revive(); // returns top of stack and pops it
 		bool fullHand(); // draw another card if non full hand
 		void draw(); // transfers deck card to hand iff fullHand = false
 		void placeMinion(int i); // places hand card to board

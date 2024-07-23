@@ -26,15 +26,8 @@ vector<Card*> Player::getHand() const { return hand; }
 
 vector<Minion*> Player::getSummoned() const { return summoned; }
 
-Card* Player::getGraveyard() { 
-    if (!graveyard.empty()) {
-        Card* temp = graveyard.top();
-        graveyard.pop();
-        return temp;
-    } else {
-        return nullptr;
-    }
-}
+stack<Minion*> Player::getGraveyard() const { return graveyard; }
+
 
 vector<Card*>& Player::getDeck() { return deck; }
 
@@ -50,8 +43,14 @@ void Player::addToSummoned(Minion *card) {
     summoned.emplace_back(card);
 }
 
-Card* Player::revive() {
-    return graveyard.top();
+Minion* Player::revive() {
+    if (!graveyard.empty()) {
+        Card* temp = graveyard.top();
+        graveyard.pop();
+        return temp;
+    } else {
+        return nullptr;
+    }
 }
 bool Player::fullHand() { return hand.size() == 5; }
 
