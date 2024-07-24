@@ -3,6 +3,7 @@
 
 #include "../ritual.h"
 #include "../minion.h"
+#include "../concrete minions/changestat.h"
 
 class AuraOfPower: public Ritual {
     public:

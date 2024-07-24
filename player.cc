@@ -29,7 +29,7 @@ vector<Minion*> Player::getSummoned() const { return summoned; }
 stack<Minion*> Player::getGraveyard() const { return graveyard; }
 
 
-vector<Card*>& Player::getDeck() { return deck; }
+vector<Card*> Player::getDeck() const { return deck; }
 
 void Player::addToDeck(Card* card) {
     deck.emplace_back(card); 
@@ -41,7 +41,9 @@ void Player::addToHand(Card* card) {
 
 void Player::addToSummoned(Minion *m) {
     summoned.emplace_back(m);
-    if (m->getTriggered()) 
+    for (Ritual *r: m->getRituals()) {
+        
+    }
 }
 
 Minion* Player::revive() {

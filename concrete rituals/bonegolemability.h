@@ -13,6 +13,8 @@ class BoneGolemAbility: public Ritual {
 
         ~BoneGolemAbility() { owner->detachMinionLeave(this); }
         void notify() override { boneGolem = new ChangeStat{boneGolem, '+', 1, 1}; }
+
+        void attach() ov
 };
 
 #endif
