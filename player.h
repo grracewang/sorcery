@@ -38,7 +38,7 @@ class Player : public Subject{
 		void removeRitual();
 
 		
-		vector<Card*> getDeck() const;
+		vector<Card*>& getDeck();
 		vector<Card*> getHand() const;
 		vector<Minion*> getSummoned() const;
 		stack<Minion*> getGraveyard() const; // returns top value 
