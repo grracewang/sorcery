@@ -44,8 +44,8 @@ class Minion: public Card {
 		Minion *removeTopEnchantment();
 
 		// minion attack
-		Minion *attack(Minion *enemy);
-		void attack(Player *enemy);
+		Minion *attack(Minion *enemy); // format in main: enemy = m.attack(enemy);
+		void attack(Player *enemy); // still need to implement
 
 		// for printing
 		card_template_t display() const override;
