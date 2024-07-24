@@ -4,9 +4,21 @@
 using namespace std;
 
 ChangeStat::ChangeStat(Minion *target, string atkStr, string defStr,
-                       int actionInc, int actCostInc, bool blockAbilities): 
+                       int actionInc, int actCostInc, bool blockAbilities,
+                       bool enchantment): 
     Decorator{target}, atkStr{atkStr}, defStr{defStr}, actionInc{actionInc},
-    actCostInc{actCostInc}, blockAbilities{blockAbilities} {}
+    actCostInc{actCostInc}, blockAbilities{blockAbilities},
+    enchantment{enchantment} {}
+
+
+// normal unchanged getters
+string ChangeStat::getName() const { return target->getName(); }
+string ChangeStat::getType() const { return target->getType(); }
+string ChangeStat::getDescription() const { return target->getDescription(); }
+int ChangeStat::getCost() const { return target->getCost(); }
+int ChangeStat::getAction() const { return target->getAction(); }
+
+
 
 int ChangeStat::getAtk() const  {
     // no effect on minion's attack when string is empty
@@ -68,4 +80,12 @@ vector<Ritual*> ChangeStat::getRituals() const {
         return empty;
     }
     return target->getRituals();
+}
+
+void ChangeStat::resetAction() { // call at start of turn
+    actions = getBeginActions();
+}
+bool ChangeStat::useAction() { // call when use an action
+    actions--;
+    return actions >= 0;
 }

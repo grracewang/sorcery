@@ -1,7 +1,5 @@
 #ifndef MINION_H
 #define MINION_H
-
-#include "enchantment.h"
 #include "card.h"
 #include "spell.h"
 #include "ritual.h"
@@ -11,6 +9,9 @@
 using namespace std;
 
 class Minion: public Card {
+	protected:
+        int actions = 0;
+
 	public:
 		// normal getters (not changed by decorators)
 		virtual string getName() const = 0;
@@ -31,11 +32,17 @@ class Minion: public Card {
 
 		// functions to manage the action of a minion
 		virtual void resetAction() = 0; // call at start of turn
-		virtual void useAction() = 0; // call when use an action
+		virtual bool useAction() = 0; // call before using a minion
+									  // to do something requiring actions
+									  // if return is false, you can't continue
+									  // to do that action
 
 		// for removing enchantments
-		Minion* removeEnchantments();
+		virtual Minion* removeEnchantments();
 		Minion* removeTopEnchantment();
+
+		// minion attack
+
 
 		// for printing
 		card_template_t display() const override;

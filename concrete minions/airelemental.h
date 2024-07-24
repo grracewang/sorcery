@@ -5,8 +5,6 @@
 using namespace std;
 
 class AirElemental : public Minion {
-        int actions = 0;
-
     public:
         // normal getters (not changed by decorators)
 		string getName() const override;
@@ -22,6 +20,10 @@ class AirElemental : public Minion {
         int getActCost() const override;
 		vector<Spell*> getSpells() const override;
 		vector<Ritual*> getRituals() const override;
+
+		// functions to manage the action of a minion
+		void resetAction() override; // call at start of turn
+		bool useAction() override; // call before you use an action
 };
 
 #endif

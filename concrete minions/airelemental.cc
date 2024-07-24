@@ -20,3 +20,11 @@ vector<Ritual*> AirElemental::getRituals() const {
     vector<Ritual*> empty;
     return empty;
 }
+
+void AirElemental::resetAction() {
+    actions = getBeginActions();
+}
+bool AirElemental::useAction() {
+    actions--;
+    return actions >= 0;
+}
