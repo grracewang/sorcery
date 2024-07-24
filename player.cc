@@ -42,7 +42,7 @@ void Player::addToHand(Card* card) {
 void Player::addToSummoned(Minion *m) {
     summoned.emplace_back(m);
     for (Ritual *r: m->getRituals()) {
-        
+        r->attach();
     }
 }
 

@@ -12,9 +12,12 @@ class BoneGolemAbility: public Ritual {
             Ritual{"Bone Golem Ability", "Gain +1/+1 whenever a minion leaves play", 0, 1, 0, owner}, boneGolem{bg} {}
 
         ~BoneGolemAbility() { owner->detachMinionLeave(this); }
+        
         void notify() override { boneGolem = new ChangeStat{boneGolem, '+', 1, 1}; }
 
-        void attach() ov
+        void attach() override {
+            owner->attachMinionLeave(this);
+        }
 };
 
 #endif

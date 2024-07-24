@@ -16,6 +16,10 @@ class PotionSellerAbility: public Ritual {
                 m = new ChangeStat{m, '+', 0, 1};
             }
         }
+
+        void attach() override {
+            owner->detachAfterTurn(this);
+        }
 };
 
 #endif

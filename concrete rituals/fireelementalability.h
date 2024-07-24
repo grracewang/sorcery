@@ -24,6 +24,11 @@ class FireElementalAbility: public Ritual {
                 m = new ChangeStat{m, '+', 0, -1};
             }
         }
+
+        void attach() override {
+            owner->attachMinionEnter(this);
+            opponent->attachMinionEnter(this);
+        }
 };
 
 #endif

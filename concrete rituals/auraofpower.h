@@ -22,7 +22,8 @@ class AuraOfPower: public Ritual {
                 m = new ChangeStat{m, '+', 1, 1};
             }
         }
-        void attach() {
+        
+        void attach() override {
             owner->attachMinionEnter(this);
         }
 };
