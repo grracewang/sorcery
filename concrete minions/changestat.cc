@@ -1,29 +1,71 @@
 #include "changestat.h"
 #include <iostream>
-
+#include <sstream>
 using namespace std;
 
-ChangeStat::ChangeStat(Minion *target, char op, int changeAtk, int changeDef): 
-    Decorator{target}, op{op}, changeAtk{changeAtk}, changeDef{changeDef} {}
+ChangeStat::ChangeStat(Minion *target, string atkStr, string defStr,
+                       int actionInc, int actCostInc, bool blockAbilities): 
+    Decorator{target}, atkStr{atkStr}, defStr{defStr}, actionInc{actionInc},
+    actCostInc{actCostInc}, blockAbilities{blockAbilities} {}
 
 int ChangeStat::getAtk() const  {
-    if (op == '+') {
-        return target->getAtk() + changeAtk;
-    } else if (op == '*') {
-        return target->getAtk() * changeAtk;
-    } else {
-        cerr << "op is neither + nor *" << endl;
-        return 0;
+    // no effect on minion's attack when string is empty
+    if (atkStr == "") return target->getAtk();
+    
+    // get the information for the string
+    char op;
+    int val;
+    if (istringstream iss{atkStr}; iss >> op >> val) {
+        if (op == '+') {
+            return target->getAtk() + val;
+        }
+        if (op == '*') {
+            return target->getAtk() * val;
+        }  
     }
+    
+    // code shouldn't reach this point (for debugging)
+    cerr << "poorly formatted atkStr" << endl;
+    return 0;
 }
 
 int ChangeStat::getDef() const {
-    if (op == '+') {
-        return target->getDef() + changeDef;
-    } else if (op == '*') {
-        return target->getDef() * changeDef;
-    } else {
-        cerr << "op is neither + nor *" << endl;
-        return 0;
+    // no effect on minion's defence when string is empty
+    if (defStr == "") return target->getDef();
+    
+    // get the information for the string
+    char op;
+    int val;
+    if (istringstream iss{defStr}; iss >> op >> val) {
+        if (op == '+') {
+            return target->getDef() + val;
+        }
+        if (op == '*') {
+            return target->getDef() * val;
+        }  
     }
+    
+    // code shouldn't reach this point (for debugging)
+    cerr << "poorly formatted defStr" << endl;
+    return 0;
+}
+
+int ChangeStat::getBeginActions() const { return target->getActions() + actionInc; }
+
+int ChangeStat::getActCost() const { return target->getActCost() + actCostInc; }
+
+vector<Spell*> ChangeStat::getSpells() const {
+    if (blockAbilities) {
+        vector<Spell*> empty;
+        return empty;
+    }
+    return target->getSpells();
+}
+
+vector<Ritual*> ChangeStat::getRituals() const {
+    if (blockAbilities) {
+        vector<Ritual*> empty;
+        return empty;
+    }
+    return target->getRituals();
 }

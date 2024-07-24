@@ -11,26 +11,36 @@
 using namespace std;
 
 class Minion: public Card {
-	protected: 
-		bool actions = 1;
-		vector<Spell*> spells;
-		vector<Ritual*> rituals;
-		vector<Enchantment*> enchantments; // enchantments that are casted on this Minion
-
 	public:
-		explicit Minion(string, string, string, int); 
-		virtual ~Minion() = default;
+		// normal getters (not changed by decorators)
+		virtual string getName() const = 0;
+		virtual string getType() const = 0;
+		virtual string getDescription() const = 0;
+		virtual int getCost() const = 0;
+		virtual int getAction() const = 0;
+		
+
+		// getters changed by decorators (in ChangeStat)
 		virtual int getAtk() const = 0;
 		virtual int getDef() const = 0;
-		vector<Enchantment*> getEnchantments() const;
-		Enchantment* getEnchantment(int i);
-		Enchantment* removeEnchantment(int i);
-		bool getActions() const;
-		void setActions(bool);
-		string getDescription() const;
-		vector<Spell*> getSpells() const;
-		vector<Ritual*> getRituals() const;
+		virtual int getBeginActions() const = 0;
+		virtual int getActions() const = 0;
+		virtual int getActCost() const = 0;
+		virtual vector<Spell*> getSpells() const = 0;
+		virtual vector<Ritual*> getRituals() const = 0;
+
+		// functions to manage the action of a minion
+		virtual void resetAction() = 0; // call at start of turn
+		virtual void useAction() = 0; // call when use an action
+
+		// for removing enchantments
+		Minion* removeEnchantments();
+		Minion* removeTopEnchantment();
+
+		// for printing
 		card_template_t display() const override;
+
+		virtual ~Minion();
 };
 
 #endif

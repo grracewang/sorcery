@@ -7,7 +7,7 @@
 
 class Spell: public Card {
     public:
-        explicit Spell(string name, string description, int cost);
+        Spell(string name, string description, int cost);
         card_template_t display() const override;
 };
 
