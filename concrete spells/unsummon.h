@@ -5,7 +5,7 @@
 
 class Unsummon: public Spell {
     public:
-        explicit Unsummon(): Spell{"Unsummon", "unsummon.txt", 1} {}
+        explicit Unsummon(): Spell{"Unsummon", "Return target minion to its owner’s hand", 1} {}
         void activate(Player *owner, int t) {
             Card* target = owner->removeSummonedMinion(t);
             // what if hand is full

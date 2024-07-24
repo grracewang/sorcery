@@ -6,7 +6,7 @@ using namespace std;
 
 class Banish: public Spell {
     public:
-        explicit Banish(): Spell{"Banish", "banish.txt", 2} {}
+        explicit Banish(): Spell{"Banish", "Destroy target minion or ritual", 2} {}
         void activate(Player *owner, char t) {
             if (t == 'r') {
                 owner->removeRitual();
