@@ -10,7 +10,7 @@ using namespace std;
 
 class GiantStrength: public Enchantment {
     public:
-        explicit GiantStrength(): 
+        GiantStrength(): 
             Enchantment{"Giant Strength", "", 1, "+2", "+2"} {}
         void activate(Minion *t) {
             if (t) t = new ChangeStat{t, '+', 2, 2};

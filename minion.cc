@@ -22,7 +22,7 @@ card_template_t Minion::display() const {
 
 // for attacking minions
 Minion *Minion::attack(Minion *enemy) {
-  return new ChangeStat{enemy, "", ChangeStat::toString('-', getAtk()),
+  return new ChangeStat{enemy, "", ChangeStat::toString('+', -getAtk()),
     0, 0, false, false};
 }
 
