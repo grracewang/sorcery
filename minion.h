@@ -25,7 +25,6 @@ class Minion: public Card {
 		virtual int getAtk() const = 0;
 		virtual int getDef() const = 0;
 		virtual int getBeginActions() const = 0;
-		virtual int getActions() const = 0;
 		virtual int getActCost() const = 0;
 		virtual vector<Spell*> getSpells() const = 0;
 		virtual vector<Ritual*> getRituals() const = 0;
