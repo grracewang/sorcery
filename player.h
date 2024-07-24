@@ -53,8 +53,6 @@ class Player : public Subject{
 		bool fullHand(); // checks if hand is full
 		void draw(); // transfers deck card to hand iff fullHand = false
 
-
-
 		void placeMinion(int i); // places hand card to board
 		void placeRitual(int i); // swaps ritual
 
@@ -62,7 +60,6 @@ class Player : public Subject{
 		void addToHand(Card*);
 		void addToSummoned(Minion*);
 
-	
 		bool playCard(int i, Player* target, char t);
 		void discard(int i); // discards i-th card, doesn't move to graveyard, just trashes it
 		void moveToGraveyard(int i);
