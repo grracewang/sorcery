@@ -1,5 +1,6 @@
 #ifndef PLAYER_H
 #define PLAYER_H
+#include "subject.h"
 #include "card.h"
 #include "minion.h"
 #include <vector>
@@ -9,7 +10,7 @@
 
 using namespace std;
 
-class Player {
+class Player : public Subject{
 	private: 
 		string name;
 		int life = 20, magic = 3; // life is 20, magic is 3, using cards cost magic
@@ -19,13 +20,7 @@ class Player {
 		vector<Card*> deck;
 		vector<Minion*> summoned; // minions that have been played
 		stack<Minion*> graveyard;
-		
-		//observer pattern fields
-		vector<Card*> preTurn;
-		vector<Card*> afterTurn;
-		vector<Card*> minionEnter;
-		vector<Card*> minionLeave;
-		
+		bool playing; // switch it whenever we play
 	public:
 		static inline const int MAX_SUMMONED = 5;
         explicit Player(string name);
@@ -74,9 +69,8 @@ class Player {
 		// void remove(int i); // removes ith element from hand
 
 		//observer pattern methods
-		void notifyCards(vector<Card*>) const;
-		void attach(Card*);
-		void detach(Card*);
+
+		bool isPlaying(); // aka getState
 
 		// printing
 		card_template_t display(int player_num) const;

@@ -108,9 +108,9 @@ void Player::moveToGraveyard(int i) {
 // }
 
 //observer pattern methods
-void Player::notifyCards(vector<Card*>) const {}
-void Player::attach(Card*) {}
-void Player::detach(Card*) {}
+bool Player::isPlaying() {
+    return playing;
+}
 
 // printing
 card_template_t Player::display(int player_num) const {
