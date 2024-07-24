@@ -9,8 +9,10 @@
 class Enchantment: public Card {
     private:
         const string atkStr, defStr;
+        
     public:
-        Enchantment(string name, string description, int cost, string atkStr = "", string defStr = "");
+        Enchantment(string name, string description, int cost,
+                    string atkStr = "", string defStr = "");
         string getAtkStr() const;
         string getDefStr() const;
         virtual void activate(Minion*) = 0;

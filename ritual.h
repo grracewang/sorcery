@@ -5,8 +5,8 @@
 #include "ascii_graphics.h"
 
 class Ritual: public Card {
-    protected:  
-        int charges, activationCost;
+    protected:
+		int charges, activationCost;
         Player *owner;
     public:
         explicit Ritual(string, string, int, int, int, Player *);

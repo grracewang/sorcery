@@ -1,7 +1,13 @@
 #include "ritual.h"
 
-Ritual::Ritual(string name, string description, int cost, int charges, int activationCost, Player* owner):
-    Card{name, "Ritual", description, cost}, charges{charges}, activationCost{activationCost} {}
+Ritual::Ritual(string name, string filename, int cost, int charges,
+               int activationCost, Player* owner):
+    charges{charges}, activationCost{activationCost} {
+  this->name = name;
+  this->type = "Ritual";
+  this->description = description;
+  this->cost = cost;
+}
 
 Ritual::~Ritual() { delete owner; }
 
