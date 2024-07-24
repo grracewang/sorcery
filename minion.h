@@ -3,10 +3,13 @@
 #include "card.h"
 #include "spell.h"
 #include "ritual.h"
+#include "./concrete minions/changestat.h"
 #include "ascii_graphics.h"
 #include <string>
 
 using namespace std;
+
+class Player; // forward declaration
 
 class Minion: public Card {
 	protected:
@@ -24,8 +27,8 @@ class Minion: public Card {
 		// getters changed by decorators (in ChangeStat)
 		virtual int getAtk() const = 0;
 		virtual int getDef() const = 0;
-		virtual int getBeginActions() const = 0;
-		virtual int getActCost() const = 0;
+		virtual int getBeginActions() const = 0; // action points minion gets at turn start
+		virtual int getActCost() const = 0; // cost of using activated ability (spell cost)
 		virtual vector<Spell*> getSpells() const = 0;
 		virtual vector<Ritual*> getRituals() const = 0;
 
@@ -37,11 +40,12 @@ class Minion: public Card {
 									  // to do that action
 
 		// for removing enchantments
-		virtual Minion* removeEnchantments();
-		Minion* removeTopEnchantment();
+		Minion *removeEnchantments();
+		Minion *removeTopEnchantment();
 
 		// minion attack
-
+		Minion *attack(Minion *enemy);
+		void attack(Player *enemy);
 
 		// for printing
 		card_template_t display() const override;

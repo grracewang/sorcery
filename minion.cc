@@ -1,9 +1,9 @@
 #include "minion.h"
 
-Minion* Minion::removeEnchantments() {
+Minion *Minion::removeEnchantments() {
   // use removeTopEnchantment to get rid of enchantments
 }
-Minion* Minion::removeTopEnchantment() {
+Minion *Minion::removeTopEnchantment() {
   // check if you have an enchantment and remove if it is
 }
 
@@ -13,11 +13,17 @@ card_template_t Minion::display() const {
     return display_minion_no_ability(getName(), getCost(), getAtk(), getDef());
   } else if (!getSpells().empty()) {
     return display_minion_activated_ability(getName(), getCost(), getAtk(), getDef(),
-        getSpells()[0]->getCost(), getSpells()[0]->getDescription());
+        getActCost(), getSpells()[0]->getDescription());
   } else {
     return display_minion_triggered_ability(getName(), getCost(), getAtk(),
         getDef(), getRituals()[0]->getDescription());
   }
+}
+
+// for attacking minions
+Minion *Minion::attack(Minion *enemy) {
+  return new ChangeStat{enemy, "", ChangeStat::toString('-', getAtk()),
+    0, 0, false, false};
 }
 
 Minion::~Minion() {}

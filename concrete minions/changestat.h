@@ -1,8 +1,9 @@
 #ifndef CHANGESTAT_H
 #define CHANGESTAT_H
 #include "decorator.h"
-#include "../minion.h"
 using namespace std;
+
+class Minion; // forward declaration
 
 class ChangeStat: public Decorator {
         // initialization information it needs for functions
@@ -36,6 +37,9 @@ class ChangeStat: public Decorator {
         // functions to manage the action of a minion
 		void resetAction() override;
 		bool useAction() override;
+
+        // helper function for creating atkStr and defStr
+        static string toString(char op, int val);
 };
 
 #endif

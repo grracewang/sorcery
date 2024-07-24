@@ -89,3 +89,7 @@ bool ChangeStat::useAction() { // call when use an action
     actions--;
     return actions >= 0;
 }
+
+string ChangeStat::toString(char op, int val) {
+    return string(1, op) + to_string(val);
+}
