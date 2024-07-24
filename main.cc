@@ -121,10 +121,10 @@ int main(int argc, char *argv[]) {
 
     string card;
     while (getline(d1, card)) {
-        players[0]->addToDeck(loadCard(card));
+        players[0]->addToDeck(loadCard(card, players[0], players[1]));
     }
     while (getline(d2, card)) {
-        players[1]->addToDeck(loadCard(card));
+        players[1]->addToDeck(loadCard(card, players[1], players[0]));
     }
 
     // shuffle deck
