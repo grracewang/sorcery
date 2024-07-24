@@ -22,8 +22,8 @@ class AirElemental : public Minion {
 		vector<Ritual*> getRituals() const override;
 
 		// functions to manage the action of a minion
-		void resetAction() override; // call at start of turn
-		bool useAction() override; // call before you use an action
+		void resetAction() override;
+		bool useAction() override;
 };
 
 #endif
