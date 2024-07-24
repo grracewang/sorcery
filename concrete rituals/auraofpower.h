@@ -13,8 +13,13 @@ class AuraOfPower: public Ritual {
         }
         // bool activate(Card *t)  {}
         void notify() override {
-            Minion* m = owner->getSummonedMinion(owner->getSummoned().size() - 1);
-            m = new ChangeStat{m, '+', 1, 1};
+            charges -= activationCost;
+            if (charges < 0) {
+                owner->removeRitual();
+            } else {
+                Minion* m = owner->getSummonedMinion(owner->getSummoned().size() - 1);
+                m = new ChangeStat{m, '+', 1, 1};
+            }
         }
         void attach() {
             owner->attachMinionEnter(this);

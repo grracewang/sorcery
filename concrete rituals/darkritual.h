@@ -11,8 +11,14 @@ class DarkRitual: public Ritual {
             owner->detachPreTurn(this);
         }
         void notify() override {
-            owner->changeMagic(1);
+            charges -= activationCost;
+            if (charges < 0) {
+                owner->removeRitual();
+            } else {
+                owner->changeMagic(1);
+            }
         }
+
         void attach() {
             owner->attachPreTurn(this);
         }

@@ -15,16 +15,22 @@ class Standstill: public Ritual {
             // need to detach it for opponent as well
         }
         void notify() override {
-            if (owner->isPlaying()) {
-                int i = owner->getSummoned().size() - 1;
-                Minion* m = owner->removeSummonedMinion(i);
-                delete m;
+            charges -= activationCost;
+            if (charges < 0) {
+                owner->removeRitual();
             } else {
-                int i = opponent->getSummoned().size() - 1;
-                Minion* m = opponent->removeSummonedMinion(i);
-                delete m;
+                if (owner->isPlaying()) {
+                    int i = owner->getSummoned().size() - 1;
+                    Minion* m = owner->removeSummonedMinion(i);
+                    delete m;
+                } else {
+                    int i = opponent->getSummoned().size() - 1;
+                    Minion* m = opponent->removeSummonedMinion(i);
+                    delete m;
+                }
             }
         }
+
         void attach() {
             owner->attachMinionEnter(this);
             opponent->attachMinionEnter(this);
