@@ -226,6 +226,8 @@ int main(int argc, char *argv[]) {
                             Minion* card = dynamic_cast<Minion*>(players[curr]->removeHandCard(i));
                             players[curr]->addToSummoned(card);
                         } else if (players[curr]->getHand()[i]->getType() == "Ritual") { // minion
+                            Ritual* card = dynamic_cast<Ritual*>(players[curr]->getHand()[i]);
+                            card->attach(players[curr]);
                             players[curr]->placeRitual(i);
                             cout << "Played a ritual" << endl;
                         } else if (players[curr]->getHand()[i]->getName() == "Raise Dead") {
