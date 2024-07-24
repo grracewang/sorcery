@@ -62,7 +62,7 @@ int ChangeStat::getDef() const {
     return 0;
 }
 
-int ChangeStat::getBeginActions() const { return target->getActions() + actionInc; }
+int ChangeStat::getBeginActions() const { return target->getAction() + actionInc; }
 
 int ChangeStat::getActCost() const { return target->getActCost() + actCostInc; }
 
