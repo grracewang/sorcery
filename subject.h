@@ -24,7 +24,7 @@ class Subject {
         void notifyAfterTurn() const;
         void notifyMinionEnter() const;
         void notifyMinionLeave() const;
-        virtual ~Subject()=0;
+        virtual ~Subject() = 0;
 };
 
 #endif

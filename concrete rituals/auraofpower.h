@@ -2,7 +2,7 @@
 #define AURAOFPOWER_H
 
 #include "../ritual.h"
-#include "../concrete minions/minion.h"
+#include "../minion.h"
 
 class AuraOfPower: public Ritual {
     public:
