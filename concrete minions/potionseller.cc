@@ -1,4 +1,5 @@
 #include "potionseller.h"
+#include "../concrete rituals/potionsellerability.h"
 
 string PotionSeller::getName() const { return "Potion Seller"; }
 string PotionSeller::getType() const { return "Minion"; }
@@ -10,7 +11,12 @@ int PotionSeller::getDef() const { return 3; }
 int PotionSeller::getBeginActions() const { return 1; }
 int PotionSeller::getActCost() const { return -1; }
 
-void PotionSeller::addAbility(Player* owner, Player *oponent) {};
+void PotionSeller::addAbility(Player* owner, Player *opponent) {
+    Ritual* r = new PotionSellerAbility(owner);
+    abilities.emplace_back(r);
+    owner->attachAfterTurn(r);
+
+};
 
 vector<Spell*> PotionSeller::getSpells() const {
     vector<Spell*> empty;

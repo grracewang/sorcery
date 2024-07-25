@@ -1,8 +1,10 @@
 #ifndef POTIONSELLER_H
 #define POTIONSELLER_H
 #include "../minion.h"
+#include "../ritual.h"
 
 class PotionSeller : public Minion {
+	vector<Ritual*> abilities;
     public:
         // normal getters (not changed by decorators)
 		string getName() const override;

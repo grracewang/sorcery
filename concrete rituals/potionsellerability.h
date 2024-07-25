@@ -12,8 +12,11 @@ class PotionSellerAbility: public Ritual {
         ~PotionSellerAbility() { owner->detachAfterTurn(this); }
 
         void notify() override {
-            for (Minion *m: owner->getSummoned()) {
-                m = new ChangeStat{m, '+', 0, 1};
+            int size = owner->getSummoned().size();
+            for (int i = 0; i < size; i++) {
+                Minion* m = owner->removeSummonedMinion(0);
+                m = new ChangeStat{m, "0", "+1", 0, 0, false, false};
+                owner->addToSummoned(m);
             }
         }
 
