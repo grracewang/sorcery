@@ -15,7 +15,7 @@ class Board {
         // printing functions
 		ostream &printBoard(ostream &out);
 		ostream &printHand(ostream &out, int playerNum);
-
+		
 		// static ostream &inspect(ostream &out, Minion *m);
 };
 
