@@ -15,6 +15,7 @@ ChangeStat::ChangeStat(Minion *target, string atkStr, string defStr,
 string ChangeStat::getName() const { return target->getName(); }
 string ChangeStat::getType() const { return target->getType(); }
 int ChangeStat::getCost() const { return target->getCost(); }
+bool ChangeStat::isEnchantment() const { return enchantment; }
 
 int ChangeStat::getAtk() const  {
     // no effect on minion's attack when string is empty

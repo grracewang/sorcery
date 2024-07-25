@@ -12,7 +12,7 @@ class ChangeStat: public Decorator {
         string defStr; // amount a minion's defence changes (ex. "-2")
         int actionInc; // amount a minion's beginning actions increase by
         int actCostInc; // amount a minion's spell's cost increases by
-                        // in getActCost(), not the actual spell that changes 
+                        // in getActCost(), not the actual spell that changes
         bool blockAbilities; // whether a minion can use its abilities
         bool enchantment; // whether a ChangeStat came from an enchantment
 
@@ -24,6 +24,7 @@ class ChangeStat: public Decorator {
 		string getName() const override;
 		string getType() const override;
 		int getCost() const override;
+        bool isEnchantment() const override;
 
         // getters changed by decorators
 		int getAtk() const override;
