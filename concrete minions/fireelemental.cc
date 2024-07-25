@@ -13,7 +13,7 @@ bool FireElemental::isEnchantment() const { return false; }
 int FireElemental::getAtk() const { return 2; }
 int FireElemental::getDef() const { return 2; }
 int FireElemental::getBeginActions() const { return 1; };
-int FireElemental::getActCost() const { return -1 };
+int FireElemental::getActCost() const { return -1; };
 void FireElemental::addAbility(Player* owner, Player* opponent) {
     Ritual* r = new FireElementalAbility(owner, opponent);
     abilities.emplace_back(r);

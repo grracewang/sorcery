@@ -3,7 +3,7 @@
 
 string PotionSeller::getName() const { return "Potion Seller"; }
 string PotionSeller::getType() const { return "Minion"; }
-string getDescription() const {
+string PotionSeller::getDescription() const {
     return "At the end of your turn, all your minions gain +0/+1.";
 }
 int PotionSeller::getCost() const { return 2; }
