@@ -8,9 +8,7 @@ class BoneGolem : public Minion {
         // normal getters (not changed by decorators)
 		string getName() const override;
 		string getType() const override;
-		string getDescription() const override;
 		int getCost() const override;
-        int getAction() const override;
 
 		// getters changed by decorators
         int getAtk() const override;

@@ -1,9 +1,10 @@
 #ifndef CHANGESTAT_H
 #define CHANGESTAT_H
 #include "decorator.h"
+#include "../minion.h"
 using namespace std;
 
-class Minion; // forward declaration
+// class Minion; // forward declaration
 
 class ChangeStat: public Decorator {
         // initialization information it needs for functions
@@ -22,9 +23,7 @@ class ChangeStat: public Decorator {
         // normal getters (not changed by decorators)
 		string getName() const override;
 		string getType() const override;
-		string getDescription() const override;
 		int getCost() const override;
-		int getAction() const override;
 
         // getters changed by decorators
 		int getAtk() const override;
@@ -33,10 +32,6 @@ class ChangeStat: public Decorator {
         int getActCost() const override;
 		vector<Spell*> getSpells() const override;
 		vector<Ritual*> getRituals() const override;
-
-        // functions to manage the action of a minion
-		void resetAction() override;
-		bool useAction() override;
 
         // helper function for creating atkStr and defStr
         static string toString(char op, int val);

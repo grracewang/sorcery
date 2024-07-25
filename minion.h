@@ -3,7 +3,6 @@
 #include "card.h"
 #include "spell.h"
 #include "ritual.h"
-#include "./concrete minions/changestat.h"
 #include "ascii_graphics.h"
 #include <string>
 using namespace std;
@@ -18,9 +17,9 @@ class Minion: public Card {
 		// normal getters (not changed by decorators)
 		virtual string getName() const = 0;
 		virtual string getType() const = 0;
-		virtual string getDescription() const = 0;
+		string getDescription() const; // non-virtual
 		virtual int getCost() const = 0;
-		virtual int getAction() const = 0;
+		int getAction() const;
 		
 
 		// getters changed by decorators (in ChangeStat)

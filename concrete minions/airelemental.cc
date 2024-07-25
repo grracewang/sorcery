@@ -2,9 +2,7 @@
 
 string AirElemental::getName() const { return "Air Elemental"; }
 string AirElemental::getType() const { return "Minion"; }
-string AirElemental::getDescription() const { return ""; }
 int AirElemental::getCost() const { return 0; }
-int AirElemental::getAction() const { return actions; }
 
 int AirElemental::getAtk() const { return 1; }
 int AirElemental::getDef() const { return 1; }
