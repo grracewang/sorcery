@@ -14,6 +14,11 @@ Minion *Minion::getMinion() const { return nullptr; }
 
 void Minion::setMinion(Minion *m) {}
 
+vector<Card*> getEnchantments() {
+  vector<Card*> empty;
+  return empty;
+}
+
 
 // for attacking minions
 Minion *Minion::attack(Minion *enemy) {

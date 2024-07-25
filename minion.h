@@ -35,6 +35,7 @@ class Minion: public Card {
 		virtual vector<Spell*> getSpells() const = 0;
 		virtual Minion *getMinion() const; 
 		virtual void setMinion(Minion *);
+		vector<Card*> getEnchantments();
 
 		// functions to manage the action of a minion
 		void resetAction(); // call at start of turn
