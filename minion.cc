@@ -15,22 +15,13 @@ int Minion::getCost() const { return 0; }
 
 Minion *Minion::getMinion() const { return nullptr; }
 
+void Minion::setMinion(Minion *m) {}
 
 Minion *Minion::removeEnchantments() {
   // use removeTopEnchantment to get rid of enchantments
 }
 
-Minion *Minion::removeTopEnchantment() {
-  // check if you have an enchantment and remove if it is
-  Minion *curr = this;
-  Minion *prev = nullptr;
-
-  while(curr) {
-    if (curr->isEnchantment()) {
-      if (prev) 
-    }
-  }
-}
+Minion *Minion::removeTopEnchantment() { return this; }
 
 
 

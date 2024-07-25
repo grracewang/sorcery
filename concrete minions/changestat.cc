@@ -82,9 +82,9 @@ vector<Ritual*> ChangeStat::getRituals() const {
     return target->getRituals();
 }
 
-Minion *ChangeStat::getMinion() const {
-    return target;
-}
+Minion *ChangeStat::getMinion() const { return target; }
+
+Minion *ChangeStat::setMinion(const Minion *m) { target = m; }
 
 string ChangeStat::toString(char op, int val) {
     return string(1, op) + to_string(val);
