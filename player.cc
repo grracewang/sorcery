@@ -18,11 +18,6 @@ int Player::getMagic() const { return magic; }
 
 Ritual* Player::getRitual() const { return ritual; }
 
-void Player::removeRitual() {
-    delete this->ritual;
-    ritual = nullptr;
-}
-
 vector<Card*>& Player::getDeck() { return deck; }
 
 vector<Card*> Player::getHand() const { return hand; }
@@ -44,11 +39,15 @@ Minion* Player::getSummonedMinion(int i) const {
 }
 
 Minion* Player::removeSummonedMinion(int i) {
-    Minion* temp = summoned[i];
+    Minion* newMinion = summoned[i];
+    Minion* temp = newMinion;
     summoned.erase(summoned.begin() + i);
     notifyMinionLeave();
-    temp = 
-    return temp;
+    while (temp->getMinion() != nullptr) {
+       temp = temp->getMinion();
+    }
+    temp->removeAbilities(); 
+    return newMinion;
 }
 
 Minion* Player::revive() {
@@ -79,11 +78,14 @@ void Player::addToDeck(Card* card) {
 
 void Player::addToHand(Card* card) {
     if (hand.size() < 5) hand.emplace_back(card);
-    else cout << "Hand is full." << endl;
+    else std::cout << "Hand is full." << std::endl;
 }
 
 void Player::addToSummoned(Minion *m, Player *opponent) {
     summoned.emplace_back(m);
+    while (m->getMinion() != nullptr) {
+        m = m->getMinion();
+    }
     m->addAbility(this, opponent);
     notifyMinionEnter();
 }
@@ -102,11 +104,14 @@ void Player::setSummoned(int i, Minion *newMinion) {
 }
 
 void Player::setRitual(Ritual *r) {
-    if (ritual) { // delete old ritual, mutate vector
+    if (ritual != nullptr) { // delete old ritual, mutate vector
         Ritual* temp = ritual;
         delete temp;
+    }
     ritual = r; 
-    if (ritual) ritual->attach();
+    if (ritual != nullptr) {
+        ritual->attach();
+    }
 }
 
 void Player::discard(int i) {
@@ -115,7 +120,7 @@ void Player::discard(int i) {
     delete temp;
 }
 
-bool PLayer::minionDead(Minion *m) {
+bool Player::minionDead(Minion *m) {
     if (m->getDef() <= 0) return true;
     return false;
 }
