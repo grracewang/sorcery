@@ -7,7 +7,7 @@
 class NovicePyromancerAbility: public Spell {
     public:
         NovicePyromancerAbility(): Spell{"Novice Pyromancer Ability", "Deal 1 damage to target minion", 1} {}
-        bool activate(Player *target, Player *other, int t) override {
+        bool activate(Player *target, Player *other, size_t t) override {
             Minion *m = target->getSummonedMinion(t - 1);
             m = new ChangeStat{m, "", ChangeStat::toString('+', -1), 0, 0, false, nullptr};
             target->setSummoned(t - 1, m);
