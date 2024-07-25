@@ -8,25 +8,20 @@
 class FireElementalAbility: public Ritual {
     Player *opponent;
     public:
-        explicit FireElementalAbility(Player* owner, Player *opponent):
-            Ritual{"Fire Elemental Ability", "Whenever an opponent's minion enters play, deal 1 damage to it", 0, 1, 0, owner},
-            opponent{opponent} {}
+        explicit FireElementalAbility(Player* owner, Player* opponent):
+            Ritual{"Fire Elemental Ability", "Whenever an opponent's minion enters play, deal 1 damage to it", 0, 1, 0, owner}, opponent{opponent} {}
         
         ~FireElementalAbility() { 
-            owner->detachMinionEnter(this); 
             opponent->detachMinionEnter(this);
         }
 
         void notify() override { 
-            if (!owner->isPlaying()) {
-                int i = owner->getSummoned().size() - 1;
-                Minion *m = owner->getSummoned().at(i);
-                m = new ChangeStat{m, '+', 0, -1};
-            }
+            int i = opponent->getSummoned().size() - 1;
+            Minion *m = opponent->getSummoned().at(i);
+            m = new ChangeStat{m, '+', 0, -1};
         }
 
         void attach() override {
-            owner->attachMinionEnter(this);
             opponent->attachMinionEnter(this);
         }
 };

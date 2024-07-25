@@ -1,13 +1,9 @@
 #include "../minion.h"
 #include "changestat.h"
-
+#include "../ritual.h"
 class FireElemental : public Minion {
+    <Ritual*> abilities;
     public:
-        FireElemental(): 
-            Minion{"Fire Elemental", "Minion", "Whenever an opponent's minion enters play, deal 1 damage to it", 2} {};
-        void activate(Card *t) {};
-        int getAtk() const override { return 2; }
-        int getDef() const override { return 2; }
          // normal getters (not changed by decorators)
 		string getName() const override;
 		string getType() const override;
