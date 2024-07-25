@@ -215,7 +215,7 @@ int main(int argc, char *argv[]) {
                         cur_minion->attack(players[next]);
                         cout << "Command: attack player " << i << endl;
 
-                        if (player[next]->getLife() <= 0) {
+                        if (players[next]->getLife() <= 0) {
                             cout << players[curr]->getName() << "has won!" << endl;
                             return;
                         }
@@ -246,7 +246,7 @@ int main(int argc, char *argv[]) {
                             players[curr]->addToSummoned(card);
                         } else if (players[curr]->getHand()[i]->getType() == "Ritual") { // minion
                             Ritual* card = dynamic_cast<Ritual*>(players[curr]->getHand()[i]);
-                            card->attach(players[curr]);
+                            card->attach();
                             players[curr]->placeRitual(i);
                             cout << "Played a ritual" << endl;
                         } else if (players[curr]->getHand()[i]->getName() == "Raise Dead") {
