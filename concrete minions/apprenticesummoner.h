@@ -1,5 +1,5 @@
-#ifndef APPRENTICESUMMONER_H
-#define APPRENTICESUMMONER_H
+// #ifndef APPRENTICESUMMONER_H
+// #define APPRENTICESUMMONER_H
 
 #include "../minion.h"
 #include "../player.h"
@@ -8,7 +8,7 @@
 #include <vector>
 using namespace std;
 
-class ApprenticeSummoner : public Minion {
+class ApprenticeSummoner: public Minion {
     public:
         // normal getters (not changed by decorators)
 		string getName() const override;
@@ -26,4 +26,4 @@ class ApprenticeSummoner : public Minion {
 		void addAbility(Player* owner, Player *opponent) override;
 };
 
-#endif
+// #endif

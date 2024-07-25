@@ -2,8 +2,10 @@
 #define APPRENTICESUMMONERABILITY_H
 
 #include "../spell.h"
+#include "../player.h"
 #include "../concrete minions/airelemental.h"
 #include <iostream>
+#include <string>
 
 class ApprenticeSummonerAbility: public Spell {
     public:
