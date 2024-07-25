@@ -1,12 +1,22 @@
+#ifndef NOVICEPYROMANCER_H
+#define NOVICEPYROMANCER_H
 #include "../minion.h"
-#include "changestat.h"
-#include <iostream>
+
 class NovicePyromancer : public Minion {
     public:
-        NovicePyromancer(): Minion{"Novice Pyromancer", "Minion", "Deal 1 damage to target minion", 2} {};
-        void activate(Minion *target) {
-            target = new ChangeStat{target, '+', 0, -1};
-        }
-        int getAtk() const override { return 0; }
-        int getDef() const override { return 1; }
+        // normal getters (not changed by decorators)
+		string getName() const override;
+		string getType() const override;
+		int getCost() const override;
+		bool isEnchantment() const override;
+
+		// getters changed by decorators
+        int getAtk() const override;
+		int getDef() const override;
+		int getBeginActions() const override;
+        int getActCost() const override;
+		vector<Spell*> getSpells() const override;
+		vector<Ritual*> getRituals() const override;
 };
+
+#endif
