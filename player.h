@@ -63,7 +63,7 @@ class Player : public Subject{
 		void addToSummoned(Minion*);
 
 		void discard(int i); // discards i-th card, just trashes it, used in testing mode
-		bool isDead(Minion *m);
+		bool minionDead(Minion *m);
 		void moveToGraveyard(int i);
 
 		//observer pattern methods

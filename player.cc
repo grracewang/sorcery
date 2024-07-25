@@ -65,7 +65,7 @@ bool Player::fullHand() { return hand.size() == 5; }
 void Player::draw() { // transfers deck card to hand iff fullHand = false
     
     Card* card = deck[deck.size() - 1]; // take top of deck
-    hand.emplace_back(card);
+    addToHand(card);
     
     // do i need to delete memory?: call delete on last elem
     // cerr << hand.size() << endl;
@@ -77,7 +77,8 @@ void Player::addToDeck(Card* card) {
 }
 
 void Player::addToHand(Card* card) {
-    hand.emplace_back(card);
+    if (hand.size() < 5) hand.emplace_back(card);
+    else cout << "Hand is full." << endl;
 }
 
 void Player::addToSummoned(Minion *m) {
@@ -116,7 +117,7 @@ void Player::discard(int i) {
     delete temp;
 }
 
-bool PLayer::isDead(Minion *m) {
+bool PLayer::minionDead(Minion *m) {
     if (m->getDef() <= 0) return true;
     return false;
 }
