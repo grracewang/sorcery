@@ -9,11 +9,14 @@ int AirElemental::getAtk() const { return 1; }
 int AirElemental::getDef() const { return 1; }
 int AirElemental::getBeginActions() const { return 1; }
 int AirElemental::getActCost() const { return -1; }
+
+void addAbility(Player* owner) {};
+
 vector<Spell*> AirElemental::getSpells() const {
     vector<Spell*> empty;
     return empty;
 }
-vector<Ritual*> AirElemental::getRituals() const {
-    vector<Ritual*> empty;
-    return empty;
-}
+// vector<Ritual*> AirElemental::getRituals() const {
+//     vector<Ritual*> empty;
+//     return empty;
+// }

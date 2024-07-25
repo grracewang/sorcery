@@ -19,10 +19,10 @@ void BoneGolem::addAbility(Player* owner) {
 
 // minion deletes the ritual when it dies or leaves the field
 
-// vector<Spell*> BoneGolem::getSpells() const {
-//     vector<Spell*> empty;
-//     return empty;
-// }
+vector<Spell*> BoneGolem::getSpells() const {
+    vector<Spell*> empty;
+    return empty;
+}
 // vector<Ritual*> BoneGolem::getRituals() const {
 //     vector<Ritual*> r;
 //     r.emplace_back(BoneGolemAbility(player, myself_pointer)) // change this

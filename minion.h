@@ -44,6 +44,9 @@ class Minion: public Card {
 		// for removing enchantments
 		Minion *removeEnchantments();
 		Minion *removeTopEnchantment();
+		
+		// adding abilities
+		virtual void addAbility(Player*) = 0;
 
 		// minion attack
 		Minion *attack(Minion *enemy); // format in main: enemy = m.attack(enemy);
