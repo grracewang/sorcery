@@ -9,6 +9,8 @@ string Minion::getDescription() const {
     else if (!rituals.empty()) return rituals[0]->getDescription();
 }
 
+int getAction() const { return actions; }
+
 int Minion::getCost() const { return 0; }
 
 Minion *Minion::removeEnchantments() {
