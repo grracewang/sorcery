@@ -63,12 +63,8 @@ Minion* Player::revive() {
 bool Player::fullHand() { return hand.size() == 5; }
 
 void Player::draw() { // transfers deck card to hand iff fullHand = false
-    
     Card* card = deck[deck.size() - 1]; // take top of deck
     addToHand(card);
-    
-    // do i need to delete memory?: call delete on last elem
-    // cerr << hand.size() << endl;
     deck.erase(deck.begin() + (deck.size() - 1));
 }
 
