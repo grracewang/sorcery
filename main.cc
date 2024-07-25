@@ -222,9 +222,8 @@ int main(int argc, char *argv[]) {
                 case Op::PLAY:
                 {
                     int p; // t-th card owned by player
-                    cin >> i;
+                    cin >> i >> p;
                     i -= 1;
-                    cin >> p;
                     if (cin.fail()) {
                         cin.clear();
                         // check if card played is minion, if it's a minion we call all the spells/rituals minion related
