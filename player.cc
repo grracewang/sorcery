@@ -126,7 +126,7 @@ void Player::moveToGraveyard(int i) {
     graveyard.push(removeSummonedMinion(i));
 }
 
-void discard(Card* spell) {
+void Player::discard(Card* spell) {
     delete spell;
 }
 
