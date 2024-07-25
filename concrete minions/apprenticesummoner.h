@@ -1,14 +1,23 @@
+#ifndef APPRENTICESUMMONER_H
+#define APPRENTICESUMMONER_H
 #include "../minion.h"
-#include "changestat.h"
-#include "../player.h"
-#include "airelemental.h"
 
 class ApprenticeSummoner : public Minion {
-    public: 
-        ApprenticeSummoner(): Minion{"Apprentice Summoner", "Minion", "Summon a 1/1 air elemental.", 1} {};
-        void activate(Player *p) {
-            if(p->getSummoned().size() < p->MAX_SUMMONED) p->addToSummoned(new AirElemental);
-        }
-        int getAtk() const override { return 1; }
-        int getDef() const override { return 1; }
+    public:
+        // normal getters (not changed by decorators)
+		string getName() const override;
+		string getType() const override;
+		string getDescription() const override;
+		int getCost() const override;
+        int getAction() const override;
+
+		// getters changed by decorators
+        int getAtk() const override;
+		int getDef() const override;
+		int getBeginActions() const override;
+        int getActCost() const override;
+		vector<Spell*> getSpells() const override;
+		vector<Ritual*> getRituals() const override;
 };
+
+#endif

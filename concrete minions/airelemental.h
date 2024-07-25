@@ -2,7 +2,6 @@
 #define AIRELEMENTAL_H
 #include "../minion.h"
 #include <string>
-using namespace std;
 
 class AirElemental : public Minion {
     public:
@@ -20,10 +19,6 @@ class AirElemental : public Minion {
         int getActCost() const override;
 		vector<Spell*> getSpells() const override;
 		vector<Ritual*> getRituals() const override;
-
-		// functions to manage the action of a minion
-		void resetAction() override;
-		bool useAction() override;
 };
 
 #endif
