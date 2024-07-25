@@ -2,6 +2,7 @@
 
 string NovicePyromancer::getName() const { return "Novice Pyromancer"; }
 string NovicePyromancer::getType() const { return "Minion"; }
+string NovicePyromancer::getDescription() const { return "Deal 1 damage to target minion"; };
 int NovicePyromancer::getCost() const { return 1; }
 bool NovicePyromancer::isEnchantment() const { return false; }
 

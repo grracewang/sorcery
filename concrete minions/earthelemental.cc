@@ -2,6 +2,7 @@
 
 string EarthElemental::getName() const { return "Earth Elemental"; }
 string EarthElemental::getType() const { return "Minion"; }
+string EarthElemental::getDescription() const { return ""; }
 int EarthElemental::getCost() const { return 3; }
 bool EarthElemental::isEnchantment() const { return false; }
 

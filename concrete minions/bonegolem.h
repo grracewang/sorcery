@@ -1,6 +1,7 @@
 #ifndef APPRENTICESUMMONER_H
 #define APPRENTICESUMMONER_H
 #include "../minion.h"
+#include "../player.h"
 using namespace std;
 
 class BoneGolem : public Minion {

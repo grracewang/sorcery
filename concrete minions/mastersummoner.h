@@ -12,6 +12,7 @@ class MasterSummoner : public Minion {
         // }
         string getName() const override;
 		string getType() const override;
+        string getDescription() const override;
 		int getCost() const override;
 		bool isEnchantment() const override;
 

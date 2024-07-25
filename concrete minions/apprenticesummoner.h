@@ -1,12 +1,14 @@
 #ifndef APPRENTICESUMMONER_H
 #define APPRENTICESUMMONER_H
 #include "../minion.h"
+#include "../player.h"
 
 class ApprenticeSummoner : public Minion {
     public:
         // normal getters (not changed by decorators)
 		string getName() const override;
 		string getType() const override;
+		string getDescription() const override;
 		int getCost() const override;
         bool isEnchantment() const override;
 

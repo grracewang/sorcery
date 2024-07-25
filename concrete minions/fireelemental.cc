@@ -4,7 +4,7 @@
 string FireElemental::getName() const { return "Fire Elemental"; }
 string FireElemental::getType() const { return "Minion"; }
 string FireElemental::getDescription() const {
-    return "Whenever an opponent’s minion enters play, deal 1 damage to it.";
+    return "Whenever an opponent’s minion enters play, deal 1 damage to it";
 }
 int FireElemental::getCost() const {return 2; }
 bool FireElemental::isEnchantment() const { return false; }

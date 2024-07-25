@@ -2,6 +2,7 @@
 
 string MasterSummoner::getName() const { return "Master Summoner"; }
 string MasterSummoner::getType() const { return "Minion"; }
+string MasterSummoner::getDescription() const { return "Summon up to three 1/1 air elementals"; }
 int MasterSummoner::getCost() const { return 3; }
 bool MasterSummoner::isEnchantment() const { return false; }
 

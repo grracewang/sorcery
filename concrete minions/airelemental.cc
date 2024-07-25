@@ -2,6 +2,7 @@
 
 string AirElemental::getName() const { return "Air Elemental"; }
 string AirElemental::getType() const { return "Minion"; }
+string AirElemental::getDescription() const { return ""; }
 int AirElemental::getCost() const { return 0; }
 bool AirElemental::isEnchantment() const { return false; }
 
