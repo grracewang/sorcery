@@ -14,7 +14,7 @@ Minion *Minion::getMinion() const { return nullptr; }
 
 void Minion::setMinion(Minion *m) {}
 
-vector<Card*> getEnchantments() {
+vector<Card*> Minion::getEnchantments() const {
   vector<Card*> empty;
   return empty;
 }
@@ -23,7 +23,7 @@ vector<Card*> getEnchantments() {
 // for attacking minions
 Minion *Minion::attack(Minion *enemy) {
   return new ChangeStat{enemy, "", ChangeStat::toString('+', -getAtk()),
-    0, 0, false, false};
+    0, 0, false, nullptr};
 }
 
 void Minion::attack(Player *enemy) {

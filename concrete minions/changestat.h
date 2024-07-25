@@ -14,11 +14,10 @@ class ChangeStat: public Decorator {
         int actCostInc; // amount a minion's spell's cost increases by
                         // in getActCost(), not the actual spell that changes
         bool blockAbilities; // whether a minion can use its abilities
-        bool enchantment; // whether a ChangeStat came from an enchantment
 
     public:
         ChangeStat(Minion *target, string atkStr, string defStr, int actionInc,
-                   int actCostInc, bool blockAbilities, bool enchantment);
+                   int actCostInc, bool blockAbilities, Card *enchantment);
 
         // normal getters (not changed by decorators)
 		string getName() const override;
@@ -34,6 +33,7 @@ class ChangeStat: public Decorator {
 		vector<Spell*> getSpells() const override;
         Minion *getMinion() const override;
         void setMinion(Minion *) override;
+        vector<Card*> getEnchantments() const override;
         
         // helper function for creating atkStr and defStr
         static string toString(char op, int val);

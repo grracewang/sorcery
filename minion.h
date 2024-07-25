@@ -12,7 +12,7 @@ class Player; // forward declaration
 class Minion: public Card {
 	protected:
         int actions = 0;
-		vector<Card*> enchantments;
+		Card *enchantment = nullptr;
 		vector<Ritual*> rituals;
 	public:
 		// normal getters (not changed by decorators)
@@ -35,7 +35,7 @@ class Minion: public Card {
 		virtual vector<Spell*> getSpells() const = 0;
 		virtual Minion *getMinion() const; 
 		virtual void setMinion(Minion *);
-		vector<Card*> getEnchantments();
+		virtual vector<Card*> getEnchantments() const;
 
 		// functions to manage the action of a minion
 		void resetAction(); // call at start of turn

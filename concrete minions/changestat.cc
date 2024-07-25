@@ -5,17 +5,21 @@ using namespace std;
 
 ChangeStat::ChangeStat(Minion *target, string atkStr, string defStr,
                        int actionInc, int actCostInc, bool blockAbilities,
-                       bool enchantment): 
+                       Card *enchantment): 
     Decorator{target}, atkStr{atkStr}, defStr{defStr}, actionInc{actionInc},
-    actCostInc{actCostInc}, blockAbilities{blockAbilities},
-    enchantment{enchantment} {}
+    actCostInc{actCostInc}, blockAbilities{blockAbilities} {
+        this->enchantment = enchantment;
+    }
 
 
 // normal unchanged getters
 string ChangeStat::getName() const { return target->getName(); }
 string ChangeStat::getType() const { return target->getType(); }
 int ChangeStat::getCost() const { return target->getCost(); }
-bool ChangeStat::isEnchantment() const { return enchantment; }
+bool ChangeStat::isEnchantment() const {
+    if (enchantment) return true;
+    else return false;
+}
 
 int ChangeStat::getAtk() const  {
     // no effect on minion's attack when string is empty
@@ -77,6 +81,11 @@ vector<Spell*> ChangeStat::getSpells() const {
 Minion *ChangeStat::getMinion() const { return target; }
 
 void ChangeStat::setMinion(Minion *m) { target = m; }
+
+vector<Card*> ChangeStat::getEnchantments() const {
+    vector<Card*> newEnchantments = target->getEnchantments();
+    newEnchantments.emplace_back()
+}
 
 string ChangeStat::toString(char op, int val) {
     return string(1, op) + to_string(val);

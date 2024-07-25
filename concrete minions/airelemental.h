@@ -8,6 +8,8 @@
 using namespace std;
 
 class AirElemental : public Minion {
+		vector<Card*> enchantments;
+
     public:
         // normal getters (not changed by decorators)
 		string getName() const override;
@@ -23,6 +25,7 @@ class AirElemental : public Minion {
         int getActCost() const override;
 		void addAbility(Player*, Player*) override;
 		vector<Spell*> getSpells() const override;
+		vector<Card*> getEnchantments() const override;
 };
 
 #endif
