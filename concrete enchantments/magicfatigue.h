@@ -8,7 +8,7 @@ class MagicFatigue: public Enchantment {
     public:
         explicit MagicFatigue(): Enchantment{"Magic Fatigue", "Enchanted minion's activated ability costs 2 more", 0} {}
         Minion *activate(Minion *t) override {
-            t = new ChangeStat{t, t->getAtkStr(), t->getDefStr(), 0, 2, false, true};
+            t = new ChangeStat{t, getAtkStr(), getDefStr(), 0, 2, false, true};
             return t;
         }
 };

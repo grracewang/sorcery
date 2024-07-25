@@ -11,7 +11,7 @@ class Silence: public Enchantment {
     public:
         explicit Silence(): Enchantment{"Silence", "Enchanted minion cannot use abilities", 1} {}
         Minion *activate(Minion *t) override {
-            t = new ChangeStat{t, t->getAtkStr(), t->getDefStr(), 0, 0, true, true};
+            t = new ChangeStat{t, getAtkStr(), getDefStr(), 0, 0, true, true};
             return t;
         }
 };
