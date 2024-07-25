@@ -33,6 +33,7 @@ class Minion: public Card {
 											// activated ability
 		virtual vector<Spell*> getSpells() const = 0;
 		virtual vector<Ritual*> getRituals() const = 0;
+		virtual Minion *getMinion() const; 
 
 		// functions to manage the action of a minion
 		void resetAction(); // call at start of turn
