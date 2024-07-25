@@ -3,8 +3,18 @@
 
 class PotionSeller : public Minion {
     public:
-        PotionSeller(): Minion{"Potion Seller", "Minion", "At the end of your turn, all your minions gain +0/+1", 2} {};
-        void activate(Card *t) {};
-        int getAtk() const override { return 1; }
-        int getDef() const override { return 3; }
+        // normal getters (not changed by decorators)
+		string getName() const override;
+		string getType() const override;
+		int getCost() const override;
+		bool isEnchantment() const override;
+
+		// getters changed by decorators
+        int getAtk() const override;
+		int getDef() const override;
+		int getBeginActions() const override;
+        int getActCost() const override;
+		void addAbility(Player *owner, Player *opponent) override;
+		vector<Spell*> getSpells() const override;
+		// vector<Ritual*> getRituals() const override;
 };
