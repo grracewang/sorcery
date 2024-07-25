@@ -7,7 +7,7 @@
 
 class ApprenticeSummonerAbility: public Spell {
     public:
-        ApprenticeSummonerAbility(): Spell{"Ability", "Summon a 1/1 Air Elemental", 1} {}
+        ApprenticeSummonerAbility(): Spell{"Apprentice Summoner Ability", "Summon a 1/1 Air Elemental", 1} {}
         bool activate(Player *target, Player* enemy, int t) {
             if (target->getSummoned().size() >= 5) {
                 std::cout << "Cannot use ability." << std::endl;
