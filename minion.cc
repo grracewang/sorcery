@@ -9,18 +9,20 @@ string Minion::getDescription() const {
     else if (!rituals.empty()) return rituals[0]->getDescription();
 }
 
-int getAction() const { return actions; }
+int Minion::getAction() const { return actions; }
 
 int Minion::getCost() const { return 0; }
+
+virtual Minion Minion::*getMinion() const { return nullptr; }
 
 Minion *Minion::removeEnchantments() {
   // use removeTopEnchantment to get rid of enchantments
 }
+
 Minion *Minion::removeTopEnchantment() {
   // check if you have an enchantment and remove if it is
-  if (isEnchantment()) {
-    this = 
-  }
+  Minion *curr = this;
+  
 }
 
 // for attacking minions

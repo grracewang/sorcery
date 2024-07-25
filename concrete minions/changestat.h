@@ -33,6 +33,7 @@ class ChangeStat: public Decorator {
         int getActCost() const override;
 		vector<Spell*> getSpells() const override;
 		vector<Ritual*> getRituals() const override;
+        Minion *getMinion() const override;
 
         // helper function for creating atkStr and defStr
         static string toString(char op, int val);
