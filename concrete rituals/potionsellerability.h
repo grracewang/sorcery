@@ -14,9 +14,8 @@ class PotionSellerAbility: public Ritual {
         void notify() override {
             int size = owner->getSummoned().size();
             for (int i = 0; i < size; i++) {
-                Minion* m = owner->removeSummonedMinion(0);
-                m = new ChangeStat{m, "0", "+1", 0, 0, false, false};
-                owner->addToSummoned(m);
+                Minion* m = owner->getSummoned(i);
+                owner->replaceMinion(i, new ChangeStat{m, "0", "+1", 0, 0, false, false});
             }
         }
 
