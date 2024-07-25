@@ -210,7 +210,8 @@ int main(int argc, char *argv[]) {
                         cout << "Command: attack player " << i << endl;
                     } else {
                         j -= 1;
-                        attack(players[curr]->getSummonedMinion(i), players[next]->getSummonedMinion(j));
+                        players[next]->getSummonedMinion(j) = players[curr]->getSummonedMinion(i).attack(players[next]->getSummonedMinion(j));
+                        players[curr]->getSummonedMinion(i) = players[curr]->getSummonedMinion(j).attack(players[next]->getSummonedMinion(i));
                         cout << "Command: attack minion " << i << j << endl;
 
                     }
