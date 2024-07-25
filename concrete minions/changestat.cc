@@ -61,7 +61,10 @@ int ChangeStat::getDef() const {
 
 int ChangeStat::getBeginActions() const { return target->getAction() + actionInc; }
 
-int ChangeStat::getActCost() const { return target->getActCost() + actCostInc; }
+int ChangeStat::getActCost() const {
+    if (target->getActCost() == -1) return -1;
+    else return target->getActCost() + actCostInc;
+}
 
 vector<Spell*> ChangeStat::getSpells() const {
     if (blockAbilities) {
