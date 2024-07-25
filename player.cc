@@ -81,11 +81,9 @@ void Player::addToHand(Card* card) {
     else cout << "Hand is full." << endl;
 }
 
-void Player::addToSummoned(Minion *m) {
+void Player::addToSummoned(Minion *m, Player *opponent) {
     summoned.emplace_back(m);
-    for (Ritual *r: m->getRituals()) {
-        r->attach();
-    }
+    m->addAbility(this, opponent)
     notifyMinionEnter();
 }
 

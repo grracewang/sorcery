@@ -60,7 +60,7 @@ class Player : public Subject{
 
 		void addToDeck(Card*);
 		void addToHand(Card*);
-		void addToSummoned(Minion*);
+		void addToSummoned(Minion*, Player*);
 
 		void discard(int i); // discards i-th card, just trashes it, used in testing mode
 		bool minionDead(Minion *m);
