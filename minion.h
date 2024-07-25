@@ -43,8 +43,6 @@ class Minion: public Card {
 									  // to do that action
 
 		// for removing enchantments
-		virtual Minion *removeEnchantments();
-		virtual Minion *removeTopEnchantment();
 		static Minion *removeTopEnchantment(Minion *m);
 		static Minion *removeEnchantments(Minion *m);
 		
