@@ -8,6 +8,7 @@ class ApprenticeSummoner : public Minion {
 		string getName() const override;
 		string getType() const override;
 		int getCost() const override;
+        bool isEnchantment() const override;
 
 		// getters changed by decorators
         int getAtk() const override;
