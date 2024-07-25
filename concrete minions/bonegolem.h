@@ -1,5 +1,5 @@
-#ifndef APPRENTICESUMMONER_H
-#define APPRENTICESUMMONER_H
+#ifndef BONEGOLEM_H
+#define BONEGOLEM_H
 
 #include "../minion.h"
 #include "../player.h"

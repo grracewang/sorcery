@@ -1,5 +1,5 @@
-// #ifndef APPRENTICESUMMONER_H
-// #define APPRENTICESUMMONER_H
+#ifndef APPRENTICESUMMONER_H
+#define APPRENTICESUMMONER_H
 
 #include "../minion.h"
 #include "../player.h"
@@ -26,4 +26,4 @@ class ApprenticeSummoner: public Minion {
 		void addAbility(Player* owner, Player *opponent) override;
 };
 
-// #endif
+#endif
