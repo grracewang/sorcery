@@ -30,7 +30,7 @@ vector<Minion*> Player::getSummoned() const { return summoned; }
 
 stack<Minion*> Player::getGraveyard() const { return graveyard; }
 
-Card* Player::getHandCard(int i) const { return hand[i] };
+Card* Player::getHandCard(int i) const { return hand[i]; };
 
 Card* Player::removeHandCard(int i) {
     Card* temp = hand[i];
@@ -89,6 +89,11 @@ void Player::placeMinion(int i) { // places minion from hand on board
     Card* temp = hand[i];
     summoned.emplace_back(temp);
     hand.erase(hand.begin() + i);
+}
+
+void Player::replaceMinion(int i, Minion *newMinion) {
+    delete removeSummonedMinion(i);
+    summoned.insert(summoned.begin() + i, newMinion);
 }
 
 void Player::placeRitual(int i) {

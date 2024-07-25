@@ -201,17 +201,18 @@ int main(int argc, char *argv[]) {
                 case Op::ATTACK:
                 {
                     int j;
-                    cin >> i;
+                    cin >> i >> j;
                     i -= 1;
-                    cin >> j;
+                    Minion *cur_minion = players[curr]->getSummonedMinion(i);
                     if (cin.fail()) {
                         cin.clear();
-                        players[curr]->getSummonedMinion(i)->attack(players[next]);
+                        cur_minion->attack(players[next]);
                         cout << "Command: attack player " << i << endl;
                     } else {
                         j -= 1;
-                        players[next]->getSummonedMinion(j) = players[curr]->getSummonedMinion(i).attack(players[next]->getSummonedMinion(j));
-                        players[curr]->getSummonedMinion(i) = players[curr]->getSummonedMinion(j).attack(players[next]->getSummonedMinion(i));
+                        Minion *opp_minion = players[next]->getSummonedMinion(j);
+                        players[next]->replaceMinion(j, cur_minion->attack(opp_minion));
+                        players[curr]->replaceMinion(i, opp_minion->attack(cur_minion));
                         cout << "Command: attack minion " << i << j << endl;
 
                     }

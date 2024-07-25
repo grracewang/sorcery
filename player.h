@@ -55,6 +55,7 @@ class Player : public Subject{
 		void draw(); // transfers deck card to hand iff fullHand = false
 
 		void placeMinion(int i); // places hand card to board
+		void replaceMinion(int i, Minion *newMinion); // replaces minion at pos i with newMinion
 		void placeRitual(int i); // swaps ritual
 
 		void addToDeck(Card*);
