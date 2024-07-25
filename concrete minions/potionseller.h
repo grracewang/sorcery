@@ -1,5 +1,6 @@
+#ifndef POTIONSELLER_H
+#define POTIONSELLER_H
 #include "../minion.h"
-#include "changestat.h"
 
 class PotionSeller : public Minion {
     public:
@@ -18,3 +19,5 @@ class PotionSeller : public Minion {
 		vector<Spell*> getSpells() const override;
 		// vector<Ritual*> getRituals() const override;
 };
+
+#endif
