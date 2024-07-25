@@ -19,6 +19,7 @@ class DarkRitual: public Ritual {
             }
         }
 
+        
         void attach() override {
             owner->attachPreTurn(this);
         }

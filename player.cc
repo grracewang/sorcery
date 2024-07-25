@@ -47,6 +47,7 @@ Minion* Player::removeSummonedMinion(int i) {
     Minion* temp = summoned[i];
     summoned.erase(summoned.begin() + i);
     notifyMinionLeave();
+    temp = 
     return temp;
 }
 
