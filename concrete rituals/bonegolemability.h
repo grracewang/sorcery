@@ -15,7 +15,7 @@ class BoneGolemAbility: public Ritual {
             owner->detachMinionLeave(this); 
         }
         
-        void notify() override { boneGolem = new ChangeStat{boneGolem, '+', 1, 1}; }
+        void notify() override { boneGolem = new ChangeStat{boneGolem, '+', 1, 1, false, false}; }
 
         void attach() override {
             owner->attachMinionLeave(this);
