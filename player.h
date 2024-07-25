@@ -67,6 +67,8 @@ class Player : public Subject{
 		//observer pattern methods
 		bool isPlaying(); // aka getState
 
+		void changeState(); // change turns
+
 		// printing
 		card_template_t display(int player_num) const;
 		

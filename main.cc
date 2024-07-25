@@ -161,6 +161,9 @@ int main(int argc, char *argv[]) {
             if (op == Op::END) {
                 cout << "Command: end" << endl;
                 // trigger all spells and rituals at the end
+                players[curr]->notifyAfterTurn();
+                players[next]->notifyAfterTurn();
+
                 break; // break out of the "turn" while loop
             }
 
@@ -299,6 +302,10 @@ int main(int argc, char *argv[]) {
 
         } // while--turn loop (commands per turn)
 
+        
+        // change active player
+        players[curr]->changeState();
+        players[next]->changeState();
         swap(curr, next);
 
         // force end game

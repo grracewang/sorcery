@@ -119,6 +119,11 @@ bool Player::isPlaying() {
     return playing;
 }
 
+void Player::changeState() {
+    if (playing) playing = false;
+    else playing = true;
+}
+
 // printing
 card_template_t Player::display(int player_num) const {
   return display_player_card(player_num, name, life, magic);
