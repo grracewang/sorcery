@@ -7,7 +7,8 @@
 
 class AuraOfPower: public Ritual {
     public:
-        explicit AuraOfPower(Player *owner): Ritual{"Aura of Power", "Whenever a minion enters play under your control, it gains +1/+1", 1, 5, 1, owner} {};
+        explicit AuraOfPower(Player *owner): 
+            Ritual{"Aura of Power", "Whenever a minion enters play under your control, it gains +1/+1", 1, 5, 1, owner} {};
 
         ~AuraOfPower() {
             owner->detachMinionEnter(this);
@@ -19,7 +20,7 @@ class AuraOfPower: public Ritual {
                 owner->removeRitual();
             } else {
                 Minion* m = owner->getSummonedMinion(owner->getSummoned().size() - 1);
-                m = new ChangeStat{m, '+', 1, 1};
+                m = new ChangeStat{m, "+1", "+1", 0, 0, false, false};
             }
         }
         

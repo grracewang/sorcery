@@ -15,6 +15,8 @@ int Ritual::getCharges() const { return charges; }
 
 int Ritual::getActivationCost() const { return activationCost; }
 
+void Ritual::changeCharges(int i) { charges += i; }
+
 // for printing
 card_template_t Ritual::display() const {
   return display_ritual(name, cost, activationCost, description, charges);
