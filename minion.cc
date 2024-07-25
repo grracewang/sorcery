@@ -13,7 +13,7 @@ int Minion::getAction() const { return actions; }
 
 int Minion::getCost() const { return 0; }
 
-virtual Minion Minion::*getMinion() const { return nullptr; }
+Minion Minion::*getMinion() const { return nullptr; }
 
 Minion *Minion::removeEnchantments() {
   // use removeTopEnchantment to get rid of enchantments
@@ -22,8 +22,10 @@ Minion *Minion::removeEnchantments() {
 Minion *Minion::removeTopEnchantment() {
   // check if you have an enchantment and remove if it is
   Minion *curr = this;
-  
+
 }
+
+
 
 // for attacking minions
 Minion *Minion::attack(Minion *enemy) {
