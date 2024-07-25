@@ -217,7 +217,8 @@ int main(int argc, char *argv[]) {
 
                         if (players[next]->getLife() <= 0) {
                             cout << players[curr]->getName() << "has won!" << endl;
-                            return;
+                            op = OP::QUIT;
+                            break;
                         }
                     } else {
                         j -= 1;
@@ -333,4 +334,5 @@ int main(int argc, char *argv[]) {
     } // while--game loop (switch between players)
 
     // delete everything created on the stack
+    
 } // main
