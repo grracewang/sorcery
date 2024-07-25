@@ -15,7 +15,7 @@ class Enchantment: public Card {
                     string atkStr = "", string defStr = "");
         string getAtkStr() const;
         string getDefStr() const;
-        virtual void activate(Minion*) = 0;
+        virtual Minion *activate(Minion*) = 0;
         card_template_t display() const override;
 };
 

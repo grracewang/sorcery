@@ -1,6 +1,6 @@
 #include "ritual.h"
 
-Ritual::Ritual(string name, string filename, int cost, int charges,
+Ritual::Ritual(string name, string description, int cost, int charges,
                int activationCost, Player* owner):
     charges{charges}, activationCost{activationCost} {
   this->name = name;
