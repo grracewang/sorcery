@@ -217,14 +217,14 @@ int main(int argc, char *argv[]) {
 
                         if (players[next]->getLife() <= 0) {
                             cout << players[curr]->getName() << "has won!" << endl;
-                            op = OP::QUIT;
+                            op = Op::QUIT;
                             break;
                         }
                     } else {
                         j -= 1;
                         Minion *opp_minion = players[next]->getSummonedMinion(j);
-                        players[next]->replaceMinion(j, cur_minion->attack(opp_minion));
-                        players[curr]->replaceMinion(i, opp_minion->attack(cur_minion));
+                        players[next]->setSummoned(j, cur_minion->attack(opp_minion));
+                        players[curr]->setSummoned(i, opp_minion->attack(cur_minion));
                         cout << "Command: attack minion " << i << j << endl;
 
                         // if minion is dead mv to graveyard, enchantments removed in moveToGraveyard()
@@ -246,7 +246,7 @@ int main(int argc, char *argv[]) {
                             Minion* card = dynamic_cast<Minion*>(players[curr]->removeHandCard(i));
                             players[curr]->addToSummoned(card, players[next]); // already notifies
                         } else if (players[curr]->getHand()[i]->getType() == "Ritual") { // minion
-                            players[curr]->placeRitual(i); // automatically attaches
+                            players[curr]->setRitual(i); // automatically attaches
                             cout << "Played a ritual" << endl;
                         } else if (players[curr]->getHand()[i]->getType() == "Spell") {
                             Spell* spell = dynamic_cast<Spell*>(players[curr]->removeHandCard(i));

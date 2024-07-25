@@ -64,7 +64,7 @@ class Player : public Subject{
 		void addToSummoned(Minion*, Player*);
 
 		void discard(int i); // discards i-th card, just trashes it, used in testing mode
-		void discard(bool, Card*); // takes in a spell
+		void discard(Card*); // takes in a spell
 		bool minionDead(Minion *m);
 		void moveToGraveyard(int i);
 		
