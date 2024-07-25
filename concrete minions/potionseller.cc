@@ -17,7 +17,7 @@ int PotionSeller::getActCost() const { return -1; }
 
 void PotionSeller::addAbility(Player* owner, Player *opponent) {
     Ritual* r = new PotionSellerAbility(owner);
-    abilities.emplace_back(r);
+    rituals.emplace_back(r);
     owner->attachAfterTurn(r);
 
 };

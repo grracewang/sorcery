@@ -9,7 +9,6 @@
 using namespace std;
 
 class BoneGolem : public Minion {
-	vector<Ritual*> abilities;
     public: 
         // normal getters (not changed by decorators)
 		string getName() const override;

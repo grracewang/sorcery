@@ -19,7 +19,7 @@ int FireElemental::getActCost() const { return -1; };
 
 void FireElemental::addAbility(Player* owner, Player* opponent) {
     Ritual* r = new FireElementalAbility(owner, opponent);
-    abilities.emplace_back(r);
+    rituals.emplace_back(r);
     owner->attachMinionLeave(r);
 
 } 
