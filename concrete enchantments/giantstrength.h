@@ -13,7 +13,7 @@ class GiantStrength: public Enchantment {
         GiantStrength(): 
             Enchantment{"Giant Strength", "", 1, "+2", "+2"} {}
         Minion *activate(Minion *t) override {
-            return new ChangeStat{t, getAtkStr(), getDefStr(), 0, 0, false, true};
+            return new ChangeStat{t, getAtkStr(), getDefStr(), 0, 0, false, this};
         }
 };
 

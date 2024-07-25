@@ -18,7 +18,7 @@ class FireElementalAbility: public Ritual {
         void notify() override { 
             int i = opponent->getSummoned().size() - 1;
             Minion *m = opponent->removeSummonedMinion(i);∑
-            opponent->replaceMinion(i, new ChangeStat{m, "0", "-1", 0, 0, false, false});
+            opponent->replaceMinion(i, new ChangeStat{m, "0", "-1", 0, 0, false, nullptr});
         }
 
         void attach() override {

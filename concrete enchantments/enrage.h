@@ -12,7 +12,7 @@ class Enrage: public Enchantment {
     public:
         explicit Enrage(): Enchantment{"Enrage", "", 2, "*2", "*2"} {}
         Minion *activate(Minion *t) override {
-            return new ChangeStat{t, getAtkStr(), getDefStr(), 0, 0, false, true};
+            return new ChangeStat{t, getAtkStr(), getDefStr(), 0, 0, false, this};
         }
 };
 

@@ -13,7 +13,7 @@ class Haste: public Enchantment {
     public: 
         explicit Haste(): Enchantment{"Haste", "Enchanted minion gains +1 action each turn", 1} {}
         Minion *activate(Minion *t) override {
-            return new ChangeStat{t, getAtkStr(), getDefStr(), 1, 0, false, true};
+            return new ChangeStat{t, getAtkStr(), getDefStr(), 1, 0, false, this};
         }
 };
 

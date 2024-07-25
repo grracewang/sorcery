@@ -18,7 +18,7 @@ class BoneGolemAbility: public Ritual {
         
         void notify() override { 
             Minion *bg = owner->getSummonedMinion(boneGolemIndex);
-            owner->replaceMinion(boneGolemIndex, new ChangeStat{m, "+1", "+1", 0, 0, false, false});
+            owner->replaceMinion(boneGolemIndex, new ChangeStat{m, "+1", "+1", 0, 0, false, nullptr});
         }
 
         void attach() override {
