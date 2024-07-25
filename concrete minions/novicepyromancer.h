@@ -1,6 +1,12 @@
 #ifndef NOVICEPYROMANCER_H
 #define NOVICEPYROMANCER_H
+
 #include "../minion.h"
+#include "../player.h"
+#include "../spell.h"
+#include <string>
+#include <vector>
+using namespace std;
 
 class NovicePyromancer : public Minion {
     public:
@@ -18,7 +24,6 @@ class NovicePyromancer : public Minion {
         int getActCost() const override;
 		void addAbility(Player* owner, Player *opponent) override;
 		vector<Spell*> getSpells() const override;
-		// vector<Ritual*> getRituals() const override;
 };
 
 #endif

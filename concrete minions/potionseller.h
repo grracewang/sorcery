@@ -1,7 +1,12 @@
 #ifndef POTIONSELLER_H
 #define POTIONSELLER_H
+
 #include "../minion.h"
-#include "../ritual.h"
+#include "../player.h"
+#include "../spell.h"
+#include <string>
+#include <vector>
+using namespace std;
 
 class PotionSeller : public Minion {
 	vector<Ritual*> abilities;

@@ -1,4 +1,5 @@
 #include "novicepyromancer.h"
+#include "../concrete spells/novicepyromancerability.h"
 
 string NovicePyromancer::getName() const { return "Novice Pyromancer"; }
 string NovicePyromancer::getType() const { return "Minion"; }
@@ -17,10 +18,8 @@ int NovicePyromancer::getActCost() const {
 void addAbility(Player* owner, Player *opponent) {}
 
 vector<Spell*> NovicePyromancer::getSpells() const {
-    vector<Spell*> empty;
-    return empty;
+    vector<Spell*> s;
+    s.emplace_back(new NovicePyromancerAbility());
+    return s;
 }
-// vector<Ritual*> NovicePyromancer::getRituals() const {
-//     vector<Ritual*> empty;
-//     return empty;
-// }
+

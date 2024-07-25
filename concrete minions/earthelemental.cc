@@ -10,12 +10,11 @@ int EarthElemental::getAtk() const { return 4; }
 int EarthElemental::getDef() const { return 4; }
 int EarthElemental::getBeginActions() const { return 1; }
 int EarthElemental::getActCost() const { return -1; }
+
 vector<Spell*> EarthElemental::getSpells() const {
     vector<Spell*> empty;
     return empty;
 }
+
 void addAbility(Player* owner, Player *opponent) {}
-// vector<Ritual*> EarthElemental::getRituals() const {
-//     vector<Ritual*> empty;
-//     return empty;
-// }
+

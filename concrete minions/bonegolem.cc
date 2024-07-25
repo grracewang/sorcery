@@ -1,4 +1,5 @@
 #include "bonegolem.h"
+#include "../ritual.h"
 #include "../concrete rituals/bonegolemability.h"
 
 string BoneGolem::getName() const { return "Bone Golem"; }
@@ -20,14 +21,7 @@ void BoneGolem::addAbility(Player* owner, Player *opponent) {
     owner->attachMinionLeave(r);
 }
 
-// minion deletes the ritual when it dies or leaves the field
-
 vector<Spell*> BoneGolem::getSpells() const {
     vector<Spell*> empty;
     return empty;
 }
-// vector<Ritual*> BoneGolem::getRituals() const {
-//     vector<Ritual*> r;
-//     r.emplace_back(BoneGolemAbility(player, myself_pointer)) // change this
-//     return r;
-// }

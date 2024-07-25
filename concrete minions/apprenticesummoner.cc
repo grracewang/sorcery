@@ -22,8 +22,3 @@ vector<Spell*> ApprenticeSummoner::getSpells() const {
 }
 
 void ApprenticeSummoner::addAbility(Player* owner, Player* opponent) {}
-
-// vector<Ritual*> ApprenticeSummoner::getRituals() const {
-//     vector<Ritual*> empty;
-//     return empty;
-// }

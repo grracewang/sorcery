@@ -1,6 +1,13 @@
+#ifndef FIRELEMENTAL_H
+#define FIRELEMENTAL_H
+
 #include "../minion.h"
-#include "changestat.h"
-#include "../ritual.h"
+#include "../player.h"
+#include "../spell.h"
+#include <string>
+#include <vector>
+using namespace std;
+
 class FireElemental : public Minion {
     vector<Ritual*> abilities;
     public:
@@ -16,7 +23,8 @@ class FireElemental : public Minion {
 		int getDef() const override;
 		int getBeginActions() const override;
         int getActCost() const override;
-		void addAbility(Player*, Player*) override; // called when bone golem is summoned
+		void addAbility(Player*, Player*) override;
 		vector<Spell*> getSpells() const override;
-		// vector<Ritual*> getRituals() const override;
 };
+
+#endif

@@ -1,4 +1,5 @@
 #include "potionseller.h"
+#include "../ritual.h"
 #include "../concrete rituals/potionsellerability.h"
 
 string PotionSeller::getName() const { return "Potion Seller"; }
@@ -25,7 +26,4 @@ vector<Spell*> PotionSeller::getSpells() const {
     vector<Spell*> empty;
     return empty;
 }
-// vector<Ritual*> PotionSeller::getRituals() const {
-//     vector<Ritual*> empty;
-//     return empty;
-// }
+

@@ -1,15 +1,15 @@
+#ifndef MASTERSUMMONER_H
+#define MASTERSUMMONER_H
+
 #include "../minion.h"
-#include "changestat.h"
-#include "airelemental.h"
+#include "../player.h"
+#include "../spell.h"
+#include <string>
+#include <vector>
+using namespace std;
 
 class MasterSummoner : public Minion {
     public:
-        // MasterSummoner(): Minion{"Master Summoner", "Minion", "Summon up to three 1/1 air elementals", 3} {};
-        // void activate(Player *p) {
-        //     for (int i = 0; i < 3; ++i) {
-        //         if (p->getSummoned().size() < p->MAX_SUMMONED) p->addToSummoned(new AirElemental);
-        //     }
-        // }
         string getName() const override;
 		string getType() const override;
         string getDescription() const override;
@@ -24,3 +24,5 @@ class MasterSummoner : public Minion {
 		void addAbility(Player*, Player*) override;
 		vector<Spell*> getSpells() const override;
 };
+
+#endif

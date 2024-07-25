@@ -17,7 +17,4 @@ vector<Spell*> AirElemental::getSpells() const {
     vector<Spell*> empty;
     return empty;
 }
-// vector<Ritual*> AirElemental::getRituals() const {
-//     vector<Ritual*> empty;
-//     return empty;
-// }
+

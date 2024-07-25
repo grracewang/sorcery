@@ -1,7 +1,12 @@
 #ifndef APPRENTICESUMMONER_H
 #define APPRENTICESUMMONER_H
+
 #include "../minion.h"
 #include "../player.h"
+#include "../spell.h"
+#include <string>
+#include <vector>
+using namespace std;
 
 class ApprenticeSummoner : public Minion {
     public:
@@ -18,8 +23,7 @@ class ApprenticeSummoner : public Minion {
 		int getBeginActions() const override;
         int getActCost() const override;
 		vector<Spell*> getSpells() const override;
-		void addAbility(Player*, Player *) override;
-		// vector<Ritual*> getRituals() const override;
+		void addAbility(Player* owner, Player *opponent) override;
 };
 
 #endif

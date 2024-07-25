@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include <vector>
 #include <algorithm>
 #include <random>
@@ -6,7 +7,7 @@
 
 #include "card.h"
 #include "player.h"
-// #include "minion.h"
+#include "minion.h"
 #include "./concrete minions/airelemental.h"
 #include "./concrete minions/earthelemental.h"
 #include "./concrete minions/bonegolem.h"

@@ -1,7 +1,11 @@
 #ifndef AIRELEMENTAL_H
 #define AIRELEMENTAL_H
 #include "../minion.h"
+#include "../player.h"
+#include "../spell.h"
 #include <string>
+#include <vector>
+using namespace std;
 
 class AirElemental : public Minion {
     public:
@@ -19,7 +23,6 @@ class AirElemental : public Minion {
         int getActCost() const override;
 		void addAbility(Player*, Player*) override;
 		vector<Spell*> getSpells() const override;
-		// vector<Ritual*> getRituals() const override;
 };
 
 #endif

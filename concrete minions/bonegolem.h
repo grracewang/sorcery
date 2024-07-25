@@ -1,7 +1,11 @@
 #ifndef APPRENTICESUMMONER_H
 #define APPRENTICESUMMONER_H
+
 #include "../minion.h"
 #include "../player.h"
+#include "../spell.h"
+#include <string>
+#include <vector>
 using namespace std;
 
 class BoneGolem : public Minion {
