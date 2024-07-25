@@ -7,7 +7,7 @@
 class Banish: public Spell {
     public:
         Banish(): Spell{"Banish", "Destroy target minion or ritual", 2} {}
-        bool activate(Player *owner, Player *enemy, int t) {
+        bool activate(Player *owner, Player *enemy, int t) override {
             if (t == 114) {
                 if (enemy->getRitual() == nullptr) {
                     std::cout << "Enemy has no ritual to destroy." << std::endl;

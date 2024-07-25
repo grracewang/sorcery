@@ -7,7 +7,7 @@
 class Unsummon: public Spell {
     public:
         Unsummon(): Spell{"Unsummon", "Return target minion to its owner’s hand", 1} {}
-        bool activate(Player *owner, Player *enemy, int t) {
+        bool activate(Player *owner, Player *enemy, int t) override {
             if (enemy->getHand().size() == 5) {
                 std::cout << "Players hand is full, cannot unsummon its minion." << std::endl;
                 return false;

@@ -7,7 +7,7 @@
 class NovicePyromancerAbility: public Spell {
     public:
         NovicePyromancerAbility(): Spell{"Novice Pyromancer Ability", "Deal 1 damage to target minion", 1} {}
-        bool activate(Player *owner, Player *enemy, int t) {
+        bool activate(Player *owner, Player *enemy, int t) override {
             int size = enemy->getSummoned().size();
             Minion* m = enemy->removeSummonedMinion(t - 1);
             // if the top enchantment is +2/+2 or *2/*2 then we wrap another change stat that divides by 2

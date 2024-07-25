@@ -7,7 +7,7 @@
 class Disenchant: public Spell {
     public:
         Disenchant(): Spell{"Disenchant", "Destroy the top enchantment on target minion", 1} {}
-        bool activate(Player *owner, Player *enemy, int t) {
+        bool activate(Player *owner, Player *enemy, int t) override {
             Minion* minion = target->getSummonedMinion(t);
             // if the top enchantment is +2/+2 or *2/*2 then we wrap another change stat that divides by 2
             // Enchantment* removed = minion->removeEnchantment(minion->getEnchantments().size());
