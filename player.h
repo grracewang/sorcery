@@ -6,6 +6,7 @@
 #include <vector>
 #include <stack>
 #include <string>
+#include <iostream>
 #include "ascii_graphics.h"
 using namespace std;
 
