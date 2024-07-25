@@ -13,7 +13,7 @@ int Minion::getAction() const { return actions; }
 
 int Minion::getCost() const { return 0; }
 
-Minion Minion::*getMinion() const { return nullptr; }
+Minion *Minion::getMinion() const { return nullptr; }
 
 Minion *Minion::removeEnchantments() {
   // use removeTopEnchantment to get rid of enchantments
