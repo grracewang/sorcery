@@ -3,6 +3,8 @@
 
 #include "../ritual.h"
 #include "../concrete minions/changestat.h"
+#include <vector>
+#include <string>
 
 class PotionSellerAbility: public Ritual {
     public: 

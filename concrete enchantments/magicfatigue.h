@@ -3,6 +3,7 @@
 
 #include "../enchantment.h"
 #include "../concrete minions/changestat.h"
+#include <string>
 
 class MagicFatigue: public Enchantment {
     public:

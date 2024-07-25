@@ -2,6 +2,7 @@
 #define SILENCE_H
 
 #include <iostream>
+#include <string>
 #include "../enchantment.h"
 #include "../concrete minions/changestat.h"
 

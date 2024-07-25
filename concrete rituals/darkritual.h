@@ -2,6 +2,7 @@
 #define DARKRITUAL_H
 
 #include "../ritual.h"
+#include <string>
 
 class DarkRitual: public Ritual {
     public:

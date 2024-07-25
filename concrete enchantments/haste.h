@@ -4,8 +4,7 @@
 #include "../enchantment.h"
 #include "../concrete minions/changestat.h"
 #include <iostream>
-
-using namespace std;
+#include <string>
 
 class Haste: public Enchantment {
     private:

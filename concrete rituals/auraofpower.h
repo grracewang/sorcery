@@ -4,6 +4,8 @@
 #include "../ritual.h"
 #include "../minion.h"
 #include "../concrete minions/changestat.h"
+#include <string>
+#include <vector>
 
 class AuraOfPower: public Ritual {
     public:

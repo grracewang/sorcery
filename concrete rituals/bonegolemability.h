@@ -4,6 +4,7 @@
 #include "../ritual.h"
 #include "../concrete minions/bonegolem.h"
 #include "../concrete minions/changestat.h"
+#include <string>
 
 class BoneGolemAbility: public Ritual {
     int boneGolemIndex;

@@ -4,6 +4,8 @@
 #include "../ritual.h"
 #include "../minion.h"
 #include "../concrete minions/changestat.h"
+#include <vector>
+#include <string>
 
 class FireElementalAbility: public Ritual {
     Player *opponent;
