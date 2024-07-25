@@ -25,7 +25,7 @@ Minion *Minion::attack(Minion *enemy) {
 }
 
 void Minion::attack(Player *enemy) {
-  enemy->changeLife(-1 * getAtk());
+  enemy->changeLife(-getAtk());
 }
 
 

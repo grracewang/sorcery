@@ -206,7 +206,7 @@ int main(int argc, char *argv[]) {
                     cin >> j;
                     if (cin.fail()) {
                         cin.clear();
-                        attack(players[curr]->getSummonedMinion(i), players[next]);
+                        players[curr]->getSummonedMinion(i)->attack(players[next]);
                         cout << "Command: attack player " << i << endl;
                     } else {
                         j -= 1;
