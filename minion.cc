@@ -24,6 +24,10 @@ Minion *Minion::attack(Minion *enemy) {
     0, 0, false, false};
 }
 
+void Minion::attack(Player *enemy) {
+  enemy->changeLife(-1 * getAtk());
+}
+
 
 void Minion::resetAction() {
   actions = getBeginActions();

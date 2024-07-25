@@ -207,11 +207,12 @@ int main(int argc, char *argv[]) {
                     if (cin.fail()) {
                         cin.clear();
                         attack(players[curr]->getSummonedMinion(i), players[next]);
-                        cout << "Command: attack minion" << i << endl;
+                        cout << "Command: attack player " << i << endl;
                     } else {
                         j -= 1;
                         attack(players[curr]->getSummonedMinion(i), players[next]->getSummonedMinion(j));
-                        cout << "Command: attack minion" << i << j << endl;
+                        cout << "Command: attack minion " << i << j << endl;
+
                     }
                 }
                 break;
