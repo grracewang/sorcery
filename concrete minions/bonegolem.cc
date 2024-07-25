@@ -1,8 +1,10 @@
 #include "bonegolem.h"
 #include "../concrete rituals/bonegolemability.h"
+
 string BoneGolem::getName() const { return "Bone Golem"; }
 string BoneGolem::getType() const { return "Minion"; }
 int BoneGolem::getCost() const { return 2; }
+bool BoneGolem::isEnchantment() const { return false; }
 
 int BoneGolem::getAtk() const { return 1; }
 int BoneGolem::getDef() const { return 3; }
