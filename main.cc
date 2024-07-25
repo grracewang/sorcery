@@ -252,7 +252,7 @@ int main(int argc, char *argv[]) {
                             spell->activate(players[curr], players[next], -1); // no target
                         }   
                     } else {
-                        char t; // t can only be 30, 31, 32, 33, 34, 114 (= r)
+                        char t; // t can only be 30, 31, 32, 33, 34, 114 (= r) (ascii)
                         cin >> t;
                         p -= 1;
                         if (players[curr]->getHand()[i]->getType() == "Enchantment") {

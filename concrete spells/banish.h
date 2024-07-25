@@ -9,11 +9,11 @@ class Banish: public Spell {
         Banish(): Spell{"Banish", "Destroy target minion or ritual", 2} {}
         bool activate(Player *target, Player *other, int t) override {
             if (t == 114) {
-                if (target->getRitual() == nullptr) {
+                if (!target->getRitual()) {
                     std::cout << "Target player has no ritual to destroy." << std::endl;
                     return false;
                 }
-                target->removeRitual(); // also detaches ritual from owner
+                target->setRitual(nullptr); // also detaches ritual from owner
             } else {
                 if (target->getSummoned().size() < t) {
                     std::cout << "This minion does not exist." << std::endl;
