@@ -45,7 +45,6 @@ class Minion: public Card {
 		// for removing enchantments
 		Minion *removeEnchantments();
 		Minion *removeTopEnchantment();
-		Minion *remove
 		
 		// adding abilities
 		virtual void addAbility(Player *owner, Player *opponent) = 0;
