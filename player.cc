@@ -94,7 +94,9 @@ void Player::placeMinion(int i) { // places minion from hand on board
 }
 
 void Player::replaceMinion(int i, Minion *newMinion) {
-    delete removeSummonedMinion(i);
+    Minion* temp = summoned[i];
+    summoned.erase(summoned.begin() + i);
+    delete temp;
     summoned.insert(summoned.begin() + i, newMinion);
 }
 
