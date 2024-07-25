@@ -32,9 +32,11 @@ class ChangeStat: public Decorator {
         int getBeginActions() const override;
         int getActCost() const override;
 		vector<Spell*> getSpells() const override;
-		vector<Ritual*> getRituals() const override;
         Minion *getMinion() const override;
         void setMinion(const Minion *) override;
+
+        // unwrapping changestats
+        Minion *removeTopEnchantment() override;
 
         // helper function for creating atkStr and defStr
         static string toString(char op, int val);

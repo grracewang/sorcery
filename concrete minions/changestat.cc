@@ -74,17 +74,25 @@ vector<Spell*> ChangeStat::getSpells() const {
     return target->getSpells();
 }
 
-vector<Ritual*> ChangeStat::getRituals() const {
-    if (blockAbilities) {
-        vector<Ritual*> empty;
-        return empty;
-    }
-    return target->getRituals();
-}
-
 Minion *ChangeStat::getMinion() const { return target; }
 
-Minion *ChangeStat::setMinion(const Minion *m) { target = m; }
+void *ChangeStat::setMinion(const Minion *m) { target = m; }
+
+Minion *removeTopEnchantment() {
+    Minion *curr = this; 
+    Minion *prev = nullptr;
+
+    while (curr) {
+        if (curr->isEnchantment()) {
+            if (prev) prev->setMinion(curr->getMinion());
+            else target = curr->getMinion();
+        }
+
+        curr->setMinion(nullptr);
+        delete curr; 
+        return 
+    }
+}
 
 string ChangeStat::toString(char op, int val) {
     return string(1, op) + to_string(val);
