@@ -1,8 +1,8 @@
 #ifndef UNSUMMON_H
 #define UNSUMMON_H
-
 #include "../spell.h"
 #include <iostream>
+#include <string>
 
 class Unsummon: public Spell {
     public:

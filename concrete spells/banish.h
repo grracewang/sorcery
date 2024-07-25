@@ -1,8 +1,8 @@
 #ifndef BANISH_H
 #define BANISH_H
-
 #include "../spell.h"
 #include <iostream>
+#include <string>
 
 class Banish: public Spell {
     public:

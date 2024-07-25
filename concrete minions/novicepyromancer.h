@@ -1,11 +1,9 @@
 #ifndef NOVICEPYROMANCER_H
 #define NOVICEPYROMANCER_H
-
 #include "../minion.h"
-#include "../player.h"
 #include "../spell.h"
-#include <string>
 #include <vector>
+#include <string>
 using namespace std;
 
 class NovicePyromancer : public Minion {

@@ -1,9 +1,10 @@
 #ifndef RAISEDEAD_H
 #define RAISEDEAD_H
-
 #include "../spell.h"
 #include "../player.h"
 #include "../concrete minions/changestat.h"
+#include <string>
+
 class RaiseDead: public Spell {
     public:
         RaiseDead(): Spell{"Raise Dead", "Resurrect the top minion in your graveyard and set its defence to 1", 1} {}

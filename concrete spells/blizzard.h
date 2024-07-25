@@ -1,8 +1,8 @@
 #ifndef BLIZZARD_H
 #define BLIZZARD_H
-
 #include "../spell.h"
 #include "../concrete minions/changestat.h"
+#include <string>
 
 class Blizzard: public Spell {
     public:

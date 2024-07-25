@@ -2,6 +2,8 @@
 #define CHANGESTAT_H
 #include "decorator.h"
 #include "../minion.h"
+#include <vector>
+#include <string>
 using namespace std;
 
 // class Minion; // forward declaration

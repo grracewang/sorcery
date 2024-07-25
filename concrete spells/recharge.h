@@ -1,9 +1,9 @@
 #ifndef RECHARGE_H
 #define RECHARGE_H
-
 #include "../spell.h"
 #include "../ritual.h"
 #include <iostream>
+#include <string>
 
 class Recharge: public Spell {
     public:

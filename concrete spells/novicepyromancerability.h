@@ -1,8 +1,8 @@
 #ifndef NOVICEPYROMANCERABILITY_H
 #define NOVICEPYROMANCERABILITY_H
-
 #include "../spell.h"
 #include "../concrete minions/changestat.h"
+#include <string>
 
 class NovicePyromancerAbility: public Spell {
     public:

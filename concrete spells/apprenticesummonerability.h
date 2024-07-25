@@ -1,6 +1,5 @@
 #ifndef APPRENTICESUMMONERABILITY_H
 #define APPRENTICESUMMONERABILITY_H
-
 #include "../spell.h"
 #include "../player.h"
 #include "../concrete minions/airelemental.h"

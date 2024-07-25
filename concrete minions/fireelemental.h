@@ -1,11 +1,9 @@
 #ifndef FIRELEMENTAL_H
 #define FIRELEMENTAL_H
-
 #include "../minion.h"
-#include "../player.h"
 #include "../spell.h"
-#include <string>
 #include <vector>
+#include <string>
 using namespace std;
 
 class FireElemental : public Minion {

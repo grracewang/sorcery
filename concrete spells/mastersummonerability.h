@@ -3,6 +3,7 @@
 #include "../spell.h"
 #include "../concrete minions/airelemental.h"
 #include <iostream>
+#include <string>
 
 class MasterSummonerAbility: public Spell {
     public:

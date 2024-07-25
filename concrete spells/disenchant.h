@@ -1,8 +1,8 @@
 #ifndef DISENCHANT_H
 #define DISENCHANT_H
-
 #include "../spell.h"
 #include "../concrete minions/changestat.h"
+#include <string>
 
 class Disenchant: public Spell {
     public:
