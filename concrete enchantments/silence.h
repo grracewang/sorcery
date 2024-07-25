@@ -13,6 +13,7 @@ class Silence: public Enchantment {
     Minion* minion;
     public:
         explicit Silence(Player* target, Player* other): Enchantment{"Silence", "Enchanted minion cannot use abilities", 1}, target{target}, other{other} {}
+        
         ~Silence() {
             while (minion->getMinion()) {
                 minion = minion->getMinion();
@@ -22,7 +23,9 @@ class Silence: public Enchantment {
             other = nullptr;
             minion = nullptr;
         }
+
         Minion *activate(Minion *t) override {
+            t->removeAbilities();
             minion = new ChangeStat{t, getAtkStr(), getDefStr(), 0, 0, true, this};
             return minion;
         }
