@@ -3,12 +3,11 @@
 #include "subject.h"
 #include "card.h"
 #include "minion.h"
-class Ritual;
+#include "ritual.h"
 #include <vector>
 #include <stack>
 #include <string>
 #include "ascii_graphics.h"
-
 using namespace std;
 
 class Player : public Subject{

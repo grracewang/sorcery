@@ -43,7 +43,7 @@ void printPlayerRow(ostream &out, const Player &player, int playerNum) {
     printRowCards(out, cards, true);
 }
 
-void printMinionRow(ostream &out, const vector<Card*> minions) {
+void printMinionRow(ostream &out, const vector<Minion*> minions) {
     vector<card_template_t> minionCards;
 
     int i = 0;
@@ -68,13 +68,13 @@ ostream &Board::printBoard(ostream &out) {
 
     // player 1's rows
     printPlayerRow(out, *players[0], 1);
-    printMinionRow(out, players[0]->getMinions());
+    printMinionRow(out, players[0]->getSummoned());
 
     // centre graphic
     for (const auto &line : CENTRE_GRAPHIC) cout << line << endl;
 
     // player 2's rows
-    printMinionRow(out, players[1]->getMinions());
+    printMinionRow(out, players[1]->getSummoned());
     printPlayerRow(out, *players[1], 2);
 
     // bottom border

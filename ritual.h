@@ -1,8 +1,9 @@
 #ifndef RITUAL_H
 #define RITUAL_H
 #include "card.h"
-#include "player.h"
 #include "ascii_graphics.h"
+
+class Player;
 
 class Ritual: public Card {
     protected:
