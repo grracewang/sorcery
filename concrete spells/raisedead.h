@@ -14,8 +14,8 @@ class RaiseDead: public Spell {
                      << "Either there is nothing in the graveyard or you already summoned 5 minions." << endl;
                 return false;
             }
-            target = new ChangeStat{target, "", ChangeStat::toString('+', -target->getDef() + 1), 0, 0, false, false};
-            owner->addToSummoned(target);
+            target = new ChangeStat{target, "", ChangeStat::toString('+', -target->getDef() + 1), 0, 0, false, nullptr};
+            owner->addToSummoned(target, enemy);
             return true;
         }
 };

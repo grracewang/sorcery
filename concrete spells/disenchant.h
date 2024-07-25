@@ -8,9 +8,9 @@ class Disenchant: public Spell {
     public:
         Disenchant(): Spell{"Disenchant", "Destroy the top enchantment on target minion", 1} {}
         bool activate(Player *target, Player *other, int t) override {
-            Minion* minion = target->getSummonedMinion(t);
+            Minion* minion = target->getSummonedMinion(t - 1);
             minion = Minion::removeTopEnchantment(minion);
-            target->replaceMinion(t, minion);
+            target->setSummoned(t - 1, minion);
             return true;
         }
 };

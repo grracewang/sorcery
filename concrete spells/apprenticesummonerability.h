@@ -15,7 +15,7 @@ class ApprenticeSummonerAbility: public Spell {
                 std::cout << "Cannot use ability." << std::endl;
                 return false;
             }
-            owner->addToSummoned(new AirElemental(), owner);
+            owner->addToSummoned(new AirElemental(), enemy);
             return true;
         }
 };

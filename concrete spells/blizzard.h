@@ -12,13 +12,13 @@ class Blizzard: public Spell {
             int enemySize = enemy->getSummoned().size();
             for (int i = 0; i < ownerSize; i++) { // removes each minion, mutates it and adds it back
                 Minion *m = owner->getSummonedMinion(i);
-                m = new ChangeStat{m, "", "-2", 0, 0, false, false};
-                owner->replaceMinion(i, m);
+                m = new ChangeStat{m, "", "-2", 0, 0, false, nullptr};
+                owner->setSummoned(i, m);
             }
             for (int i = 0; i < enemySize; i++) {
                 Minion *m = enemy->getSummonedMinion(i);
-                m = new ChangeStat{m, "", "-2", 0, 0, false, false};
-                enemy->replaceMinion(i, m);
+                m = new ChangeStat{m, "", "-2", 0, 0, false, nullptr};
+                enemy->setSummoned(i, m);
             }
             return true;
         }
