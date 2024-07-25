@@ -259,7 +259,7 @@ int main(int argc, char *argv[]) {
                             // if we use enchantments then t must be a minion
                             Enchantment* e = dynamic_cast<Enchantment*>(players[curr]->removeHandCard(i));
                             Minion* target = players[p]->getSummonedMinion(t - 1);
-                            players[p]->replaceMinion(t - 1, e->activate(target));
+                            players[p]->setSummoned(t - 1, e->activate(target));
                         } else if (players[curr]->getHand()[i]->getType() == "Spell") {
                             Spell* spell = dynamic_cast<Spell*>(players[curr]->removeHandCard(i));
                             if (p == 0) {

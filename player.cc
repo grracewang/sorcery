@@ -97,9 +97,7 @@ void Player::placeMinion(int i) { // places minion from hand on board
 }
 
 void Player::setSummoned(int i, Minion *newMinion) {
-    Minion* temp = summoned[i];
     summoned.erase(summoned.begin() + i);
-    delete temp;
     summoned.insert(summoned.begin() + i, newMinion);
 }
 
@@ -127,8 +125,9 @@ bool Player::minionDead(Minion *m) {
 
 
 void Player::moveToGraveyard(int i) {
-    graveyard.push(summoned[i]->removeEnchantments(summoned[i]));
-    summoned.erase(summoned.begin() + i);
+    Minion* m = Minion::removeEnchantments(summoned[i]);
+    setSummoned(i, m);
+    graveyard.push(removeSummonedMinion(i));
 }
 
 
