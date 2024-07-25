@@ -4,6 +4,7 @@
 using namespace std;
 
 class BoneGolem : public Minion {
+	vector<Ritual*> abilities;
     public: 
         // normal getters (not changed by decorators)
 		string getName() const override;
@@ -15,8 +16,9 @@ class BoneGolem : public Minion {
 		int getDef() const override;
 		int getBeginActions() const override;
         int getActCost() const override;
-		vector<Spell*> getSpells() const override;
-		vector<Ritual*> getRituals() const override;
+		void addAbility(Player*);
+		// vector<Spell*> getSpells() const override;
+		// vector<Ritual*> getRituals() const override;
 };
 
 #endif
