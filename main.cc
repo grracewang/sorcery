@@ -249,7 +249,7 @@ int main(int argc, char *argv[]) {
                             cout << "Played a ritual" << endl;
                         } else if (players[curr]->getHand()[i]->getType() == "Spell") {
                             Spell* spell = dynamic_cast<Spell*>(players[curr]->removeHandCard(i));
-                            spell->activate(players[curr], players[next], -1); // no target
+                            if (spell->activate(players[curr], players[next], -1)) players[curr]->discard(spell);
                         }   
                     } else {
                         char t; // t can only be 30, 31, 32, 33, 34, 114 (= r) (ascii)
@@ -263,9 +263,9 @@ int main(int argc, char *argv[]) {
                         } else if (players[curr]->getHand()[i]->getType() == "Spell") {
                             Spell* spell = dynamic_cast<Spell*>(players[curr]->removeHandCard(i));
                             if (p == 0) {
-                                spell->activate(players[0], players[1], t);
+                                if (spell->activate(players[0], players[1], t)) players[curr]->discard(spell);
                             } else { // p = 1
-                                spell->activate(players[1], players[0], t);
+                                if (spell->activate(players[1], players[0], t)) players[curr]->discard(spell);
                             }
                         } else {
                             cout << "Cannot call command on this card." << endl;

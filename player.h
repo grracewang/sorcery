@@ -39,7 +39,6 @@ class Player : public Subject{
 		Ritual* getRitual() const;
 		void setRitual(Ritual *r); // swaps ritual
 
-		
 		vector<Card*>& getDeck();
 		vector<Card*> getHand() const;
 
@@ -65,8 +64,10 @@ class Player : public Subject{
 		void addToSummoned(Minion*, Player*);
 
 		void discard(int i); // discards i-th card, just trashes it, used in testing mode
+		void discard(bool, Card*); // takes in a spell
 		bool minionDead(Minion *m);
 		void moveToGraveyard(int i);
+		
 
 		//observer pattern methods
 		bool isPlaying(); // aka getState

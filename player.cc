@@ -126,6 +126,9 @@ void Player::moveToGraveyard(int i) {
     graveyard.push(removeSummonedMinion(i));
 }
 
+void discard(Card* spell) {
+    delete spell;
+}
 
 //observer pattern methods
 bool Player::isPlaying() {
