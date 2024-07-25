@@ -55,7 +55,7 @@ bool Minion::useAction() {
 
 // for printing
 card_template_t Minion::display() const {
-  if (getSpells().empty() && getRituals().empty()) {
+  if (getDescription() == "") {
     return display_minion_no_ability(getName(), getCost(), getAtk(), getDef());
   } else if (!getSpells().empty()) {
     return display_minion_activated_ability(getName(), getCost(), getAtk(), getDef(),

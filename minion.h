@@ -17,7 +17,7 @@ class Minion: public Card {
 		// normal getters (not changed by decorators)
 		virtual string getName() const = 0;
 		virtual string getType() const = 0;
-		string getDescription() const; // non-virtual
+		virtual string getDescription() const;
 		virtual int getCost() const = 0;
 		int getAction() const; // non-virtual
 		virtual bool isEnchantment() const = 0; // only applies to specific
@@ -32,9 +32,8 @@ class Minion: public Card {
 											// returns -1 if called on a minion without an
 											// activated ability
 		virtual vector<Spell*> getSpells() const = 0;
-		virtual vector<Ritual*> getRituals() const = 0;
 		virtual Minion *getMinion() const; 
-		virtual void setMinion(Minion *);
+		virtual void setMinion(const Minion *);
 
 		// functions to manage the action of a minion
 		void resetAction(); // call at start of turn

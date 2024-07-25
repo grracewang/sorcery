@@ -2,11 +2,12 @@
 #include "changestat.h"
 #include "../ritual.h"
 class FireElemental : public Minion {
-    <Ritual*> abilities;
+    vector<Ritual*> abilities;
     public:
          // normal getters (not changed by decorators)
 		string getName() const override;
 		string getType() const override;
+		string getDescription() const override;
 		int getCost() const override;
         bool isEnchantment() const override;
 
