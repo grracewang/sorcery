@@ -105,14 +105,33 @@ ostream &Board::printHand(ostream &out, int playerNum) {
     return out;
 }
 
-// ostream &Board::inspect(ostream &out, Minion *m) {
-//     if (m == nullptr) return out; // return immediately if m is nullptr
+ostream &Board::inspect(ostream &out, Minion *m) {
+    if (m == nullptr) return out; // return immediately if m is nullptr
 
-//     vector<Card*> enchantments;
-//     vector<card_template_t> minion;
+    vector<Card*> enchantments;
+    vector<card_template_t> minion;
 
-//     if (m->getMinion() == nullptr) {
-//         minion.emplace_back(m->display());
-//         printRowCards(out, minion, false);
-//     }
-// }
+    // get all the enchantment cards
+    while (m->getMinion()) {
+        if (m->isEnchantment()) {
+            enchantments.emplace_back(m->getEnchantment());
+        }
+        m = m->getMinion();
+    }
+
+    // print minion card
+    minion.emplace_back(m->display());
+    printRowCards(out, minion, false);
+
+    // print enchantments
+    int enchantmentSize = enchantments.size();
+    for (int i = 0; i < enchantmentSize; i += 5) {
+        vector<card_template_t> enchantmentRow;
+        for (int j = 0; j < 5; j++) {
+            if (enchantments.empty()) break;
+            enchantmentRow.emplace_back(enchantments.back()->display());
+            enchantments.pop_back();
+        }
+        printRowCards(out, enchantmentRow, false);
+    }
+}
