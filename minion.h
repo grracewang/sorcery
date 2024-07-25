@@ -6,7 +6,6 @@
 #include "./concrete minions/changestat.h"
 #include "ascii_graphics.h"
 #include <string>
-
 using namespace std;
 
 class Player; // forward declaration
@@ -29,12 +28,14 @@ class Minion: public Card {
 		virtual int getDef() const = 0;
 		virtual int getBeginActions() const = 0; // action points minion gets at turn start
 		virtual int getActCost() const = 0; // cost of using activated ability (spell cost)
+											// returns -1 if called on a minion without an
+											// activated ability
 		virtual vector<Spell*> getSpells() const = 0;
 		virtual vector<Ritual*> getRituals() const = 0;
 
 		// functions to manage the action of a minion
-		virtual void resetAction() = 0; // call at start of turn
-		virtual bool useAction() = 0; // call before using a minion
+		void resetAction(); // call at start of turn
+		bool useAction(); // call before using a minion
 									  // to do something requiring actions
 									  // if return is false, you can't continue
 									  // to do that action

@@ -7,6 +7,21 @@ Minion *Minion::removeTopEnchantment() {
   // check if you have an enchantment and remove if it is
 }
 
+// for attacking minions
+Minion *Minion::attack(Minion *enemy) {
+  return new ChangeStat{enemy, "", ChangeStat::toString('+', -getAtk()),
+    0, 0, false, false};
+}
+
+
+void Minion::resetAction() {
+  actions = getBeginActions();
+}
+bool Minion::useAction() {
+  actions--;
+  return actions >= 0;
+}
+
 // for printing
 card_template_t Minion::display() const {
   if (getSpells().empty() && getRituals().empty()) {
@@ -18,12 +33,6 @@ card_template_t Minion::display() const {
     return display_minion_triggered_ability(getName(), getCost(), getAtk(),
         getDef(), getRituals()[0]->getDescription());
   }
-}
-
-// for attacking minions
-Minion *Minion::attack(Minion *enemy) {
-  return new ChangeStat{enemy, "", ChangeStat::toString('+', -getAtk()),
-    0, 0, false, false};
 }
 
 Minion::~Minion() {}
