@@ -1,7 +1,7 @@
 #ifndef HASTE_H
 #define HASTE_H
 
-#include "enchantment.h"
+#include "../enchantment.h"
 #include "../concrete minions/changestat.h"
 #include <iostream>
 

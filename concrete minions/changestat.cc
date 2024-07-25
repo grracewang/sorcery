@@ -85,7 +85,7 @@ Minion *ChangeStat::removeTopEnchantment() {
     while (curr) {
         if (curr->isEnchantment()) {
             if (prev) prev->setMinion(curr->getMinion());
-            else target = curr->getMinion();
+            else target = curr->getMinion(); // target = target
             curr->setMinion(nullptr);
             delete curr; 
             return target;
@@ -105,8 +105,8 @@ Minion *ChangeStat::removeEnchantments() {
     while (curr) {
         if (curr->isEnchantment()) {
             if (prev) prev->setMinion(curr->getMinion());
-            else target = curr->getMinion();
-            Minion *temp = current;
+            else target = curr->getMinion(); // this is target = target
+            Minion *temp = curr;
             curr->getMinion();
             temp->setMinion(nullptr);
             delete temp; 
@@ -117,6 +117,41 @@ Minion *ChangeStat::removeEnchantments() {
     }
 
     return this;
+}
+
+// added static functions
+Minion *Minion::removeTopEnchantment(Minion *m) {
+    if (m == nullptr) return m; // return nullptr right away if m is nullptr
+
+    // m is an enchantment ChangeStat (base case)
+    if (m->isEnchantment()) {
+        Minion *temp = m;
+        m = temp->getMinion();
+        temp->setMinion(nullptr);
+        delete temp;
+        return m;
+    }
+    Minion *newMinion = m; // outermost pointer to return
+
+    Minion *prev = newMinion; // not enchantment guaranteed
+    Minion *curr = prev->getMinion();
+    while (curr) {
+        if (curr->isEnchantment()) {
+            prev->setMinion(curr->getMinion());
+            curr->setMinion(nullptr);
+            delete curr;
+            return newMinion;
+        }
+
+        prev = curr;
+        curr = curr->getMinion();
+    }
+    
+    return newMinion;
+}
+
+Minion *Minion::removeEnchantments(Minion *m) {
+    
 }
 
 string ChangeStat::toString(char op, int val) {

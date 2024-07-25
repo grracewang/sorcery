@@ -43,8 +43,10 @@ class Minion: public Card {
 									  // to do that action
 
 		// for removing enchantments
-		Minion *removeEnchantments();
+		virtual Minion *removeEnchantments();
 		virtual Minion *removeTopEnchantment();
+		static Minion *removeTopEnchantment(Minion *m);
+		static Minion *removeEnchantments(Minion *m);
 		
 		// adding abilities
 		virtual void addAbility(Player *owner, Player *opponent) = 0;

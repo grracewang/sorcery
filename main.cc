@@ -248,7 +248,7 @@ int main(int argc, char *argv[]) {
                             // check if casted on minion type
 
                             // calls activate function on the enchantment
-                            "?/]
+                            // "?/] (i commented this out idk what this is)
                             dynamic_cast<Enchantment*>(players[curr]->getHand()[i])->activate(dynamic_cast<Minion*>(players[p-1]->getHand()[t]));
                         } else if (players[curr]->getHand()[i]->getName() == "Banish") {
                             dynamic_cast<Banish*>(players[curr]->getHand()[i])->activate(players[p - 1], t);

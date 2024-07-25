@@ -12,7 +12,7 @@ int Minion::getCost() const { return 0; }
 
 Minion *Minion::getMinion() const { return nullptr; }
 
-void Minion::setMinion(const Minion *m) {}
+void Minion::setMinion(Minion *m) {}
 
 Minion *Minion::removeEnchantments() { return this; }
 
