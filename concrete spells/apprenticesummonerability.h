@@ -3,14 +3,18 @@
 
 #include "../spell.h"
 #include "../concrete minions/airelemental.h"
+#include <iostream>
 
 class ApprenticeSummonerAbility: public Spell {
     public:
-        explicit ApprenticeSummonerAbility(): Spell{"ability", "Deal 1 damage to target minion", 1} {}
-        void activate(Player *target, int t) {
-            if (target->getSummoned().size() < 5) {
-                target->addToSummoned(new AirElemental());
+        ApprenticeSummonerAbility(): Spell{"Ability", "Summon a 1/1 Air Elemental", 1} {}
+        bool activate(Player *target, Player* enemy, int t) {
+            if (target->getSummoned().size() >= 5) {
+                std::cout << "Cannot use ability." << std::endl;
+                return false;
             }
+            target->addToSummoned(new AirElemental());
+            return true;
         }
 };
 
