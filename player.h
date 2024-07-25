@@ -36,12 +36,15 @@ class Player : public Subject{
 		int getMagic() const;
 		
 		Ritual* getRitual() const;
-		void removeRitual();
+		void setRitual(Ritual *r); // swaps ritual
 
 		
 		vector<Card*>& getDeck();
 		vector<Card*> getHand() const;
+
 		vector<Minion*> getSummoned() const;
+		void setSummoned(int i, Minion *newMinion); // replaces minion at pos i with newMinion
+
 		stack<Minion*> getGraveyard() const; // returns top value 
 
 		Card* getHandCard(int i) const;
@@ -55,8 +58,6 @@ class Player : public Subject{
 		void draw(); // transfers deck card to hand iff fullHand = false
 
 		void placeMinion(int i); // places hand card to board
-		void replaceMinion(int i, Minion *newMinion); // replaces minion at pos i with newMinion
-		void placeRitual(int i); // swaps ritual
 
 		void addToDeck(Card*);
 		void addToHand(Card*);

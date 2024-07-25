@@ -94,23 +94,19 @@ void Player::placeMinion(int i) { // places minion from hand on board
     hand.erase(hand.begin() + i);
 }
 
-void Player::replaceMinion(int i, Minion *newMinion) {
+void Player::setSummoned(int i, Minion *newMinion) {
     Minion* temp = summoned[i];
     summoned.erase(summoned.begin() + i);
     delete temp;
     summoned.insert(summoned.begin() + i, newMinion);
 }
 
-void Player::placeRitual(int i) {
-    if (ritual != nullptr) { // delete old ritual, mutate vector
+void Player::setRitual(Ritual *r) {
+    if (ritual) { // delete old ritual, mutate vector
         Ritual* temp = ritual;
-        ritual = dynamic_cast<Ritual*>(hand[i]);
         delete temp;
-    } else {
-        ritual = dynamic_cast<Ritual*>(hand[i]);
-        ritual->attach();
-    }
-    hand.erase(hand.begin() + i);
+    ritual = r; 
+    if (ritual) ritual->attach();
 }
 
 void Player::discard(int i) {
