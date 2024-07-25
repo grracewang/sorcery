@@ -102,11 +102,12 @@ void Player::replaceMinion(int i, Minion *newMinion) {
 
 void Player::placeRitual(int i) {
     if (ritual != nullptr) { // delete old ritual, mutate vector
-        Card* temp = ritual;
-        ritual = hand[i];
+        Ritual* temp = ritual;
+        ritual = dynamic_cast<Ritual*>(hand[i]);
         delete temp;
     } else {
-        ritual = hand[i];
+        ritual = dynamic_cast<Ritual*>(hand[i]);
+        ritual->attach();
     }
     hand.erase(hand.begin() + i);
 }

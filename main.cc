@@ -245,31 +245,28 @@ int main(int argc, char *argv[]) {
                             Minion* card = dynamic_cast<Minion*>(players[curr]->removeHandCard(i));
                             players[curr]->addToSummoned(card, players[next]); // already notifies
                         } else if (players[curr]->getHand()[i]->getType() == "Ritual") { // minion
-                            Ritual* card = dynamic_cast<Ritual*>(players[curr]->getHand()[i]);
-                            card->attach();
-                            players[curr]->placeRitual(i);
+                            players[curr]->placeRitual(i); // automatically attaches
                             cout << "Played a ritual" << endl;
                         } else if (players[curr]->getHand()[i]->getType() == "Spell") {
-                            Spell* card = dynamic_cast<Spell*>(players[curr]->getHand()[i]);
-                        }
+                            Spell* spell = dynamic_cast<Spell*>(players[curr]->removeHandCard(i));
+                            spell->activate(players[curr], players[next], -1); // no target
+                        }   
                     } else {
                         char t; // t can only be 30, 31, 32, 33, 34, 114 (= r)
                         cin >> t;
                         p -= 1;
                         if (players[curr]->getHand()[i]->getType() == "Enchantment") {
-                            // check if casted on minion type
-
-                            // calls activate function on the enchantment
-                            // "?/] (i commented this out idk what this is)
-                            dynamic_cast<Enchantment*>(players[curr]->getHand()[i])->activate(dynamic_cast<Minion*>(players[p-1]->getHand()[t]));
-                        } else if (players[curr]->getHand()[i]->getName() == "Banish") {
-                            dynamic_cast<Banish*>(players[curr]->getHand()[i])->activate(players[p - 1], t);
-                        } else if (players[curr]->getHand()[i]->getName() == "Disenchant") {
-                            dynamic_cast<Disenchant*>(players[curr]->getHand()[i])->activate(players[p - 1], t - 1);
-                        } else if (players[curr]->getHand()[i]->getName() == "Recharge") {
-                            dynamic_cast<Recharge*>(players[curr]->getHand()[i])->activate(players[p - 1], t - 1);
-                        } else if (players[curr]->getHand()[i]->getName() == "Unsummon") {
-                            dynamic_cast<Unsummon*>(players[curr]->getHand()[i])->activate(players[p - 1], t - 1);
+                            // if we use enchantments then t must be a minion
+                            Enchantment* e = dynamic_cast<Enchantment*>(players[curr]->removeHandCard(i));
+                            Minion* target = players[p]->getSummonedMinion(t - 1);
+                            players[p]->replaceMinion(t - 1, e->activate(target));
+                        } else if (players[curr]->getHand()[i]->getType() == "Spell") {
+                            Spell* spell = dynamic_cast<Spell*>(players[curr]->removeHandCard(i));
+                            if (p == 0) {
+                                spell->activate(players[0], players[1], t);
+                            } else { // p = 1
+                                spell->activate(players[1], players[0], t);
+                            }
                         } else {
                             cout << "Cannot call command on this card." << endl;
                         }
@@ -289,6 +286,11 @@ int main(int argc, char *argv[]) {
                         char t; // t can only be 30, 31, 32, 33, 34, 114 (= r)
                         cin >> t;
                         p -= 1;
+                        if (p == 0) {
+                            
+                        } else {
+
+                        }
 
                     }
                     cout << "Command: use" << i << endl;    
