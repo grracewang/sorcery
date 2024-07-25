@@ -11,7 +11,6 @@ int BoneGolem::getDef() const { return 3; }
 int BoneGolem::getBeginActions() const { return 1; }
 int BoneGolem::getActCost() const { return -1; }
 
-
 void BoneGolem::addAbility(Player* owner) {
     Ritual* r = new BoneGolemAbility(owner, this);
     abilities.emplace_back(r);
