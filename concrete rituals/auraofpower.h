@@ -21,6 +21,7 @@ class AuraOfPower: public Ritual {
             } else {
                 Minion* m = owner->getSummonedMinion(owner->getSummoned().size() - 1);
                 m = new ChangeStat{m, "+1", "+1", 0, 0, false, false};
+                owner->replaceMinion()
             }
         }
         
