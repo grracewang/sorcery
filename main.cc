@@ -245,9 +245,12 @@ int main(int argc, char *argv[]) {
                         if (players[curr]->getHand()[i]->getType() == "Minion") { // places ith card in hand
                             Minion* card = dynamic_cast<Minion*>(players[curr]->removeHandCard(i));
                             players[curr]->addToSummoned(card, players[next]); // already notifies
+
                         } else if (players[curr]->getHand()[i]->getType() == "Ritual") { // minion
-                            players[curr]->setRitual(i); // automatically attaches
+                            Ritual *ritual = dynamic_cast<Ritual*>(players[curr]->getHand()[i]);
+                            players[curr]->setRitual(ritual); // automatically attaches (resource managed)
                             cout << "Played a ritual" << endl;
+
                         } else if (players[curr]->getHand()[i]->getType() == "Spell") {
                             Spell* spell = dynamic_cast<Spell*>(players[curr]->removeHandCard(i));
                             if (spell->activate(players[curr], players[next], -1)) players[curr]->discard(spell);
