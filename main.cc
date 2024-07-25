@@ -243,14 +243,14 @@ int main(int argc, char *argv[]) {
                         // check if card played is minion, if it's a minion we call all the spells/rituals minion related
                         if (players[curr]->getHand()[i]->getType() == "Minion") { // places ith card in hand
                             Minion* card = dynamic_cast<Minion*>(players[curr]->removeHandCard(i));
-                            players[curr]->addToSummoned(card, players[next]);
+                            players[curr]->addToSummoned(card, players[next]); // already notifies
                         } else if (players[curr]->getHand()[i]->getType() == "Ritual") { // minion
                             Ritual* card = dynamic_cast<Ritual*>(players[curr]->getHand()[i]);
                             card->attach();
                             players[curr]->placeRitual(i);
                             cout << "Played a ritual" << endl;
                         } else if (players[curr]->getHand()[i]->getType() == "Spell") {
-                            Spell* card = dynamic_cast<Spell*>(players[curr->])
+                            Spell* card = dynamic_cast<Spell*>(players[curr]->getHand()[i]);
                         }
                     } else {
                         char t; // t can only be 30, 31, 32, 33, 34, 114 (= r)

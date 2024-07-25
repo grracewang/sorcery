@@ -83,7 +83,7 @@ void Player::addToHand(Card* card) {
 
 void Player::addToSummoned(Minion *m, Player *opponent) {
     summoned.emplace_back(m);
-    m->addAbility(this, opponent)
+    m->addAbility(this, opponent);
     notifyMinionEnter();
 }
 
