@@ -2,20 +2,28 @@
 #define BANISH_H
 
 #include "../spell.h"
-using namespace std;
+#include <iostream>
 
 class Banish: public Spell {
     public:
-        explicit Banish(): Spell{"Banish", "Destroy target minion or ritual", 2} {}
-        void activate(Player *owner, char t) {
-            if (t == 'r') {
-                owner->removeRitual();
+        Banish(): Spell{"Banish", "Destroy target minion or ritual", 2} {}
+        bool activate(Player *owner, Player *enemy, int t) {
+            if (t == 114) {
+                if (enemy->getRitual() == nullptr) {
+                    std::cout << "Enemy has no ritual to destroy." << std::endl;
+                    return false;
+                }
+                enemy->removeRitual(); // also detaches ritual from owner
             } else {
-                Minion* temp = owner->getSummoned()[t - 1]; // 
-                owner->getSummoned().erase(owner->getSummoned().begin() + t - 1);
+                if (enemy->getSummoned().size() < t) {
+                    std::cout << "This minion does not exist." << std::endl;
+                    return false;
+                }
+                Minion* temp = enemy->removeSummonedMinion(t - 1);
                 delete temp;
                 temp = nullptr;
             }
+            return true;
         }
 };
 

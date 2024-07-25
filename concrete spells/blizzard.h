@@ -6,14 +6,21 @@
 
 class Blizzard: public Spell {
     public:
-        explicit Blizzard(): Spell{"Blizzard", "Deal 2 damage to all minions", 3} {}
-        void activate(Player *owner, Player *enemy) {
-            for (auto minion: owner->getSummoned()) {
-                minion = new ChangeStat{minion, "", "-2", 0, 0, false, false};
-            } 
-            for (auto minion: enemy->getSummoned()) {
-                minion = new ChangeStat{minion, "", "-2", 0, 0, false, false};
+        Blizzard(): Spell{"Blizzard", "Deal 2 damage to all minions", 3} {}
+        bool activate(Player *owner, Player *enemy, int t) {
+            int ownerSize = owner->getSummoned().size();
+            int enemySize = enemy->getSummoned().size();
+            for (int i = 0; i < ownerSize; i++) { // removes each minion, mutates it and adds it back
+                Minion* m = owner->removeSummonedMinion(0);
+                m = new ChangeStat{m, "", "-2", 0, 0, false, false};
+                owner->addToSummoned(m);
             }
+            for (int i = 0; i < enemySize; i++) {
+                Minion* m = enemy->removeSummonedMinion(0);
+                m = new ChangeStat{m, "", "-2", 0, 0, false, false};
+                enemy->addToSummoned(m);
+            }
+            return true;
         }
 };
 

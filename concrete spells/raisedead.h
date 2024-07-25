@@ -7,7 +7,7 @@
 class RaiseDead: public Spell {
     public:
         RaiseDead(): Spell{"Raise Dead", "Resurrect the top minion in your graveyard and set its defence to 1", 1} {}
-        bool activate(Player *owner, Player *enemy) {
+        bool activate(Player *owner, Player *enemy, int t) {
             Minion* target = owner->revive();
             if (target == nullptr || owner->getSummoned().size()) {
                 cout << "You cannot use this card." << endl

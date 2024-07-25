@@ -5,22 +5,24 @@ Player::Player(string name) : name{name}, ritual{nullptr} {}
 
 Player::~Player() { delete ritual; }
 
+string Player::getName() const { return name; }
+
 void Player::changeMagic(int newMagic) { magic += newMagic; }
 
 void Player::changeLife(int newLife) { life += newLife; }
+
+int Player::getLife() const { return life; }
+
+int Player::getMagic() const { return magic; }
+
+Ritual* Player::getRitual() const { return ritual; }
 
 void Player::removeRitual() {
     delete this->ritual;
     ritual = nullptr;
 }
 
-int Player::getLife() const { return life; }
-
-int Player::getMagic() const { return magic; }
-
-Card* Player::getRitual() const { return ritual; }
-
-string Player::getName() const { return name; }
+vector<Card*>& Player::getDeck() { return deck; }
 
 vector<Card*> Player::getHand() const { return hand; }
 
@@ -28,8 +30,45 @@ vector<Minion*> Player::getSummoned() const { return summoned; }
 
 stack<Minion*> Player::getGraveyard() const { return graveyard; }
 
+Card* Player::getHandCard(int i) const { return hand[i] };
 
-vector<Card*> Player::getDeck() const { return deck; }
+Card* Player::removeHandCard(int i) {
+    Card* temp = hand[i];
+    hand.erase(hand.begin() + i);
+    return temp;
+}
+
+Minion* Player::getSummonedMinion(int i) const {
+    return summoned[i];
+}
+
+Minion* Player::removeSummonedMinion(int i) {
+    Minion* temp = summoned[i];
+    summoned.erase(summoned.begin() + i);
+    return temp;
+}
+
+Minion* Player::revive() {
+    if (!graveyard.empty()) {
+        Minion* temp = graveyard.top();
+        graveyard.pop();
+        return temp;
+    } else {
+        return nullptr;
+    }
+}
+
+bool Player::fullHand() { return hand.size() == 5; }
+
+void Player::draw() { // transfers deck card to hand iff fullHand = false
+    
+    Card* card = deck[deck.size() - 1]; // take top of deck
+    hand.emplace_back(card);
+    
+    // do i need to delete memory?: call delete on last elem
+    // cerr << hand.size() << endl;
+    deck.erase(deck.begin() + (deck.size() - 1));
+}
 
 void Player::addToDeck(Card* card) {
     deck.emplace_back(card); 
@@ -44,27 +83,6 @@ void Player::addToSummoned(Minion *m) {
     for (Ritual *r: m->getRituals()) {
         r->attach();
     }
-}
-
-Minion* Player::revive() {
-    if (!graveyard.empty()) {
-        Minion* temp = graveyard.top();
-        graveyard.pop();
-        return temp;
-    } else {
-        return nullptr;
-    }
-}
-bool Player::fullHand() { return hand.size() == 5; }
-
-void Player::draw() { // transfers deck card to hand iff fullHand = false
-    
-    Card* card = deck[deck.size() - 1]; // take top of deck
-    hand.emplace_back(card);
-    
-    // do i need to delete memory?: call delete on last elem
-    // cerr << hand.size() << endl;
-    deck.erase(deck.begin() + (deck.size() - 1));
 }
 
 void Player::placeMinion(int i) { // places minion from hand on board
@@ -84,16 +102,6 @@ void Player::placeRitual(int i) {
     hand.erase(hand.begin() + i);
 }
 
-
-bool Player::playCard(int i, Player* target, char t) { 
-    // if (t == 114) { // t = r
-    //     this->hand[i]->activate((target->getRitual()));
-    // } else {
-    //     this->hand[i]->activate((target->getMinions[i]));
-    // }
-    return true;
-}
-
 void Player::discard(int i) {
     Card* temp = hand[i];
     hand.erase(hand.begin() + i);
@@ -105,9 +113,6 @@ void Player::moveToGraveyard(int i) {
     summoned.erase(summoned.begin() + i);
 }
 
-// void remove(int i) {
-//     deck.erase(i);
-// }
 
 //observer pattern methods
 bool Player::isPlaying() {

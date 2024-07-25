@@ -3,6 +3,7 @@
 #include "subject.h"
 #include "card.h"
 #include "minion.h"
+class Ritual;
 #include <vector>
 #include <stack>
 #include <string>
@@ -14,7 +15,7 @@ class Player : public Subject{
 	private: 
 		string name;
 		int life = 20, magic = 3; // life is 20, magic is 3, using cards cost magic
-		Card* ritual; // currently played ritual, nullptr if no ritual
+		Ritual* ritual; // currently played ritual, nullptr if no ritual
 		
 		vector<Card*> hand; // vector of 5 cards MAX
 		vector<Card*> deck;
@@ -34,7 +35,7 @@ class Player : public Subject{
 		int getLife() const;
 		int getMagic() const;
 		
-		Card* getRitual() const;
+		Ritual* getRitual() const;
 		void removeRitual();
 
 		
@@ -60,13 +61,10 @@ class Player : public Subject{
 		void addToHand(Card*);
 		void addToSummoned(Minion*);
 
-		bool playCard(int i, Player* target, char t);
-		void discard(int i); // discards i-th card, doesn't move to graveyard, just trashes it
+		void discard(int i); // discards i-th card, just trashes it, used in testing mode
 		void moveToGraveyard(int i);
-		// void remove(int i); // removes ith element from hand
 
 		//observer pattern methods
-
 		bool isPlaying(); // aka getState
 
 		// printing

@@ -3,19 +3,23 @@
 
 #include "../spell.h"
 #include "../concrete minions/airelemental.h"
+#include <iostream>
 
 class MasterSummonerAbility: public Spell {
     public:
-        explicit MasterSummonerAbility(): Spell{"ability", "Deal 1 damage to target minion", 1} {}
-        void activate(Player *target, int t) {
+        MasterSummonerAbility(): Spell{"Master Summoner Ability", "Summon up to three 1/1 air elementals", 1} {}
+        bool activate(Player *owner, Player* enemy, int t) {
+            if (owner->getSummoned().size() == 5) {
+                std::cout << "You already have 5 minions summoned. You cannot summon more." << std::endl;
+            }
             for (int i = 0; i < 3; i++) {
-                if (target->getSummoned().size() < 5) {
-                    target->addToSummoned(new AirElemental());
+                if (owner->getSummoned().size() < 5) {
+                    owner->addToSummoned(new AirElemental());
                 } else {
                     break;
                 }
             }
-            
+            return true;
         }
 };
 

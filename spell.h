@@ -8,6 +8,7 @@
 class Spell: public Card {
     public:
         Spell(string name, string description, int cost);
+        virtual bool activate(Player* owner, Player* enemy, int t) = 0;
         card_template_t display() const override;
 };
 

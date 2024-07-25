@@ -6,11 +6,20 @@
 
 class NovicePyromancerAbility: public Spell {
     public:
-        explicit NovicePyromancerAbility(): Spell{"ability", "Deal 1 damage to target minion", 1} {}
-        void activate(Player *target, int t) {
-            Minion* minion = target->getSummonedMinion(t);
+        NovicePyromancerAbility(): Spell{"Novice Pyromancer Ability", "Deal 1 damage to target minion", 1} {}
+        bool activate(Player *owner, Player *enemy, int t) {
+            int size = enemy->getSummoned().size();
+            Minion* m = enemy->removeSummonedMinion(t - 1);
             // if the top enchantment is +2/+2 or *2/*2 then we wrap another change stat that divides by 2
-            minion = new ChangeStat{minion, "0", "-1", 0, 0, false, false};
+            m = new ChangeStat{m, "0", "-1", 0, 0, false, false};
+            enemy->addToSummoned(m); // added at index size - 1
+            for (int i = t - 1; i < size; i++) {
+                Minion* n = enemy->removeSummonedMinion(i);
+                enemy->addToSummoned(n); 
+                // removes and adds minions that were previously AFTER target minion
+                // this is so that the summoned minions return back to their original order
+            }
+            return true;
         }
 };
 

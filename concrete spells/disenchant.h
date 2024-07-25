@@ -6,8 +6,8 @@
 
 class Disenchant: public Spell {
     public:
-        explicit Disenchant(): Spell{"Disenchant", "Destroy the top enchantment on target minion", 1} {}
-        void activate(Player *target, int t) {
+        Disenchant(): Spell{"Disenchant", "Destroy the top enchantment on target minion", 1} {}
+        bool activate(Player *owner, Player *enemy, int t) {
             Minion* minion = target->getSummonedMinion(t);
             // if the top enchantment is +2/+2 or *2/*2 then we wrap another change stat that divides by 2
             // Enchantment* removed = minion->removeEnchantment(minion->getEnchantments().size());
@@ -18,6 +18,7 @@ class Disenchant: public Spell {
             // } else if (removed->getName() == "Magic Fatigue") {
             //     minion = new ChangeStat{minion, '+', 0, 0, -2};
             // }
+            return true;
         }
 };
 
