@@ -2,11 +2,8 @@
 #include "./concrete minions/changestat.h"
 
 string Minion::getDescription() const {
-    auto spells = getSpells();
-    auto rituals = getRituals();
-    if (spells.empty() && rituals.empty()) return "";
-    else if (!spells.empty()) return spells[0]->getDescription();
-    else if (!rituals.empty()) return rituals[0]->getDescription();
+    if (getSpells().empty()) return "";
+    else return getSpells()[0]->getDescription();
 }
 
 int Minion::getAction() const { return actions; }
@@ -15,7 +12,7 @@ int Minion::getCost() const { return 0; }
 
 Minion *Minion::getMinion() const { return nullptr; }
 
-void Minion::setMinion(Minion *m) {}
+void Minion::setMinion(const Minion *m) {}
 
 Minion *Minion::removeEnchantments() {
   // use removeTopEnchantment to get rid of enchantments
@@ -46,7 +43,7 @@ bool Minion::useAction() {
 
 // for printing
 card_template_t Minion::display() const {
-  if (getSpells().empty() && getRituals().empty()) {
+  if (getDescription() == "") {
     return display_minion_no_ability(getName(), getCost(), getAtk(), getDef());
   } else if (!getSpells().empty()) {
     return display_minion_activated_ability(getName(), getCost(), getAtk(), getDef(),
