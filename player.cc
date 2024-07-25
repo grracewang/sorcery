@@ -1,4 +1,5 @@
 #include "player.h"
+#include "minion.h"
 using namespace std;
 
 Player::Player(string name) : name{name}, ritual{nullptr} {}
