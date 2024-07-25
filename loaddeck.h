@@ -75,7 +75,7 @@ Card* loadCard(string card, Player* owner, Player* opponent) {
     } else if (card == "Magic Fatigue") {
         return new MagicFatigue();
     } else { // Silence
-        return new Silence();
+        return new Silence(opponent, owner); // we assume target is opponent
     }
 }
 

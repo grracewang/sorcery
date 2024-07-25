@@ -86,7 +86,7 @@ void Player::addToSummoned(Minion *m, Player *opponent) {
     while (m->getMinion() != nullptr) {
         m = m->getMinion();
     }
-    m->addAbility(this, opponent);
+    m->addAbility(this, opponent); // mutating the base minion
     notifyMinionEnter();
 }
 
