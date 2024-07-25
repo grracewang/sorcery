@@ -14,7 +14,7 @@ class MasterSummonerAbility: public Spell {
             }
             for (int i = 0; i < 3; i++) {
                 if (owner->getSummoned().size() < 5) {
-                    owner->addToSummoned(new AirElemental());
+                    owner->addToSummoned(new AirElemental(), owner);
                 } else {
                     break;
                 }
