@@ -16,6 +16,9 @@ Minion *Minion::removeEnchantments() {
 }
 Minion *Minion::removeTopEnchantment() {
   // check if you have an enchantment and remove if it is
+  if (isEnchantment()) {
+    this = 
+  }
 }
 
 // for attacking minions
