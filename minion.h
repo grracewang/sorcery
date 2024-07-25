@@ -12,6 +12,7 @@ class Player; // forward declaration
 class Minion: public Card {
 	protected:
         int actions = 0;
+		vector<Card*> enchantments;
 
 	public:
 		// normal getters (not changed by decorators)
