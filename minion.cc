@@ -14,10 +14,6 @@ Minion *Minion::getMinion() const { return nullptr; }
 
 void Minion::setMinion(Minion *m) {}
 
-Minion *Minion::removeEnchantments() { return this; }
-
-Minion *Minion::removeTopEnchantment() { return this; }
-
 
 // for attacking minions
 Minion *Minion::attack(Minion *enemy) {
@@ -37,6 +33,71 @@ bool Minion::useAction() {
   actions--;
   return actions >= 0;
 }
+
+// added static functions
+Minion *Minion::removeTopEnchantment(Minion *m) {
+    if (m == nullptr) return m; // return nullptr right away if m is nullptr
+
+    // m is an enchantment ChangeStat (base case)
+    if (m->isEnchantment()) {
+        Minion *temp = m;
+        m = temp->getMinion();
+        temp->setMinion(nullptr);
+        delete temp;
+        return m;
+    }
+    Minion *newMinion = m; // outermost pointer to return
+
+    Minion *prev = newMinion; // not enchantment guaranteed
+    Minion *curr = prev->getMinion();
+    while (curr) {
+        if (curr->isEnchantment()) {
+            prev->setMinion(curr->getMinion());
+            curr->setMinion(nullptr);
+            delete curr;
+            return newMinion;
+        }
+
+        prev = curr;
+        curr = prev->getMinion();
+    }
+    
+    return newMinion;
+}
+
+Minion *Minion::removeEnchantments(Minion *m) {
+    if (m == nullptr) return m; // return nullptr right away if m is nullptr
+    
+    // remove until not ench. ChangeStat
+    while (true) {
+        if (m->isEnchantment()) {
+            Minion *temp = m;
+            m = temp->getMinion();
+            temp->setMinion(nullptr);
+            delete temp;
+        } else {
+            break;
+        }
+    }    
+    Minion *newMinion = m; // outermost pointer to return (not ench)
+
+    Minion *prev = newMinion; // not enchantment guaranteed
+    Minion *curr = prev->getMinion();
+    while (curr) {
+        if (curr->isEnchantment()) {
+            prev->setMinion(curr->getMinion());
+            curr->setMinion(nullptr);
+            delete curr;
+            curr = prev->getMinion();
+        } else {
+            prev = curr;
+            curr = prev->getMinion();
+        }
+    }
+    
+    return newMinion;
+}
+
 
 // for printing
 card_template_t Minion::display() const {
