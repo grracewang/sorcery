@@ -16,7 +16,7 @@ class ApprenticeSummoner : public Minion {
 		int getBeginActions() const override;
         int getActCost() const override;
 		vector<Spell*> getSpells() const override;
-		void addAbility(Player*) override;
+		void addAbility(Player*, Player *) override;
 		// vector<Ritual*> getRituals() const override;
 };
 

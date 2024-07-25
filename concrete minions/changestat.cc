@@ -85,3 +85,5 @@ vector<Ritual*> ChangeStat::getRituals() const {
 string ChangeStat::toString(char op, int val) {
     return string(1, op) + to_string(val);
 }
+
+void ChangeStat::addAbility(Player* owner, Player *opponent) {}

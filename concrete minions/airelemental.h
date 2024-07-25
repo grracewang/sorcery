@@ -16,7 +16,7 @@ class AirElemental : public Minion {
 		int getDef() const override;
 		int getBeginActions() const override;
         int getActCost() const override;
-		void addAbility(Player*) override;
+		void addAbility(Player*, Player*) override;
 		vector<Spell*> getSpells() const override;
 		// vector<Ritual*> getRituals() const override;
 };

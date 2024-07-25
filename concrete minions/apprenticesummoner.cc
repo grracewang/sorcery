@@ -20,7 +20,7 @@ vector<Spell*> ApprenticeSummoner::getSpells() const {
     return s;
 }
 
-void addAbility(Player* owner) {}
+void addAbility(Player* owner, Player* opponent) {}
 // vector<Ritual*> ApprenticeSummoner::getRituals() const {
 //     vector<Ritual*> empty;
 //     return empty;

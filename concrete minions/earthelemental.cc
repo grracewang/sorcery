@@ -13,6 +13,7 @@ vector<Spell*> EarthElemental::getSpells() const {
     vector<Spell*> empty;
     return empty;
 }
+void addAbility(Player* owner, Player *opponent) {}
 // vector<Ritual*> EarthElemental::getRituals() const {
 //     vector<Ritual*> empty;
 //     return empty;

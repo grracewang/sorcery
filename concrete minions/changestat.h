@@ -36,6 +36,8 @@ class ChangeStat: public Decorator {
 
         // helper function for creating atkStr and defStr
         static string toString(char op, int val);
+
+        void addAbility(Player* owner, Player *opponent) override;
 };
 
 #endif

@@ -12,6 +12,9 @@ int NovicePyromancer::getActCost() const {
     if (getSpells().empty()) return -1;
     else return getSpells()[0]->getCost();
 }
+
+void addAbility(Player* owner, Player *opponent) {}
+
 vector<Spell*> NovicePyromancer::getSpells() const {
     vector<Spell*> empty;
     return empty;

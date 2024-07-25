@@ -15,7 +15,7 @@ class FireElemental : public Minion {
 		int getDef() const override;
 		int getBeginActions() const override;
         int getActCost() const override;
-		void addAbility(Player*) override; // called when bone golem is summoned
+		void addAbility(Player*, Player*) override; // called when bone golem is summoned
 		vector<Spell*> getSpells() const override;
 		// vector<Ritual*> getRituals() const override;
 };

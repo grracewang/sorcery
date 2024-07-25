@@ -15,6 +15,7 @@ class NovicePyromancer : public Minion {
 		int getDef() const override;
 		int getBeginActions() const override;
         int getActCost() const override;
+		void addAbility(Player* owner, Player *opponent) override;
 		vector<Spell*> getSpells() const override;
 		// vector<Ritual*> getRituals() const override;
 };
