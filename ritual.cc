@@ -9,7 +9,7 @@ Ritual::Ritual(string name, string description, int cost, int charges,
   this->cost = cost;
 }
 
-Ritual::~Ritual() { delete owner; }
+Ritual::~Ritual() {}
 
 int Ritual::getCharges() const { return charges; }
 

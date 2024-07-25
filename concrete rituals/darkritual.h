@@ -13,7 +13,7 @@ class DarkRitual: public Ritual {
         void notify() override {
             charges -= activationCost;
             if (charges < 0) {
-                owner->removeRitual();
+                owner->setRitual(nullptr);
             } else {
                 owner->changeMagic(1);
             }

@@ -16,11 +16,11 @@ class AuraOfPower: public Ritual {
 
         void notify() override {
             charges -= activationCost;
-            if (charges < 0) owner->removeRitual();
+            if (charges < 0) owner->setRitual(nullptr);
             else {
                 int idx = owner->getSummoned().size() - 1;
                 Minion* m = owner->getSummonedMinion(idx);
-                owner->replaceMinion(idx, new ChangeStat{m, "+1", "+1", 0, 0, false, nullptr});
+                owner->setSummoned(idx, new ChangeStat{m, "+1", "+1", 0, 0, false, nullptr});
             }
         }
         

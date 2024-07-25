@@ -87,7 +87,7 @@ void Player::addToSummoned(Minion *m, Player *opponent) {
 }
 
 void Player::placeMinion(int i) { // places minion from hand on board
-    Card* temp = hand[i];
+    Minion *temp = dynamic_cast<Minion*>(hand[i]);
     summoned.emplace_back(temp);
     hand.erase(hand.begin() + i);
 }

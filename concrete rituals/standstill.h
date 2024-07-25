@@ -20,7 +20,7 @@ class Standstill: public Ritual {
         void notify() override {
             charges -= activationCost;
             if (charges < 0) {
-                owner->removeRitual();
+                owner->setRitual(nullptr);
             } else {
                 if (owner->isPlaying()) {
                     int i = owner->getSummoned().size() - 1;
