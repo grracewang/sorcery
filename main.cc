@@ -142,8 +142,8 @@ int main(int argc, char *argv[]) {
     int curr = 0;
     int next = 1;
     while (true) {
-        players[curr]->notifyStartTurn();
-        players[next]->notifyStartTurn();
+        players[curr]->notifyPreTurn();
+        players[next]->notifyPreTurn();
 
         players[curr]->changeMagic(1);
         players[curr]->draw();
