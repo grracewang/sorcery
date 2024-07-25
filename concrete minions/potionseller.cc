@@ -8,7 +8,6 @@ string PotionSeller::getDescription() const {
     return "At the end of your turn, all your minions gain +0/+1.";
 }
 int PotionSeller::getCost() const { return 2; }
-bool PotionSeller::isEnchantment() const { return false; }
 
 int PotionSeller::getAtk() const { return 1; }
 int PotionSeller::getDef() const { return 3; }

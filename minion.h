@@ -21,10 +21,8 @@ class Minion: public Card {
 		virtual string getDescription() const;
 		virtual int getCost() const = 0;
 		int getAction() const; // non-virtual
-		virtual bool isEnchantment() const = 0; // only applies to specific
-												// ChangeStat or conc Minion
+		bool isEnchantment() const;
 		
-
 		// getters changed by decorators (in ChangeStat)
 		virtual int getAtk() const = 0;
 		virtual int getDef() const = 0;
@@ -35,7 +33,6 @@ class Minion: public Card {
 		virtual vector<Spell*> getSpells() const = 0;
 		virtual Minion *getMinion() const; 
 		virtual void setMinion(Minion *);
-		virtual vector<Card*> getEnchantments() const;
 
 		// functions to manage the action of a minion
 		void resetAction(); // call at start of turn

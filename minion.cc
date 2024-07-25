@@ -6,18 +6,15 @@ string Minion::getDescription() const {
     else return getSpells()[0]->getDescription();
 }
 
+int Minion::getCost() const { return 0; }
+
 int Minion::getAction() const { return actions; }
 
-int Minion::getCost() const { return 0; }
+bool Minion::isEnchantment() const { return enchantment; }
 
 Minion *Minion::getMinion() const { return nullptr; }
 
 void Minion::setMinion(Minion *m) {}
-
-vector<Card*> Minion::getEnchantments() const {
-  vector<Card*> empty;
-  return empty;
-}
 
 
 // for attacking minions

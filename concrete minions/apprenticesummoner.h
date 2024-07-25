@@ -15,7 +15,6 @@ class ApprenticeSummoner: public Minion {
 		string getType() const override;
 		string getDescription() const override;
 		int getCost() const override;
-        bool isEnchantment() const override;
 
 		// getters changed by decorators
         int getAtk() const override;

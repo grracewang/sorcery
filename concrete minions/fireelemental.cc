@@ -9,7 +9,6 @@ string FireElemental::getDescription() const {
     return "Whenever an opponent’s minion enters play, deal 1 damage to it";
 }
 int FireElemental::getCost() const {return 2; }
-bool FireElemental::isEnchantment() const { return false; }
 
 // getters changed by decorators
 int FireElemental::getAtk() const { return 2; }

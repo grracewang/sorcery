@@ -8,7 +8,6 @@ string BoneGolem::getDescription() const {
     return "Gain +1/+1 whenever a minion leaves play";
 }
 int BoneGolem::getCost() const { return 2; }
-bool BoneGolem::isEnchantment() const { return false; }
 
 int BoneGolem::getAtk() const { return 1; }
 int BoneGolem::getDef() const { return 3; }

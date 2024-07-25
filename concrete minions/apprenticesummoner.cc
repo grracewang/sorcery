@@ -5,7 +5,6 @@ string ApprenticeSummoner::getName() const { return "Apprentice Summoner"; }
 string ApprenticeSummoner::getType() const { return "Minion"; }
 string ApprenticeSummoner::getDescription() const { return "Summon a 1/1 air elemental"; }
 int ApprenticeSummoner::getCost() const { return 1; }
-bool ApprenticeSummoner::isEnchantment() const { return false; }
 
 int ApprenticeSummoner::getAtk() const { return 1; }
 int ApprenticeSummoner::getDef() const { return 1; }
