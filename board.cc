@@ -1,4 +1,5 @@
 #include "board.h"
+#include "minion.h"
 #include "ascii_graphics.h"
 #include <iostream>
 #include <stack>
