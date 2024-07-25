@@ -1,13 +1,22 @@
 #ifndef EARTHELEMENTAL_H
 #define EARTHELEMENTAL_H
 #include "../minion.h"
-#include "changestat.h"
 
 class EarthElemental : public Minion {
     public:
-        EarthElemental(): Minion{"Earth Elemental", "Minion", "", 3} {};
-        int getAtk() const override { return 4; }
-        int getDef() const override { return 4; }
+        // normal getters (not changed by decorators)
+		string getName() const override;
+		string getType() const override;
+		int getCost() const override;
+		bool isEnchantment() const override;
+
+		// getters changed by decorators
+        int getAtk() const override;
+		int getDef() const override;
+		int getBeginActions() const override;
+        int getActCost() const override;
+		vector<Spell*> getSpells() const override;
+		// vector<Ritual*> getRituals() const override;
 };
 
 #endif
