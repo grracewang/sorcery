@@ -22,6 +22,7 @@ class Minion: public Card {
 		virtual int getCost() const = 0;
 		int getAction() const; // non-virtual
 		bool isEnchantment() const;
+		Card *getEnchantment() const; // non-virtual
 		
 		// getters changed by decorators (in ChangeStat)
 		virtual int getAtk() const = 0;

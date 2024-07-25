@@ -78,11 +78,6 @@ Minion *ChangeStat::getMinion() const { return target; }
 
 void ChangeStat::setMinion(Minion *m) { target = m; }
 
-vector<Card*> ChangeStat::getEnchantments() const {
-    vector<Card*> newEnchantments = target->getEnchantments();
-    newEnchantments.emplace_back()
-}
-
 string ChangeStat::toString(char op, int val) {
     return string(1, op) + to_string(val);
 }

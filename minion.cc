@@ -12,6 +12,8 @@ int Minion::getAction() const { return actions; }
 
 bool Minion::isEnchantment() const { return enchantment; }
 
+Card *Minion::getEnchantment() const { return enchantment; }
+
 Minion *Minion::getMinion() const { return nullptr; }
 
 void Minion::setMinion(Minion *m) {}
