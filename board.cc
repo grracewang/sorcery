@@ -134,4 +134,6 @@ ostream &Board::inspect(ostream &out, Minion *m) {
         }
         printRowCards(out, enchantmentRow, false);
     }
+
+    return out;
 }
