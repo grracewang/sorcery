@@ -1,7 +1,7 @@
 #include "enchantment.h"
 
 Enchantment::Enchantment(string name, string description, int cost,
-                         string atkStr = "", string defStr = ""):
+                         string atkStr, string defStr):
     atkStr{atkStr}, defStr{defStr} {
     this->name = name;
     this->type = "Enchantment";

@@ -2,7 +2,7 @@
 #define RAISEDEAD_H
 
 #include "../spell.h"
-#include "player.h"
+#include "../player.h"
 #include "../concrete minions/changestat.h"
 class RaiseDead: public Spell {
     public:
