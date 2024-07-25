@@ -13,7 +13,7 @@ class Minion: public Card {
 	protected:
         int actions = 0;
 		vector<Card*> enchantments;
-
+		vector<Ritual*> rituals;
 	public:
 		// normal getters (not changed by decorators)
 		virtual string getName() const = 0;
@@ -49,7 +49,7 @@ class Minion: public Card {
 		
 		// adding abilities
 		virtual void addAbility(Player *owner, Player *opponent) = 0;
-
+		virtual void removeAbilities();
 		// minion attack
 		Minion *attack(Minion *enemy); // format in main: enemy = m.attack(enemy);
 		void attack(Player *enemy); // still need to implement

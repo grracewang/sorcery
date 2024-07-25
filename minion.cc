@@ -98,6 +98,14 @@ Minion *Minion::removeEnchantments(Minion *m) {
     return newMinion;
 }
 
+// add ability 
+void Minion::removeAbilities() {
+  for (int i = 0; i < rituals.size(); i++) {
+    Ritual* r = rituals[0];
+    rituals.erase(rituals.begin());
+    delete r;
+  }
+}
 
 // for printing
 card_template_t Minion::display() const {
