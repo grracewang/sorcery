@@ -78,25 +78,6 @@ Minion *ChangeStat::getMinion() const { return target; }
 
 void ChangeStat::setMinion(Minion *m) { target = m; }
 
-Minion *ChangeStat::removeTopEnchantment() {
-    Minion *curr = this; 
-    Minion *prev = nullptr;
-
-    while (curr) {
-        if (curr->isEnchantment()) {
-            if (prev) prev->setMinion(curr->getMinion());
-            else target = curr->getMinion(); // target = target
-            curr->setMinion(nullptr);
-            delete curr; 
-            return target;
-        }
-
-        prev = curr;
-        curr = curr->getMinion();
-    }
-
-    return this;
-}
 
 Minion *ChangeStat::removeEnchantments() {
     Minion *curr = this; 
