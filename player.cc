@@ -46,6 +46,7 @@ Minion* Player::getSummonedMinion(int i) const {
 Minion* Player::removeSummonedMinion(int i) {
     Minion* temp = summoned[i];
     summoned.erase(summoned.begin() + i);
+    notifyMinionLeave();
     return temp;
 }
 
@@ -84,6 +85,7 @@ void Player::addToSummoned(Minion *m) {
     for (Ritual *r: m->getRituals()) {
         r->attach();
     }
+    notifyMinionEnter();
 }
 
 void Player::placeMinion(int i) { // places minion from hand on board
@@ -114,8 +116,14 @@ void Player::discard(int i) {
     delete temp;
 }
 
+bool PLayer::isDead(Minion *m) {
+    if (m->getDef() <= 0) return true;
+    return false;
+}
+
+
 void Player::moveToGraveyard(int i) {
-    graveyard.push(summoned[i]);
+    graveyard.push(summoned[i]->removeEnchantments(summoned[i]));
     summoned.erase(summoned.begin() + i);
 }
 

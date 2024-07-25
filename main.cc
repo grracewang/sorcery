@@ -142,6 +142,8 @@ int main(int argc, char *argv[]) {
     int curr = 0;
     int next = 1;
     while (true) {
+        players[curr]->notifyStartTurn();
+        players[next]->notifyStartTurn();
         while (true) {
             string command;
 
@@ -215,6 +217,9 @@ int main(int argc, char *argv[]) {
                         players[curr]->replaceMinion(i, opp_minion->attack(cur_minion));
                         cout << "Command: attack minion " << i << j << endl;
 
+                        // if minion is dead mv to graveyard, enchantments removed in moveToGraveyard()
+                        if (players[next]->isDead(opp_minion)) players[next]->moveToGraveyard(j);
+                        if (players[curr]->isDead(cur_minion)) players[curr]->moveToGraveyard(i);
                     }
                 }
                 break;
@@ -230,6 +235,7 @@ int main(int argc, char *argv[]) {
                         if (players[curr]->getHand()[i]->getType() == "Minion") { // places ith card in hand
                             Minion* card = dynamic_cast<Minion*>(players[curr]->removeHandCard(i));
                             players[curr]->addToSummoned(card);
+                            players[curr]->notifyMinionEnter();
                         } else if (players[curr]->getHand()[i]->getType() == "Ritual") { // minion
                             Ritual* card = dynamic_cast<Ritual*>(players[curr]->getHand()[i]);
                             card->attach(players[curr]);

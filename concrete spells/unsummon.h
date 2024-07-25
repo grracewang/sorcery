@@ -12,7 +12,7 @@ class Unsummon: public Spell {
                 std::cout << "Players hand is full, cannot unsummon its minion." << std::endl;
                 return false;
             }
-            Card* target = enemy->removeSummonedMinion(t - 1);
+            Card* target = enemy->removeSummonedMinion(t);
             enemy->addToHand(target);
             return true;
         }
