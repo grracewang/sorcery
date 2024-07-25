@@ -5,7 +5,7 @@
 #include <stack>
 using namespace std;
 
-Board::Board(vector<Player*> players) : players{players} {}
+Board::Board(vector<Player*> &players) : players{players} {}
 
 // prints 5 card_template_t in a row with the border if border is true
 //    and without it otherwise

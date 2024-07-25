@@ -7,10 +7,10 @@ using namespace std;
 
 class Board {
 	private:
-		vector<Player*> players;
+		vector<Player*> &players;
 	public:
         // constructor
-        Board(vector<Player*> players);
+        Board(vector<Player*> &players);
 
         // printing functions
 		ostream &printBoard(ostream &out);
