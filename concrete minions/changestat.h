@@ -33,7 +33,7 @@ class ChangeStat: public Decorator {
         int getActCost() const override;
 		vector<Spell*> getSpells() const override;
         Minion *getMinion() const override;
-        void setMinion(const Minion *) override;
+        void setMinion(Minion *) override;
 
         // unwrapping changestats
         Minion *removeTopEnchantment() override;
