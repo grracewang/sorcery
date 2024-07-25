@@ -76,9 +76,9 @@ vector<Spell*> ChangeStat::getSpells() const {
 
 Minion *ChangeStat::getMinion() const { return target; }
 
-void *ChangeStat::setMinion(const Minion *m) { target = m; }
+void ChangeStat::setMinion(Minion *m) { target = m; }
 
-Minion *removeTopEnchantment() {
+Minion *ChangeStat::removeTopEnchantment() {
     Minion *curr = this; 
     Minion *prev = nullptr;
 
@@ -86,11 +86,10 @@ Minion *removeTopEnchantment() {
         if (curr->isEnchantment()) {
             if (prev) prev->setMinion(curr->getMinion());
             else target = curr->getMinion();
+            curr->setMinion(nullptr);
+            delete curr; 
+            return target;
         }
-
-        curr->setMinion(nullptr);
-        delete curr; 
-        return 
     }
 }
 
