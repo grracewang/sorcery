@@ -8,7 +8,9 @@
 class Spell: public Card {
     public:
         Spell(string name, string description, int cost);
-        virtual bool activate(Player* owner, Player* enemy, int t) = 0;
+        // if called with play i p t: (target, other, t)
+        // if called with play i: (owner, enemy, t)
+        virtual bool activate(Player*, Player*, int t) = 0;
         card_template_t display() const override;
 };
 
