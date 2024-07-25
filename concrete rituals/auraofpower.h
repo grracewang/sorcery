@@ -13,15 +13,14 @@ class AuraOfPower: public Ritual {
         ~AuraOfPower() {
             owner->detachMinionEnter(this);
         }
-        // bool activate(Card *t)  {}
+
         void notify() override {
             charges -= activationCost;
-            if (charges < 0) {
-                owner->removeRitual();
-            } else {
-                Minion* m = owner->getSummonedMinion(owner->getSummoned().size() - 1);
-                m = new ChangeStat{m, "+1", "+1", 0, 0, false, false};
-                owner->replaceMinion()
+            if (charges < 0) owner->removeRitual();
+            else {
+                int idx = owner->getSummoned().size() - 1;
+                Minion* m = owner->getSummonedMinion(idx);
+                owner->replaceMinion(idx, new ChangeStat{m, "+1", "+1", 0, 0, false, false});
             }
         }
         

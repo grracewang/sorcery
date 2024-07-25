@@ -16,7 +16,7 @@ int BoneGolem::getBeginActions() const { return 1; }
 int BoneGolem::getActCost() const { return -1; }
 
 void BoneGolem::addAbility(Player* owner, Player *opponent) {
-    Ritual* r = new BoneGolemAbility(owner, this);
+    Ritual* r = new BoneGolemAbility(owner, owner->getSummoned().size() - 1);
     abilities.emplace_back(r);
     owner->attachMinionLeave(r);
 }
