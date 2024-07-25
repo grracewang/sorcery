@@ -90,7 +90,33 @@ Minion *ChangeStat::removeTopEnchantment() {
             delete curr; 
             return target;
         }
+
+        prev = curr;
+        curr = curr->getMinion();
     }
+
+    return this;
+}
+
+Minion *ChangeStat::removeEnchantments() {
+    Minion *curr = this; 
+    Minion *prev = nullptr;
+
+    while (curr) {
+        if (curr->isEnchantment()) {
+            if (prev) prev->setMinion(curr->getMinion());
+            else target = curr->getMinion();
+            Minion *temp = current;
+            curr->getMinion();
+            temp->setMinion(nullptr);
+            delete temp; 
+        }
+
+        prev = curr;
+        curr = curr->getMinion();
+    }
+
+    return this;
 }
 
 string ChangeStat::toString(char op, int val) {

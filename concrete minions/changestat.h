@@ -37,6 +37,7 @@ class ChangeStat: public Decorator {
 
         // unwrapping changestats
         Minion *removeTopEnchantment() override;
+        Minion *removeEnchantments() override;
 
         // helper function for creating atkStr and defStr
         static string toString(char op, int val);

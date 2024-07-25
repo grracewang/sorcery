@@ -14,12 +14,9 @@ Minion *Minion::getMinion() const { return nullptr; }
 
 void Minion::setMinion(const Minion *m) {}
 
-Minion *Minion::removeEnchantments() {
-  // use removeTopEnchantment to get rid of enchantments
-}
+Minion *Minion::removeEnchantments() { return this; }
 
 Minion *Minion::removeTopEnchantment() { return this; }
-
 
 
 // for attacking minions
