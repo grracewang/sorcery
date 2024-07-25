@@ -10,10 +10,9 @@ int AirElemental::getDef() const { return 1; }
 int AirElemental::getBeginActions() const { return 1; }
 int AirElemental::getActCost() const { return -1; }
 
-void addAbility(Player* owner, Player* opponent) {};
+void AirElemental::addAbility(Player* owner, Player* opponent) {};
 
 vector<Spell*> AirElemental::getSpells() const {
     vector<Spell*> empty;
     return empty;
 }
-

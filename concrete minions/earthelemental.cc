@@ -15,5 +15,5 @@ vector<Spell*> EarthElemental::getSpells() const {
     return empty;
 }
 
-void addAbility(Player* owner, Player *opponent) {}
+void EarthElemental::addAbility(Player* owner, Player *opponent) {}
 
