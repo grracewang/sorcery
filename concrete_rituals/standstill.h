@@ -34,7 +34,7 @@ class Standstill: public Ritual {
             }
         }
 
-        void attach() {
+        void attach() override {
             owner->attachMinionEnter(this);
             opponent->attachMinionEnter(this);
         }
