@@ -5,6 +5,7 @@
 #include "enchantment.h"
 #include "spell.h"
 #include "loaddeck.h"
+#include "board.h"
 
 // concretes
 #include "concrete_spells/blizzard.h"
@@ -77,6 +78,7 @@ int main(int argc, char *argv[]) {
                 cerr << "Cannot open init file" << endl;
                 return 1;
             }
+            in = &fileStream;
 
         } else if (arg == "-deck1") {
             cout << "-deck1 on" << endl;
@@ -109,6 +111,7 @@ int main(int argc, char *argv[]) {
     } // command line loop
     
     vector<Player*> players;
+    unique_ptr<Board> board(new Board{players});
 
     // getting both player's names if not provided (but didn't implement the if not provided part)
     for (i = 1; i <= NUM_PLAYERS; i++) {
@@ -179,7 +182,7 @@ int main(int argc, char *argv[]) {
 
             cout << "Type your command: " << endl;
             cin >> command;
-            
+
             if (cin.fail()) break;
             if (!convertOp(command, op, testing)) {
                 cerr << "Invalid command!" << endl;
@@ -332,19 +335,21 @@ int main(int argc, char *argv[]) {
                 {
                     cin >> i;
                     cout << "Command: inspect" << i << endl;
+
                 }
                 break;
 
                 case Op::HAND:
                 {
                     cout << "Command: hand" << endl;
+                    board->printHand(cout, curr); 
                 }
                 break;
 
                 case Op::BOARD:
                 {
                     cout << "Command: board" << endl;
-
+                    board->printBoard(cout);
                 } 
                 break;
             } // switch
