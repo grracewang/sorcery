@@ -1,6 +1,7 @@
 #ifndef CHANGESTAT_H
 #define CHANGESTAT_H
 #include "decorator.h"
+#include "../card.h"
 #include "../minion.h"
 #include <vector>
 #include <string>
