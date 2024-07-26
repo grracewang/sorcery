@@ -186,7 +186,7 @@ int main(int argc, char *argv[]) {
             *in >> command;
             
 
-            // if (in->fail()) break;
+            if (in->fail() && !init) break;
             if (!convertOp(command, op, testing)) {
                 cerr << "Invalid command!" << endl;
                 continue;
@@ -310,6 +310,7 @@ int main(int argc, char *argv[]) {
                         } else if (selectedCard->getType() == "Spell") {
                             Spell* spell = dynamic_cast<Spell*>(selectedCard);
                             if (spell->activate(players[curr], players[next], -1)) {
+                                players[curr]->removeHandCard(i);
                                 players[curr]->changeMagic(-spell->getCost());
                                 cout << "Played a spell " << spell->getName() << endl;
                                 players[curr]->discard(spell);
@@ -336,7 +337,7 @@ int main(int argc, char *argv[]) {
                         ss >> t;
                         p--;
 
-                        if (players[curr]->getHand()[i]->getType() == "Enchantment") {
+                        if (players[curr]->getHandCard(i)->getType() == "Enchantment") {
                             // if we use enchantments then t must be a minion
                             t -= 49;
                             if (players[p]->getSummoned().size() <= t || t < 0) {
@@ -351,12 +352,13 @@ int main(int argc, char *argv[]) {
                             target = nullptr;
                             e = nullptr;
 
-                        } else if (players[curr]->getHand()[i]->getType() == "Spell") {
-                            Spell* spell = dynamic_cast<Spell*>(players[curr]->removeHandCard(i));
-                            players[curr]->changeMagic(-spell->getCost());
+                        } else if (players[curr]->getHandCard(i)->getType() == "Spell") {
+                            Spell* spell = dynamic_cast<Spell*>(selectedCard);
                             if (p == 1) {
                                 if (spell->activate(players[0], players[1], t)) {
                                     cout << "Player " << players[curr]->getName() << " played " << spell->getName() << endl;
+                                    players[curr]->removeHandCard(i);
+                                    players[curr]->changeMagic(-spell->getCost());
                                     players[curr]->discard(spell);
                                 } else {
                                     cout << "Cannot play spell." << endl;
@@ -364,6 +366,8 @@ int main(int argc, char *argv[]) {
                             } else if (p == 2) { // p = 1
                                 if (spell->activate(players[1], players[0], t)) {
                                     cout << "Player " << players[curr]->getName() << " played " << spell->getName() << endl;
+                                    players[curr]->removeHandCard(i);
+                                    players[curr]->changeMagic(-spell->getCost());
                                     players[curr]->discard(spell);
                                 } else {
                                     cout << "Cannot play spell." << endl;
