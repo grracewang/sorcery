@@ -1,5 +1,8 @@
 #include "player.h"
 #include "minion.h"
+
+#include <stdexcept>
+
 using namespace std;
 
 Player::Player(string name) : name{name}, ritual{nullptr} {}
@@ -26,31 +29,36 @@ vector<Minion*> Player::getSummoned() const { return summoned; }
 
 stack<Minion*> Player::getGraveyard() const { return graveyard; }
 
-Card* Player::getHandCard(int i) const {
-    if (i < 0 || i > hand.size() - 1) return nullptr;
-    return hand[i];
+Card* Player::getHandCard(size_t i) const {
+    try { return hand.at(i); }
+    catch (out_of_range e) { return nullptr; }
 };
 
-Card* Player::removeHandCard(int i) {
-    Card* temp = hand[i];
-    hand.erase(hand.begin() + i);
-    return temp;
+Card* Player::removeHandCard(size_t i) {
+    try { 
+        Card* temp = hand.at(i); 
+        hand.erase(hand.begin() + i);
+        return temp;
+    } catch (out_of_range e) { return nullptr; }
 }
 
-Minion* Player::getSummonedMinion(int i) const {
-    return summoned[i];
+Minion* Player::getSummonedMinion(size_t i) const {
+    try { return summoned.at(i); }
+    catch (out_of_range e) {return nullptr; }
 }
 
-Minion* Player::removeSummonedMinion(int i) {
-    Minion* newMinion = summoned[i];
-    Minion* temp = newMinion;
-    summoned.erase(summoned.begin() + i);
-    notifyMinionLeave();
-    while (temp->getMinion() != nullptr) {
-       temp = temp->getMinion();
-    }
-    temp->removeAbilities(); 
-    return newMinion;
+Minion* Player::removeSummonedMinion(size_t i) {
+    try {
+        Minion* newMinion = summoned.at(i);
+        Minion* temp = newMinion;
+        summoned.erase(summoned.begin() + i);
+        notifyMinionLeave();
+        while (temp->getMinion() != nullptr) {
+        temp = temp->getMinion();
+        }
+        temp->removeAbilities(); 
+        return newMinion;
+    } catch (out_of_range e) {return nullptr; }
 }
 
 Minion* Player::revive() {
@@ -63,12 +71,16 @@ Minion* Player::revive() {
     }
 }
 
-bool Player::fullHand() { return hand.size() == 5; }
+bool Player::fullHand() { return hand.size() >= 5; }
 
 void Player::draw() { // transfers deck card to hand iff fullHand = false
-    Card* card = deck[deck.size() - 1]; // take top of deck
-    addToHand(card);
-    deck.erase(deck.begin() + (deck.size() - 1));
+    if (!fullHand()) {
+        try {
+            Card* card = deck.at(deck.size() - 1); // take top of deck
+            addToHand(card);
+            deck.erase(deck.begin() + (deck.size() - 1));
+        } catch (out_of_range e) {cout << "The deck is empty." << endl; }
+    } else cout << "Your hand is full." << endl;
 }
 
 void Player::addToDeck(Card* card) {
@@ -76,7 +88,7 @@ void Player::addToDeck(Card* card) {
 }
 
 void Player::addToHand(Card* card) {
-    if (hand.size() < 5) hand.emplace_back(card);
+    if (!fullHand()) hand.emplace_back(card);
     else std::cout << "Hand is full." << std::endl;
 }
 
@@ -89,13 +101,15 @@ void Player::addToSummoned(Minion *m, Player *opponent) {
     notifyMinionEnter();
 }
 
-void Player::placeMinion(int i) { // places minion from hand on board
-    Minion *temp = dynamic_cast<Minion*>(hand[i]);
-    summoned.emplace_back(temp);
-    hand.erase(hand.begin() + i);
+void Player::placeMinion(size_t i) { // places minion from hand on board
+    try {
+        Minion *temp = dynamic_cast<Minion*>(hand.at(i));
+        summoned.emplace_back(temp);
+        hand.erase(hand.begin() + i);
+    } catch (out_of_range e) { cout << "Invalid index. Try again." << endl; }
 }
 
-void Player::setSummoned(int i, Minion *newMinion) {
+void Player::setSummoned(size_t i, Minion *newMinion) {
     summoned.erase(summoned.begin() + i);
     summoned.insert(summoned.begin() + i, newMinion);
 }
@@ -112,11 +126,13 @@ void Player::setRitual(Ritual *r) {
     }
 }
 
-void Player::discard(int i) {
-    Card* temp = hand[i];
-    hand.erase(hand.begin() + i);
-    delete temp;
-}
+void Player::discard(size_t i) {
+    try {
+        Card* temp = hand.at(i);
+        hand.erase(hand.begin() + i);
+        delete temp;
+    } catch (out_of_range e) { cout << "Invalid index. Try again." << endl; }
+ }
 
 bool Player::minionDead(Minion *m) {
     if (m->getDef() <= 0) return true;
@@ -124,10 +140,13 @@ bool Player::minionDead(Minion *m) {
 }
 
 
-void Player::moveToGraveyard(int i) {
-    Minion* m = Minion::removeEnchantments(summoned[i]);
-    setSummoned(i, m);
-    graveyard.push(removeSummonedMinion(i));
+void Player::moveToGraveyard(size_t i) {
+    try {
+        Minion* m = Minion::removeEnchantments(summoned.at(i));
+        setSummoned(i, m);
+        graveyard.push(removeSummonedMinion(i));
+    } catch (out_of_range e) {cout << "Invalid index." << endl;}
+    
 }
 
 void Player::discard(Card* spell) {
@@ -145,6 +164,6 @@ void Player::changeState() {
 }
 
 // printing
-card_template_t Player::display(int player_num) const {
+card_template_t Player::display(size_t player_num) const {
   return display_player_card(player_num, name, life, magic);
 }

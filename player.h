@@ -24,7 +24,6 @@ class Player : public Subject{
 		stack<Minion*> graveyard;
 		bool playing; // switch it whenever we play
 	public:
-		static inline const int MAX_SUMMONED = 5;
         explicit Player(string name);
 		virtual ~Player();
 
@@ -43,38 +42,38 @@ class Player : public Subject{
 		vector<Card*> getHand() const;
 
 		vector<Minion*> getSummoned() const;
-		void setSummoned(int i, Minion *newMinion); // replaces minion at pos i with newMinion
+		void setSummoned(size_t i, Minion *newMinion); // replaces minion at pos i with newMinion
 
 		stack<Minion*> getGraveyard() const; // returns top value 
 
-		Card* getHandCard(int i) const;
-		Card* removeHandCard(int i);
-		Minion* getSummonedMinion(int i) const;
-		Minion* removeSummonedMinion(int i);
+		Card* getHandCard(size_t i) const;
+		Card* removeHandCard(size_t i);
+		Minion* getSummonedMinion(size_t i) const;
+		Minion* removeSummonedMinion(size_t i);
 		
 		// other method
 		Minion* revive(); // returns top of stack and pops it
 		bool fullHand(); // checks if hand is full
 		void draw(); // transfers deck card to hand iff fullHand = false
 
-		void placeMinion(int i); // places hand card to board
+		void placeMinion(size_t i); // places hand card to board
 
 		void addToDeck(Card*);
 		void addToHand(Card*);
 		void addToSummoned(Minion*, Player*);
 
-		void discard(int i); // discards i-th card, just trashes it, used in testing mode
+		void discard(size_t i); // discards i-th card, just trashes it, used in testing mode
 		void discard(Card*); // takes in a spell
 		bool minionDead(Minion *m);
-		void moveToGraveyard(int i);
+		void moveToGraveyard(size_t i);
 		
 
 		//observer pattern methods
 		bool isPlaying(); // aka getState
 		void changeState(); // change turns
 
-		// printing
-		card_template_t display(int player_num) const;
+		// prsize_ting
+		card_template_t display(size_t player_num) const;
 		
 };
 
