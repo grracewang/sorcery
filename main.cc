@@ -56,7 +56,12 @@ int main(int argc, char *argv[]) {
     bool setDeck2 = false;
     bool graphics = false;
 
+    // ifstream setup
+    ifstream fileStream;
+    istream *in = &cin;
+
     int i = 0;
+
     // set up arguments
     while (i < argc) {
 		string arg = argv[i]; 
@@ -67,25 +72,35 @@ int main(int argc, char *argv[]) {
             ++i;
             arg = argv[i];
             initFile = arg;
+            fileStream.open(initFile);
+            if(!fileStream.is_open()) {
+                cerr << "Cannot open init file" << endl;
+                return 1;
+            }
+
         } else if (arg == "-deck1") {
             cout << "-deck1 on" << endl;
             setDeck1 = true;
             ++i;
             arg = argv[i];
             deck1 = arg;
+
         } else if (arg == "-deck2") {
             cout << "-deck2 on" << endl;
             setDeck2 = true;
             ++i;
             arg = argv[i];
             deck2 = arg;
+
         } else if (arg == "-graphics") {
             cout << "graphics on" << endl;
             graphics = true;
+
         } else if (arg == "-testing") {
             cout << "testing mode on" << endl;
             testing = true;
         } 
+        
         // else {
         //     cerr << "Not a valid command line argument" << endl;
         // }
@@ -98,10 +113,17 @@ int main(int argc, char *argv[]) {
     // getting both player's names if not provided (but didn't implement the if not provided part)
     for (i = 1; i <= NUM_PLAYERS; i++) {
         string name;
-
         cout << "What's player " << i << "'s name?" << endl;
-        cin >> name;
+
+        if (init && in->eof()) {
+            fileStream.close();
+            in = &cin;
+            init = false;
+        }
+
+        *in >> name;
         players.emplace_back(new Player{name});
+
     }
 
     ifstream d1;
@@ -130,19 +152,16 @@ int main(int argc, char *argv[]) {
 
     // shuffle deck
     shuffleDeck(players[0]->getDeck());
-    // for (int i = 0; i < players[0]->getDeck().size(); ++i) {
-    //     cerr << players[0]->getDeck()[i]->getName() << endl;
-    // } 
     shuffleDeck(players[1]->getDeck());
-    // for (int i = 0; i < players[1]->getDeck().size(); ++i) {
-    //     cerr << players[1]->getDeck()[i]->getName() << endl;
-    // } 
     cout << "Decks shuffled successfully!" << endl;
 
     Op op;
     int curr = 0;
     int next = 1;
     while (true) {
+
+        cerr << "Active player: " << players[curr]->getName() << endl;
+
         players[curr]->notifyPreTurn();
         players[next]->notifyPreTurn();
 
@@ -152,8 +171,15 @@ int main(int argc, char *argv[]) {
         while (true) {
             string command;
 
+            if (init && in->eof()) {
+                fileStream.close();
+                in = &cin;
+                init = false;
+            }
+
             cout << "Type your command: " << endl;
             cin >> command;
+            
             if (cin.fail()) break;
             if (!convertOp(command, op, testing)) {
                 cerr << "Invalid command!" << endl;
@@ -318,6 +344,7 @@ int main(int argc, char *argv[]) {
                 case Op::BOARD:
                 {
                     cout << "Command: board" << endl;
+
                 } 
                 break;
             } // switch
