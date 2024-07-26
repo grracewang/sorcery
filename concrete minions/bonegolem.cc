@@ -18,6 +18,7 @@ void BoneGolem::addAbility(Player* owner, Player *opponent) {
     Ritual* r = new BoneGolemAbility(owner, owner->getSummoned().size() - 1);
     rituals.emplace_back(r);
     owner->attachMinionLeave(r);
+    opponent->attachMinionLeave(r);
 }
 
 vector<Spell*> BoneGolem::getSpells() const {
