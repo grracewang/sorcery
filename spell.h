@@ -12,6 +12,7 @@ class Spell: public Card {
         // if called with play i: (owner, enemy, t)
         virtual bool activate(Player*, Player*, size_t t) = 0;
         card_template_t display() const override;
+        virtual ~Spell();
 };
 
 #endif

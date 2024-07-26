@@ -24,3 +24,5 @@ card_template_t Enchantment::display() const {
             atkStr, defStr);
     }
 }
+
+Enchantment::~Enchantment() {}

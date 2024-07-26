@@ -11,7 +11,7 @@ class Ritual: public Card {
         Player *owner;
     public:
         explicit Ritual(string, string, int, int, int, Player *);
-        ~Ritual();
+        virtual ~Ritual();
         virtual void notify() = 0;
         virtual void attach() = 0;
         int getCharges() const;

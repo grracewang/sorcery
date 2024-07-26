@@ -10,3 +10,5 @@ Spell::Spell(string name, string description, int cost) {
 card_template_t Spell::display() const {
   return display_spell(name, cost, description);
 }
+
+Spell::~Spell() {}
