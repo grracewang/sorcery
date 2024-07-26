@@ -280,8 +280,6 @@ int main(int argc, char *argv[]) {
                     ss >> i >> p;
                     i--;
 
-cerr << "size:" << players[curr]->getHand().size() << endl;
-
                     if (ss.fail()) {
                         // check if card played is minion, if it's a minion we call all the spells/rituals minion related
                         Card *playedCard = players[curr]->getHandCard(i);
@@ -371,7 +369,7 @@ cerr << "size:" << players[curr]->getHand().size() << endl;
                     cout << "Command: use" << i << endl;    
                 }
                 break;
-                
+
 
                 case Op::INSPECT:
                 {
