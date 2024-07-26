@@ -18,6 +18,7 @@ void PotionSeller::addAbility(Player* owner, Player *opponent) {
     Ritual* r = new PotionSellerAbility(owner);
     rituals.emplace_back(r);
     owner->attachAfterTurn(r);
+    r = nullptr;
 
 };
 

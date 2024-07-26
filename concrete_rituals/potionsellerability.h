@@ -14,15 +14,18 @@ class PotionSellerAbility: public Ritual {
         ~PotionSellerAbility() { owner->detachAfterTurn(this); }
 
         void notify() override {
-            size_t size = owner->getSummoned().size();
-            for (size_t i = 0; i < size; i++) {
-                Minion* m = owner->getSummonedMinion(i);
-                owner->setSummoned(i, new ChangeStat{m, "+0", "+1", 0, 0, false, nullptr});
+            if (owner != nullptr) {
+                vector<Minion*> vec = owner->getSummoned();
+                int size = vec.size();
+                for (int i = 0; i < size; i++) {
+                    Minion* m = owner->getSummonedMinion(i);
+                    owner->setSummoned(i, new ChangeStat{m, "+0", "+1", 0, 0, false, nullptr});
+                }
             }
         }
 
         void attach() override {
-            owner->detachAfterTurn(this);
+            owner->attachAfterTurn(this);
         }
 };
 

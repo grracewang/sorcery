@@ -2,7 +2,7 @@
 
 Ritual::Ritual(string name, string description, int cost, int charges,
                int activationCost, Player* owner):
-    charges{charges}, activationCost{activationCost} {
+    charges{charges}, activationCost{activationCost}, owner{owner} {
   this->name = name;
   this->type = "Ritual";
   this->description = description;
