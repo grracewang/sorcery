@@ -26,7 +26,10 @@ vector<Minion*> Player::getSummoned() const { return summoned; }
 
 stack<Minion*> Player::getGraveyard() const { return graveyard; }
 
-Card* Player::getHandCard(int i) const { return hand[i]; };
+Card* Player::getHandCard(int i) const {
+    if (i < 0 || i > hand.size() - 1) return nullptr;
+    return hand[i];
+};
 
 Card* Player::removeHandCard(int i) {
     Card* temp = hand[i];
