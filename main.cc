@@ -222,7 +222,6 @@ int main(int argc, char *argv[]) {
                 {
                     players[curr]->draw();
                     cout << "Command: Card drawn for player " << curr + 1 << endl;
-                    // cerr << "Hand size is: " << players[curr]->getHand().size() << endl;
                     for (int i = 0; i < players[curr]->getHand().size(); i++) {
                         cout << "Card drawn is: " << players[curr]->getHand()[i]->getName() << endl;
                     }
@@ -255,12 +254,12 @@ int main(int argc, char *argv[]) {
                             cout << "Attacked player " << players[next]->getName() << endl;
                             // change actions to 0
                             if (players[next]->getLife() <= 0) {
-                                cout << players[curr]->getName() << "has won!" << endl;
+                                cout << players[curr]->getName() << " has won!" << endl;
                                 op = Op::QUIT;
                                 break;
                             } 
                         } else {
-                            cout << "Minion " << i + 1 << " has no more actions this turn. " << endl;
+                            cout << "Minion " << i + 1 << " has no more actions this turn." << endl;
                         }
                         
                     } else {
@@ -302,7 +301,7 @@ int main(int argc, char *argv[]) {
 
                     if (ss.fail()) {
                         if (selectedCard->getType() == "Ritual") { 
-                            Ritual *ritual = dynamic_cast<Ritual*>(selectedCard);
+                            Ritual *ritual = dynamic_cast<Ritual*>(players[curr]->removeHandCard(i));
                             players[curr]->setRitual(ritual); // automatically attaches (resource managed), error here
                             players[curr]->changeMagic(-ritual->getCost()); // subtract ritual cost
                             cout << "Played a ritual " << ritual->getName() << endl;
@@ -324,7 +323,7 @@ int main(int argc, char *argv[]) {
                             continue;
 
                         } else { // case where card is minion
-                            Minion* card = dynamic_cast<Minion*>(selectedCard);
+                            Minion* card = dynamic_cast<Minion*>(players[curr]->removeHandCard(i));
                             players[curr]->addToSummoned(card, players[next]); // already notifies
                             players[curr]->changeMagic(-card->getCost());
                             card->resetAction(); // add an action when summoning a minion
