@@ -239,12 +239,12 @@ int main(int argc, char *argv[]) {
                     stringstream ss{args};
                     int j;
                     ss >> i >> j;
-                    if (i > players[curr]->getSummoned().size()) {
+                    i--;
+                    Minion *cur_minion = players[curr]->getSummonedMinion(i);
+                    if (!cur_minion) {
                         cout << "Out of range input." << endl;
                         continue;
                     }
-                    i--;
-                    Minion *cur_minion = players[curr]->getSummonedMinion(i);
                     // cur_minion->resetAction();
                     cout << "Player " << players[curr]->getName() << " used " << cur_minion->getName() << endl;
                     if (ss.fail()) {
