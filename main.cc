@@ -286,10 +286,6 @@ int main(int argc, char *argv[]) {
                     getline(*in, args);
                     stringstream ss{args};
                     int p; // t-th card owned by player
-                    if (i > players[curr]->getHand().size()) {
-                        cout << "Out of range input." << endl;
-                        continue;
-                    }
                     ss >> i >> p;
                     
                     i--;
