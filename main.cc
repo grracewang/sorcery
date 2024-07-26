@@ -14,6 +14,7 @@
 #include <utility>
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <vector>
 #include <string>
 using namespace std;
@@ -117,16 +118,15 @@ int main(int argc, char *argv[]) {
     for (i = 1; i <= NUM_PLAYERS; i++) {
         string name;
         cout << "What's player " << i << "'s name?" << endl;
-
-        if (init && in->eof()) {
+        *in >> name;
+        if (in->eof() && init) {
             fileStream.close();
             in = &cin;
             init = false;
+            cin.clear();
+            cout << "Switching to standard input" << endl;
         }
-
-        *in >> name;
         players.emplace_back(new Player{name});
-
     }
 
     ifstream d1;
@@ -166,24 +166,28 @@ int main(int argc, char *argv[]) {
         cerr << "Active player: " << players[curr]->getName() << endl;
 
         players[curr]->notifyPreTurn();
-        players[next]->notifyPreTurn();
 
         players[curr]->changeMagic(1);
         players[curr]->draw();
+        for (auto minion : players[curr]->getSummoned()) {
+            minion->resetAction();
+        }
 
         while (true) {
             string command;
 
-            if (init && in->eof()) {
+            if (in->eof() && init) {
                 fileStream.close();
                 in = &cin;
                 init = false;
+                cin.clear();
+                cout << "Switching to standard input" << endl;
             }
 
             cout << "Type your command: " << endl;
-            cin >> command;
+            *in >> command;
 
-            if (cin.fail()) break;
+            if (in->fail()) break;
             if (!convertOp(command, op, testing)) {
                 cerr << "Invalid command!" << endl;
                 continue;
@@ -228,7 +232,7 @@ int main(int argc, char *argv[]) {
 
                 case Op::DISCARD:
                 {
-                    cin >> i;
+                    *in >> i;
                     players[curr]->discard(i);
                     cout << "Command: Discarded card " << i << " of player " << curr + 1 << endl;
                 }
@@ -237,11 +241,11 @@ int main(int argc, char *argv[]) {
                 case Op::ATTACK:
                 {
                     int j;
-                    cin >> i >> j;
+                    *in >> i >> j;
                     i -= 1;
                     Minion *cur_minion = players[curr]->getSummonedMinion(i);
-                    if (cin.fail()) {
-                        cin.clear();
+                    if (in->fail()) {
+                        in->clear();
                         cur_minion->attack(players[next]);
                         cout << "Command: attack player " << i << endl;
 
@@ -266,11 +270,13 @@ int main(int argc, char *argv[]) {
 
                 case Op::PLAY:
                 {
+                    string args;
+                    getline(*in, args);
+                    stringstream ss{args};
                     int p; // t-th card owned by player
-                    cin >> i >> p;
-                    i -= 1;
-                    if (cin.fail()) {
-                        cin.clear();
+                    ss >> i >> p;
+                    i--;
+                    if (ss.fail()) {
                         // check if card played is minion, if it's a minion we call all the spells/rituals minion related
                         if (players[curr]->getHand()[i]->getType() == "Minion") { // places ith card in hand
                             Minion* card = dynamic_cast<Minion*>(players[curr]->removeHandCard(i));
@@ -287,8 +293,8 @@ int main(int argc, char *argv[]) {
                         }   
                     } else {
                         char t; // t can only be 30, 31, 32, 33, 34, 114 (= r) (ascii)
-                        cin >> t;
-                        p -= 1;
+                        ss >> t;
+                        p--;
                         if (players[curr]->getHand()[i]->getType() == "Enchantment") {
                             // if we use enchantments then t must be a minion
                             Enchantment* e = dynamic_cast<Enchantment*>(players[curr]->removeHandCard(i));
@@ -310,16 +316,27 @@ int main(int argc, char *argv[]) {
 
                 case Op::USE:
                 {
+                    string args;
+                    getline(*in, args);
+                    stringstream ss{args};
+                    ss >> i;
+                    if (ss.fail()) {
+                        cout << "Invalid parameters for use, try command again" << endl;
+                        continue;
+                    }
+
+                    i--;
+                    Spell *spell = players[curr]->getSummonedMinion(i)->getSpells()[0];
+
                     int p;
-                    cin >> i >> p;
-                    i -= 1;
-                    if (cin.fail()) {
-                        cin.clear();
+                    ss >> p;
+                    if (ss.fail()) {
+                        // here
 
                     } else {
                         char t; // t can only be 30, 31, 32, 33, 34, 114 (= r)
-                        cin >> t;
-                        p -= 1;
+                        *in >> t;
+                        p--;
                         if (p == 0) {
                             
                         } else {
@@ -333,7 +350,7 @@ int main(int argc, char *argv[]) {
 
                 case Op::INSPECT:
                 {
-                    cin >> i;
+                    *in >> i;
                     cout << "Command: inspect" << i << endl;
 
                 }
@@ -363,7 +380,7 @@ int main(int argc, char *argv[]) {
         swap(curr, next);
 
         // force end game
-        if (op == Op::QUIT || cin.fail()) break;
+        if (op == Op::QUIT || in->fail()) break;
 
         // if winning condition -> print win message, break from game loop
 
