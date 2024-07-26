@@ -239,7 +239,7 @@ int main(int argc, char *argv[]) {
                     stringstream ss{args};
                     int j;
                     ss >> i >> j;
-                    if (i > players[curr]->getHand().size()) {
+                    if (i > players[curr]->getSummoned().size()) {
                         cout << "Out of range input." << endl;
                         continue;
                     }
@@ -397,7 +397,7 @@ int main(int argc, char *argv[]) {
                     if (ss.fail()) {
                         cout << "Invalid parameters for use, try command again" << endl;
                         continue;
-                    } else if (i > players[curr]->getHand().size()) {
+                    } else if (i > players[curr]->getSummoned().size()) {
                         cout << "Out of range input." << endl;
                         continue;
                     }
