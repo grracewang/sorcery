@@ -52,17 +52,6 @@ void Subject::detachMinionLeave(Ritual *r) {
   }
 }
 
-// void Subject::notify() const {
-//     // if preturn
-//     for (auto ritual : preTurn) ritual->notify();
-//     // if after turn
-//     for (auto ritual : afterTurn) ritual->notify();
-//     // if minion enters
-//     for (auto ritual : minionEnter) ritual->notify();
-//     // if minion leaves
-//     for (auto ritual : minionLeave) ritual->notify();
-// }
-
 void Subject::notifyPreTurn() const {
     for (auto ritual : preTurn) ritual->notify();
 }
@@ -70,9 +59,11 @@ void Subject::notifyPreTurn() const {
 void Subject::notifyAfterTurn() const {
     for (auto ritual : afterTurn) ritual->notify();
 }
+
 void Subject::notifyMinionEnter() const {
     for (auto ritual : minionEnter) ritual->notify();
 }
+
 void Subject::notifyMinionLeave() const {
     for (auto ritual : minionLeave) ritual->notify();
 }

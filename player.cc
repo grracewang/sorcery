@@ -103,6 +103,7 @@ void Player::setSummoned(int i, Minion *newMinion) {
 void Player::setRitual(Ritual *r) {
     if (ritual != nullptr) { // delete old ritual, mutate vector
         Ritual* temp = ritual;
+        ritual = nullptr;
         delete temp;
     }
     ritual = r; 
