@@ -9,7 +9,12 @@ class MagicFatigue: public Enchantment {
     public:
         explicit MagicFatigue(): Enchantment{"Magic Fatigue", "Enchanted minion's activated ability costs 2 more", 0} {}
         Minion *activate(Minion *t) override {
-            return new ChangeStat{t, getAtkStr(), getDefStr(), 0, 2, false, this};
+            if (t->getDescription() != "" && !t->getSpells().empty()) {
+                return new ChangeStat{t, getAtkStr(), getDefStr(), 0, 2, false, this};
+            }
+            cout << "Minion has no ability to use this enchantment on." << endl;
+            return t;
+
         }
 };
 

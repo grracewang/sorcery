@@ -49,14 +49,15 @@ Minion* Player::getSummonedMinion(size_t i) const {
 
 Minion* Player::removeSummonedMinion(size_t i) {
     try {
-        Minion* newMinion = summoned.at(i);
-        Minion* temp = newMinion;
+        Minion* newMinion = summoned[i];
         summoned.erase(summoned.begin() + i);
+        Minion* temp = newMinion;
         notifyMinionLeave();
         while (temp->getMinion() != nullptr) {
-        temp = temp->getMinion();
+            temp = temp->getMinion();
         }
         temp->removeAbilities(); 
+        temp = nullptr;
         return newMinion;
     } catch (out_of_range e) { return nullptr; }
 }
@@ -98,7 +99,7 @@ void Player::addToSummoned(Minion *m, Player *opponent) {
         m = m->getMinion();
     }
     m->addAbility(this, opponent); // mutating the base minion
-    notifyMinionEnter();
+    notifyMinionEnter(); // if standstill is in effect then the minion is immediattely deleted
 }
 
 void Player::placeMinion(size_t i) { // places minion from hand on board
@@ -125,7 +126,9 @@ void Player::setRitual(Ritual *r) {
     // mutate vector
     ritual = r; 
     if (ritual) {
+        
         ritual->attach();
+        cout << "added ritual" << endl;
     }
 }
 

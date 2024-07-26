@@ -245,7 +245,7 @@ int main(int argc, char *argv[]) {
                     ss >> i >> j;
                     i--;
                     Minion *cur_minion = players[curr]->getSummonedMinion(i);
-                    cur_minion->resetAction();
+                    // cur_minion->resetAction();
                     cout << "Player " << players[curr]->getName() << " used " << cur_minion->getName() << endl;
                     if (ss.fail()) {
                         in->clear();
@@ -289,7 +289,9 @@ int main(int argc, char *argv[]) {
                     ss >> i >> p;
                     i--;
                     Card *selectedCard = players[curr]->getHandCard(i);
-
+                    if (selectedCard == nullptr) {
+                        cout << "Your card was destroyed by the Standstill ability" << endl;
+                    }
                     // make sure card is value/index is in scope
                     if (!selectedCard) {
                         cout << "You do not have a card at this position in your hand. Please try another command." << endl;
@@ -300,6 +302,7 @@ int main(int argc, char *argv[]) {
                     }
 
                     if (ss.fail()) {
+                        
                         if (selectedCard->getType() == "Ritual") { 
                             Ritual *ritual = dynamic_cast<Ritual*>(players[curr]->removeHandCard(i));
                             players[curr]->setRitual(ritual); // automatically attaches (resource managed), error here
@@ -325,10 +328,11 @@ int main(int argc, char *argv[]) {
 
                         } else { // case where card is minion
                             Minion* card = dynamic_cast<Minion*>(players[curr]->removeHandCard(i));
-                            players[curr]->addToSummoned(card, players[next]); // already notifies
                             players[curr]->changeMagic(-card->getCost());
-                            card->resetAction(); // add an action when summoning a minion
                             cout << "Player " << players[curr]->getName() << " summoned " << card->getName() << endl;
+                            players[curr]->addToSummoned(card, players[next]); // already notifies
+                            
+                            
                             card = nullptr;
                         }
 
@@ -345,12 +349,15 @@ int main(int argc, char *argv[]) {
                                 continue;
                             }
                             Enchantment* e = dynamic_cast<Enchantment*>(players[curr]->removeHandCard(i));
-                            Minion* target = players[p]->getSummonedMinion(t);
-                            players[p]->setSummoned(t, e->activate(target));
-                            players[curr]->changeMagic(-e->getCost());
-                            cout << "Player " << players[curr]->getName() << " used " << e->getName() << " on " << target->getName() << endl;
-                            target = nullptr;
-                            e = nullptr;
+                            Minion* target = players[p]->getSummonedMinion(t); // index t
+                            Minion* changedTarget = e->activate(target);
+                            if (changedTarget != target) {
+                                players[curr]->changeMagic(-e->getCost());
+                                players[p]->setSummoned(t, changedTarget);
+                                cout << "Player " << players[curr]->getName() << " used " << e->getName() << " on " << target->getName() << endl;
+                            } else {
+                                players[curr]->addToHand(e); // add back to hand if unusable
+                            }
 
                         } else if (players[curr]->getHandCard(i)->getType() == "Spell") {
                             Spell* spell = dynamic_cast<Spell*>(selectedCard);

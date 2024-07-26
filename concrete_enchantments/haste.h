@@ -12,7 +12,11 @@ class Haste: public Enchantment {
     public: 
         explicit Haste(): Enchantment{"Haste", "Enchanted minion gains +1 action each turn", 1} {}
         Minion *activate(Minion *t) override {
-            return new ChangeStat{t, getAtkStr(), getDefStr(), 1, 0, false, this};
+            if (t->getDescription() != "" && !t->getSpells().empty()) {
+                return new ChangeStat{t, getAtkStr(), getDefStr(), 1, 0, false, this};
+            } 
+            cout << "Minion has no ability to use this enchantment on." << endl;
+            return t;
         }
 };
 

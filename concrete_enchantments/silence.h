@@ -26,8 +26,12 @@ class Silence: public Enchantment {
         }
 
         Minion *activate(Minion *t) override {
-            t->removeAbilities();
-            minion = new ChangeStat{t, getAtkStr(), getDefStr(), 0, 0, true, this};
+            if (t->getDescription() != "" && !t->getSpells().empty()) {
+                t->removeAbilities();
+                minion = new ChangeStat{t, getAtkStr(), getDefStr(), 0, 0, true, this}; 
+            } else {
+                cout << "Minion has no ability to use this enchantment on." << endl;
+            }
             return minion;
         }
 };
