@@ -3,7 +3,10 @@
 
 string ApprenticeSummoner::getName() const { return "Apprentice Summoner"; }
 string ApprenticeSummoner::getType() const { return "Minion"; }
-string ApprenticeSummoner::getDescription() const { return "Summon a 1/1 air elemental"; }
+string ApprenticeSummoner::getDescription() const {
+    if (getSpells().empty()) return "";
+    else return getSpells()[0]->getDescription();
+}
 int ApprenticeSummoner::getCost() const { return 1; }
 
 int ApprenticeSummoner::getAtk() const { return 1; }

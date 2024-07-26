@@ -15,6 +15,10 @@ ChangeStat::ChangeStat(Minion *target, string atkStr, string defStr,
 // normal unchanged getters
 string ChangeStat::getName() const { return target->getName(); }
 string ChangeStat::getType() const { return target->getType(); }
+string ChangeStat::getDescription() const {
+    if (getSpells().empty()) return target->getDescription();
+    else return getSpells()[0]->getDescription();
+}
 int ChangeStat::getCost() const { return target->getCost(); }
 
 int ChangeStat::getAtk() const  {

@@ -57,7 +57,6 @@ void printMinionRow(ostream &out, const vector<Minion*> minions) {
     for ( ; i < 5; i++) {
         minionCards.emplace_back(CARD_TEMPLATE_BORDER);
     }
-    // cerr << i << endl;
     printRowCards(out, minionCards, true);
 }
 

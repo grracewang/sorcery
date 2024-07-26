@@ -1,11 +1,6 @@
 #include "minion.h"
 #include "./concrete_minions/changestat.h"
 
-string Minion::getDescription() const {
-    if (getSpells().empty() && getDescription() == "") return "";
-    else return getSpells()[0]->getDescription();
-}
-
 int Minion::getCost() const { return 0; }
 
 int Minion::getAction() const { return actions; }

@@ -3,6 +3,10 @@
 
 string NovicePyromancer::getName() const { return "Novice Pyromancer"; }
 string NovicePyromancer::getType() const { return "Minion"; }
+string NovicePyromancer::getDescription() const {
+    if (getSpells().empty()) return "";
+    else return getSpells()[0]->getDescription();
+}
 int NovicePyromancer::getCost() const { return 1; }
 
 int NovicePyromancer::getAtk() const { return 0; }

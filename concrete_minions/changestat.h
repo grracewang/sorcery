@@ -25,6 +25,7 @@ class ChangeStat: public Decorator {
         // normal getters (not changed by decorators)
 		string getName() const override;
 		string getType() const override;
+		string getDescription() const override;
 		int getCost() const override;
 
         // getters changed by decorators

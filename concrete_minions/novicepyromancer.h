@@ -11,6 +11,7 @@ class NovicePyromancer : public Minion {
         // normal getters (not changed by decorators)
 		string getName() const override;
 		string getType() const override;
+		string getDescription() const override;
 		int getCost() const override;
 
 		// getters changed by decorators

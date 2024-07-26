@@ -3,7 +3,10 @@
 
 string MasterSummoner::getName() const { return "Master Summoner"; }
 string MasterSummoner::getType() const { return "Minion"; }
-string MasterSummoner::getDescription() const { return "Summon up to three 1/1 air elementals"; }
+string MasterSummoner::getDescription() const {
+    if (getSpells().empty()) return "";
+    else return getSpells()[0]->getDescription();
+}
 int MasterSummoner::getCost() const { return 3; }
 
 int MasterSummoner::getAtk() const { return 2; }
