@@ -426,8 +426,9 @@ int main(int argc, char *argv[]) {
                 case Op::INSPECT:
                 {
                     *in >> i;
+                    i--;
                     cout << "Command: inspect" << i << endl;
-
+                    board->inspect(cout, players[curr]->getSummonedMinion(i));
                 }
                 break;
 
