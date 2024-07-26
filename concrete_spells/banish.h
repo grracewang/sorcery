@@ -15,6 +15,7 @@ class Banish: public Spell {
                 }
                 target->setRitual(nullptr); // also detaches ritual from owner
             } else {
+                t -= 49;
                 if (target->getSummoned().size() < t) {
                     std::cout << "This minion does not exist." << std::endl;
                     return false;

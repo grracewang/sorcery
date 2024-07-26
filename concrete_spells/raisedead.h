@@ -4,6 +4,7 @@
 #include "../player.h"
 #include "../concrete_minions/changestat.h"
 #include <string>
+using namespace std;
 
 class RaiseDead: public Spell {
     public:
