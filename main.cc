@@ -71,7 +71,7 @@ int main(int argc, char *argv[]) {
 		if (arg == "-init") {
             cout << "-init on" << endl;
             init = true;
-            ++i;
+            i++;
             arg = argv[i];
             initFile = arg;
             fileStream.open(initFile);
@@ -185,8 +185,7 @@ int main(int argc, char *argv[]) {
             cout << "Type your command: " << endl;
             *in >> command;
             
-
-            if (in->fail()) break;
+            
             if (!convertOp(command, op, testing)) {
                 cerr << "Invalid command!" << endl;
                 continue;
