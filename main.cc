@@ -392,7 +392,7 @@ int main(int argc, char *argv[]) {
                     }
 
                     i--;
-                    cout << "use"<< endl;
+                    cout << "use"<< i << endl;
                     Spell *spell = players[curr]->getSummonedMinion(i)->getSpells()[0];
 
                     int p;
