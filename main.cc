@@ -279,16 +279,16 @@ int main(int argc, char *argv[]) {
                     int p; // t-th card owned by player
                     ss >> i >> p;
                     i--;
+                    Card *playedCard = players[curr]->getHandCard(i);
+
+                    // make sure card is value/index is in scope
+                    if (!playedCard) {
+                        cout << "You do not have a card at this position in your hand. Please try another command." << endl;
+                        continue;
+                    }
 
                     if (ss.fail()) {
                         // check if card played is minion, if it's a minion we call all the spells/rituals minion related
-                        Card *playedCard = players[curr]->getHandCard(i);
-
-                        // make sure card is value/index is in scope
-                        if (!playedCard) {
-                            cout << "You do not have a card at this position in your hand. Please try another command." << endl;
-                            continue;
-                        }
 
                         if (playedCard->getType() == "Ritual") { 
                             Ritual *ritual = dynamic_cast<Ritual*>(playedCard);
@@ -309,21 +309,31 @@ int main(int argc, char *argv[]) {
                         }
 
                     } else {
-                        char t; // t can only be 30, 31, 32, 33, 34, 114 (= r) (ascii)
+                        char t; // t can only be 49, 50, 51, 52, 53, 114 (= r) (ascii)
                         ss >> t;
                         p--;
+
                         if (players[curr]->getHand()[i]->getType() == "Enchantment") {
                             // if we use enchantments then t must be a minion
+                            t -= 49;
+                            if (players[p]->getSummoned().size() <= t || t < 0) {
+                                cout << "Target card is invalid. Try another command." << endl;
+                                continue;
+                            }
                             Enchantment* e = dynamic_cast<Enchantment*>(players[curr]->removeHandCard(i));
-                            Minion* target = players[p]->getSummonedMinion(t - 1);
-                            players[p]->setSummoned(t - 1, e->activate(target));
+                            Minion* target = players[p]->getSummonedMinion(t);
+                            players[p]->setSummoned(t, e->activate(target));
+
                         } else if (players[curr]->getHand()[i]->getType() == "Spell") {
                             Spell* spell = dynamic_cast<Spell*>(players[curr]->removeHandCard(i));
-                            if (p == 0) {
+                            if (p == 1) {
                                 if (spell->activate(players[0], players[1], t)) players[curr]->discard(spell);
-                            } else { // p = 1
+                            } else if (p == 2) { // p = 1
                                 if (spell->activate(players[1], players[0], t)) players[curr]->discard(spell);
+                            } else {
+                                cout << "Cannot call command on this player." << endl;
                             }
+                            
                         } else {
                             cout << "Cannot call command on this card." << endl;
                         }
@@ -356,17 +366,19 @@ int main(int argc, char *argv[]) {
                         char t; // t can only be 49, 50, 51, 52, 53, 114 (= r)
                         *in >> t;
                         p--;
-                        if (p == 0) {
-                            if (spell->activate(players[curr], players[next], t)) {
+                        if (p == 1) {
+                            if (spell->activate(players[0], players[1], t)) {
+                                delete players[curr]->removeHandCard(i);
+                            }
+                        } else if (p == 2) {
+                            if (spell->activate(players[1], players[0], t)) {
                                 delete players[curr]->removeHandCard(i);
                             }
                         } else {
-                            if (spell->activate(players[next], players[curr], t)) {
-                                delete players[curr]->removeHandCard(i);
-                            }
+                            cout << "Invalid player index" << endl;
                         }
                     }
-                    cout << "Command: use" << i << endl;    
+                    cout << "Command: use" << i << endl;  
                 }
                 break;
 
