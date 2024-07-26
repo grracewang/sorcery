@@ -416,6 +416,7 @@ int main(int argc, char *argv[]) {
                     ss >> p;
                     if (ss.fail()) {
                         if (spell->activate(players[curr], players[next], -1)) {
+                            players[curr]->changeMagic(-spell->getCost());
                             cout << "Activated ability of minion was used" << endl;
                         } else {
                             cout << "Cannot use ability." << endl;
@@ -427,12 +428,14 @@ int main(int argc, char *argv[]) {
                         p--;
                         if (p == 1) {
                             if (spell->activate(players[0], players[1], t)) {
+                                players[curr]->changeMagic(-spell->getCost());
                                 cout << "Activated ability of minion was used" << endl;
                             } else {
                                 cout << "Cannot use ability." << endl;
                             }
                         } else if (p == 2) {
                             if (spell->activate(players[1], players[0], t)) {
+                                players[curr]->changeMagic(-spell->getCost());
                                 cout << "Activated ability of minion was used" << endl;
                             }
                             else {
