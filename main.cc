@@ -186,7 +186,7 @@ int main(int argc, char *argv[]) {
             *in >> command;
             
 
-            if (in->fail()) break;
+            // if (in->fail()) break;
             if (!convertOp(command, op, testing)) {
                 cerr << "Invalid command!" << endl;
                 continue;
