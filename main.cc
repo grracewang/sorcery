@@ -301,8 +301,8 @@ int main(int argc, char *argv[]) {
 
                         if (playedCard->getType() == "Ritual") { 
                             Ritual *ritual = dynamic_cast<Ritual*>(playedCard);
+                            cout << ritual->getName() << endl;
                             players[curr]->setRitual(ritual); // automatically attaches (resource managed), error here
-                            cout << "rirual" << endl;
                             players[curr]->changeMagic(-ritual->getCost()); // subtract ritual cost
                             cout << "Played a ritual " << ritual->getName() << endl;
                             ritual = nullptr;
