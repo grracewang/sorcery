@@ -289,29 +289,29 @@ int main(int argc, char *argv[]) {
                     int p; // t-th card owned by player
                     ss >> i >> p;
                     i--;
-                    Card *playedCard = players[curr]->getHandCard(i);
+                    Card *selectedCard = players[curr]->getHandCard(i);
 
                     // make sure card is value/index is in scope
-                    if (!playedCard) {
+                    if (!selectedCard) {
                         cout << "You do not have a card at this position in your hand. Please try another command." << endl;
+                        continue;
+                    } else if (selectedCard->getCost() > players[curr]->getMagic()) {
+                        cout << "You don't have enough magic to use this card. Please try another command." << endl;
                         continue;
                     }
 
                     if (ss.fail()) {
-                        // check if card played is minion, if it's a minion we call all the spells/rituals minion related
-
-                        if (playedCard->getType() == "Ritual") { 
-                            Ritual *ritual = dynamic_cast<Ritual*>(playedCard);
-                            cout << ritual->getName() << endl;
+                        if (selectedCard->getType() == "Ritual") { 
+                            Ritual *ritual = dynamic_cast<Ritual*>(selectedCard);
                             players[curr]->setRitual(ritual); // automatically attaches (resource managed), error here
                             players[curr]->changeMagic(-ritual->getCost()); // subtract ritual cost
                             cout << "Played a ritual " << ritual->getName() << endl;
                             ritual = nullptr;
 
-                        } else if (playedCard->getType() == "Spell") {
-                            Spell* spell = dynamic_cast<Spell*>(players[curr]->removeHandCard(i));
-                            players[curr]->changeMagic(-spell->getCost());
+                        } else if (selectedCard->getType() == "Spell") {
+                            Spell* spell = dynamic_cast<Spell*>(selectedCard);
                             if (spell->activate(players[curr], players[next], -1)) {
+                                players[curr]->changeMagic(-spell->getCost());
                                 cout << "Played a spell " << spell->getName() << endl;
                                 players[curr]->discard(spell);
                             } else {
@@ -319,13 +319,12 @@ int main(int argc, char *argv[]) {
                             }
                             spell = nullptr;
                             
-
-                        } else if (playedCard->getType() == "Enchantment") {
+                        } else if (selectedCard->getType() == "Enchantment") {
                             cout << "You cannot use command play i for enchantments. Please try another command." << endl;
                             continue;
 
                         } else { // case where card is minion
-                            Minion* card = dynamic_cast<Minion*>(players[curr]->removeHandCard(i));
+                            Minion* card = dynamic_cast<Minion*>(selectedCard);
                             players[curr]->addToSummoned(card, players[next]); // already notifies
                             players[curr]->changeMagic(-card->getCost());
                             card->resetAction(); // add an action when summoning a minion
