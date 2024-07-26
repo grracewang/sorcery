@@ -111,7 +111,7 @@ int main(int argc, char *argv[]) {
     } // command line loop
     
     vector<Player*> players;
-    unique_ptr<Board> board(new Board{players});
+    Board *board = new Board{players};
 
     // getting both player's names if not provided (but didn't implement the if not provided part)
     for (i = 1; i <= NUM_PLAYERS; i++) {

@@ -13,10 +13,10 @@ class Board {
         Board(vector<Player*> &players);
 
         // printing functions
-		ostream &printBoard(ostream &out);
-		ostream &printHand(ostream &out, int playerNum);
+		void printBoard(ostream &out);
+		void printHand(ostream &out, int playerNum);
 		
-		static ostream &inspect(ostream &out, Minion *m);
+		static void inspect(ostream &out, Minion *m);
 };
 
 #endif

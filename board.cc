@@ -26,8 +26,8 @@ void printRowCards(ostream &out, const vector<card_template_t> cards, bool borde
 
 void printPlayerRow(ostream &out, const Player &player, int playerNum) {
     // ritual into printable format
-    card_template_t ritual = (player.getRitual()) ? CARD_TEMPLATE_BORDER :
-        player.getRitual()->display();
+    card_template_t ritual = (player.getRitual()) ? player.getRitual()->display(): 
+        CARD_TEMPLATE_BORDER;
 
     // graveyard into printable format
     card_template_t graveyard = (player.getGraveyard().empty()) ?
@@ -57,18 +57,18 @@ void printMinionRow(ostream &out, const vector<Minion*> minions) {
     for ( ; i < 5; i++) {
         minionCards.emplace_back(CARD_TEMPLATE_BORDER);
     }
-
+    // cerr << i << endl;
     printRowCards(out, minionCards, true);
 }
 
-ostream &Board::printBoard(ostream &out) {
+void Board::printBoard(ostream &out) {
     // top border
     out << EXTERNAL_BORDER_CHAR_TOP_LEFT;
     for (int i = 0; i < 165; i++) out << EXTERNAL_BORDER_CHAR_LEFT_RIGHT;
     out << EXTERNAL_BORDER_CHAR_TOP_RIGHT << endl;
 
     // player 1's rows
-    printPlayerRow(out, *players[0], 1);
+    printPlayerRow(out, *(players[0]), 1);
     printMinionRow(out, players[0]->getSummoned());
 
     // centre graphic
@@ -82,11 +82,9 @@ ostream &Board::printBoard(ostream &out) {
     out << EXTERNAL_BORDER_CHAR_BOTTOM_LEFT;
     for (int i = 0; i < 165; i++) out << EXTERNAL_BORDER_CHAR_LEFT_RIGHT;
     out << EXTERNAL_BORDER_CHAR_BOTTOM_RIGHT << endl;
-
-    return out;
 }
 
-ostream &Board::printHand(ostream &out, int playerNum) {
+void Board::printHand(ostream &out, int playerNum) {
     vector<card_template_t> cards;
 
     int i = 0;
@@ -100,13 +98,11 @@ ostream &Board::printHand(ostream &out, int playerNum) {
         cards.emplace_back(CARD_TEMPLATE_BORDER);
     }
 
-    printRowCards(out, cards, true);
-
-    return out;
+    printRowCards(out, cards, false);
 }
 
-ostream &Board::inspect(ostream &out, Minion *m) {
-    if (m == nullptr) return out; // return immediately if m is nullptr
+void Board::inspect(ostream &out, Minion *m) {
+    if (m == nullptr) return; // return immediately if m is nullptr
 
     vector<Card*> enchantments;
     vector<card_template_t> minion;
@@ -134,6 +130,4 @@ ostream &Board::inspect(ostream &out, Minion *m) {
         }
         printRowCards(out, enchantmentRow, false);
     }
-
-    return out;
 }
