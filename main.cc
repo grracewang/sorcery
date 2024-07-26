@@ -7,8 +7,8 @@
 #include "loaddeck.h"
 
 // concretes
-#include "concrete spells/blizzard.h"
-#include "concrete spells/raisedead.h"
+#include "concrete_spells/blizzard.h"
+#include "concrete_spells/raisedead.h"
 
 #include <utility>
 #include <iostream>

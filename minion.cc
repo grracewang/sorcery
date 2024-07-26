@@ -1,5 +1,5 @@
 #include "minion.h"
-#include "./concrete minions/changestat.h"
+#include "./concrete_minions/changestat.h"
 
 string Minion::getDescription() const {
     if (getSpells().empty()) return "";

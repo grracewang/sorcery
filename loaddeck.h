@@ -8,28 +8,28 @@
 #include "card.h"
 #include "player.h"
 #include "minion.h"
-#include "./concrete minions/airelemental.h"
-#include "./concrete minions/earthelemental.h"
-#include "./concrete minions/bonegolem.h"
-#include "./concrete minions/fireelemental.h"
-#include "./concrete minions/apprenticesummoner.h"
-#include "./concrete minions/mastersummoner.h"
-#include "./concrete minions/novicepyromancer.h"
-#include "./concrete minions/potionseller.h"
-#include "./concrete spells/banish.h" // spells
-#include "./concrete spells/blizzard.h"
-#include "./concrete spells/disenchant.h"
-#include "./concrete spells/raisedead.h"
-#include "./concrete spells/recharge.h"
-#include "./concrete spells/unsummon.h"
-#include "./concrete rituals/auraofpower.h" // rituals
-#include "./concrete rituals/darkritual.h"
-#include "./concrete rituals/standstill.h"
-#include "./concrete enchantments/enrage.h" // enchantments
-#include "./concrete enchantments/giantstrength.h"
-#include "./concrete enchantments/haste.h"
-#include "./concrete enchantments/magicfatigue.h"
-#include "./concrete enchantments/silence.h"
+#include "./concrete_minions/airelemental.h"
+#include "./concrete_minions/earthelemental.h"
+#include "./concrete_minions/bonegolem.h"
+#include "./concrete_minions/fireelemental.h"
+#include "./concrete_minions/apprenticesummoner.h"
+#include "./concrete_minions/mastersummoner.h"
+#include "./concrete_minions/novicepyromancer.h"
+#include "./concrete_minions/potionseller.h"
+#include "./concrete_spells/banish.h" // spells
+#include "./concrete_spells/blizzard.h"
+#include "./concrete_spells/disenchant.h"
+#include "./concrete_spells/raisedead.h"
+#include "./concrete_spells/recharge.h"
+#include "./concrete_spells/unsummon.h"
+#include "./concrete_rituals/auraofpower.h" // rituals
+#include "./concrete_rituals/darkritual.h"
+#include "./concrete_rituals/standstill.h"
+#include "./concrete_enchantments/enrage.h" // enchantments
+#include "./concrete_enchantments/giantstrength.h"
+#include "./concrete_enchantments/haste.h"
+#include "./concrete_enchantments/magicfatigue.h"
+#include "./concrete_enchantments/silence.h"
 
 Card* loadCard(string card, Player* owner, Player* opponent) {
     if (card == "Air Elemental") { // Minions

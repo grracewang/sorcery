@@ -11,10 +11,12 @@ CXX = g++					# compiler
 CXXFLAGS = -std=c++20 -g -Wall -MMD			# compiler flags
 MAKEFILE_NAME = ${firstword ${MAKEFILE_LIST}}	# makefile name
 
-SOURCES = $(wildcard *.cc)			# source files (*.cc)
-OBJECTS = ${SOURCES:.cc=.o}			# object files forming executable
-DEPENDS = ${OBJECTS:.o=.d}			# substitute ".o" with ".d"
-EXEC = sorcery							# executable name
+SUBDIRS = concrete_minions concrete_enchantments concrete_rituals concrete_spells
+
+SOURCES = $(wildcard *.cc)	$(foreach dir, $(SUBDIRS), $(wildcard $(dir)/*.cc))		# source files (*.cc)
+OBJECTS = ${SOURCES:.cc=.o}															# object files forming executable
+DEPENDS = ${OBJECTS:.o=.d}															# substitute ".o" with ".d"
+EXEC = sorcery																		# executable name
 
 ########## Targets ##########
 
