@@ -2,7 +2,7 @@
 #include "./concrete_minions/changestat.h"
 
 string Minion::getDescription() const {
-    if (getSpells().empty()) return "";
+    if (getSpells().empty() && getDescription() == "") return "";
     else return getSpells()[0]->getDescription();
 }
 
