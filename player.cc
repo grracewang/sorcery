@@ -44,7 +44,7 @@ Card* Player::removeHandCard(size_t i) {
 
 Minion* Player::getSummonedMinion(size_t i) const {
     try { return summoned.at(i); }
-    catch (out_of_range e) {return nullptr; }
+    catch (out_of_range e) { return nullptr; }
 }
 
 Minion* Player::removeSummonedMinion(size_t i) {
@@ -58,7 +58,7 @@ Minion* Player::removeSummonedMinion(size_t i) {
         }
         temp->removeAbilities(); 
         return newMinion;
-    } catch (out_of_range e) {return nullptr; }
+    } catch (out_of_range e) { return nullptr; }
 }
 
 Minion* Player::revive() {
@@ -79,7 +79,7 @@ void Player::draw() { // transfers deck card to hand iff fullHand = false
             Card* card = deck.at(deck.size() - 1); // take top of deck
             addToHand(card);
             deck.erase(deck.begin() + (deck.size() - 1));
-        } catch (out_of_range e) {cout << "The deck is empty." << endl; }
+        } catch (out_of_range e) { cout << "The deck is empty." << endl; }
     } else cout << "Your hand is full." << endl;
 }
 
@@ -115,13 +115,16 @@ void Player::setSummoned(size_t i, Minion *newMinion) {
 }
 
 void Player::setRitual(Ritual *r) {
-    if (ritual != nullptr) { // delete old ritual, mutate vector
+    // delete old ritual
+    if (ritual) {
         Ritual* temp = ritual;
         ritual = nullptr;
         delete temp;
     }
+
+    // mutate vector
     ritual = r; 
-    if (ritual != nullptr) {
+    if (ritual) {
         ritual->attach();
     }
 }
@@ -145,7 +148,7 @@ void Player::moveToGraveyard(size_t i) {
         Minion* m = Minion::removeEnchantments(summoned.at(i));
         setSummoned(i, m);
         graveyard.push(removeSummonedMinion(i));
-    } catch (out_of_range e) {cout << "Invalid index." << endl;}
+    } catch (out_of_range e) { cout << "Invalid index." << endl;}
     
 }
 
