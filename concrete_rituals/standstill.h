@@ -25,12 +25,12 @@ class Standstill: public Ritual {
                 if (owner->isPlaying()) {
                     int i = owner->getSummoned().size() - 1;
                     Minion* m = owner->removeSummonedMinion(i);
-                    // cout << m->getName() << " was destroyed by Standstill." << endl;
+                    cout << m->getName() << " was destroyed by Standstill." << endl;
                     delete m;
                 } else {
                     int i = opponent->getSummoned().size() - 1;
                     Minion* m = opponent->removeSummonedMinion(i);
-                    // cout << m->getName() << " was destroyed by Standstill." << endl;
+                    cout << m->getName() << " was destroyed by Standstill." << endl;
                     delete m;
                 }
             }

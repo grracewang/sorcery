@@ -82,25 +82,21 @@ int main(int argc, char *argv[]) {
             in = &fileStream;
 
         } else if (arg == "-deck1") {
-            cout << "-deck1 on" << endl;
             setDeck1 = true;
             ++i;
             arg = argv[i];
             deck1 = arg;
 
         } else if (arg == "-deck2") {
-            cout << "-deck2 on" << endl;
             setDeck2 = true;
             ++i;
             arg = argv[i];
             deck2 = arg;
 
         } else if (arg == "-graphics") {
-            cout << "graphics on" << endl;
             graphics = true;
 
         } else if (arg == "-testing") {
-            cout << "testing mode on" << endl;
             testing = true;
         } 
         
@@ -243,6 +239,10 @@ int main(int argc, char *argv[]) {
                     stringstream ss{args};
                     int j;
                     ss >> i >> j;
+                    if (i > players[curr]->getHand().size()) {
+                        cout << "Out of range input." << endl;
+                        continue;
+                    }
                     i--;
                     Minion *cur_minion = players[curr]->getSummonedMinion(i);
                     // cur_minion->resetAction();
@@ -286,12 +286,14 @@ int main(int argc, char *argv[]) {
                     getline(*in, args);
                     stringstream ss{args};
                     int p; // t-th card owned by player
+                    if (i > players[curr]->getHand().size()) {
+                        cout << "Out of range input." << endl;
+                        continue;
+                    }
                     ss >> i >> p;
+                    
                     i--;
                     Card *selectedCard = players[curr]->getHandCard(i);
-                    if (selectedCard == nullptr) {
-                        cout << "Your card was destroyed by the Standstill ability" << endl;
-                    }
                     // make sure card is value/index is in scope
                     if (!selectedCard) {
                         cout << "You do not have a card at this position in your hand. Please try another command." << endl;
@@ -399,17 +401,28 @@ int main(int argc, char *argv[]) {
                     if (ss.fail()) {
                         cout << "Invalid parameters for use, try command again" << endl;
                         continue;
+                    } else if (i > players[curr]->getHand().size()) {
+                        cout << "Out of range input." << endl;
+                        continue;
                     }
 
                     i--;
-                    cout << "use"<< i << endl;
-                    Spell *spell = players[curr]->getSummonedMinion(i)->getSpells()[0];
 
+                    Spell *spell = players[curr]->getSummonedMinion(i)->getSpells()[0];
+                    if (!spell) {
+                        cout << "You do not have a card at this position in your hand. Please try another command." << endl;
+                        continue;
+                    } else if (spell->getCost() > players[curr]->getMagic()) {
+                        cout << "You don't have enough magic to use this card. Please try another command." << endl;
+                        continue;
+                    }
                     int p;
                     ss >> p;
                     if (ss.fail()) {
                         if (spell->activate(players[curr], players[next], -1)) {
-                            delete players[curr]->removeHandCard(i);
+                            cout << "Activated ability of minion was used" << endl;
+                        } else {
+                            cout << "Cannot use ability." << endl;
                         }
 
                     } else {
@@ -418,17 +431,21 @@ int main(int argc, char *argv[]) {
                         p--;
                         if (p == 1) {
                             if (spell->activate(players[0], players[1], t)) {
-                                delete players[curr]->removeHandCard(i);
+                                cout << "Activated ability of minion was used" << endl;
+                            } else {
+                                cout << "Cannot use ability." << endl;
                             }
                         } else if (p == 2) {
                             if (spell->activate(players[1], players[0], t)) {
-                                delete players[curr]->removeHandCard(i);
+                                cout << "Activated ability of minion was used" << endl;
+                            }
+                            else {
+                                cout << "Cannot use ability." << endl;
                             }
                         } else {
-                            cout << "Invalid player index" << endl;
+                            cout << "Invalid player index." << endl;
                         }
                     }
-                    cout << "Command: use" << i << endl;  
                 }
                 break;
 
@@ -436,21 +453,24 @@ int main(int argc, char *argv[]) {
                 case Op::INSPECT:
                 {
                     *in >> i;
-                    cout << "Command: inspect" << i << endl;
-
+                    i--;
+                    Minion *m = players[curr]->getSummonedMinion(i);
+                    if (m) {
+                        board->inspect(cout, m);
+                    } else {
+                        cout << "Invalid index" << endl;
+                    }
                 }
                 break;
 
                 case Op::HAND:
                 {
-                    cout << "Command: hand" << endl;
                     board->printHand(cout, curr); 
                 }
                 break;
 
                 case Op::BOARD:
                 {
-                    cout << "Command: board" << endl;
                     board->printBoard(cout);
                 } 
                 break;
