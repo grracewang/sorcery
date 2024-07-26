@@ -246,6 +246,7 @@ int main(int argc, char *argv[]) {
                     ss >> i >> j;
                     i--;
                     Minion *cur_minion = players[curr]->getSummonedMinion(i);
+                    cur_minion->resetAction();
                     cout << "Player " << players[curr]->getName() << " used " << cur_minion->getName() << endl;
                     if (ss.fail()) {
                         in->clear();
