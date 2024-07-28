@@ -268,7 +268,7 @@ int main(int argc, char *argv[]) {
                             Minion *opp_minion = players[next]->getSummonedMinion(j);
                             players[next]->setSummoned(j, cur_minion->attack(opp_minion));
                             players[curr]->setSummoned(i, opp_minion->attack(cur_minion));
-                            cout << players[curr] << "'s " << i << "th minion attacked " << players[next] << "'s " << j << "th minion." << endl;
+                            cout << players[curr]->getName() << "'s " << i << "th minion attacked " << players[next]->getName() << "'s " << j << "th minion." << endl; // added getName()
 
                             // if minion is dead mv to graveyard, enchantments removed in moveToGraveyard()
                             if (players[next]->minionDead(opp_minion)) players[next]->moveToGraveyard(j);
@@ -339,15 +339,15 @@ int main(int argc, char *argv[]) {
                         ss >> t;
                         p--;
 
-                        if (players[curr]->getHandCard(i)->getType() == "Enchantment") {
+                        if (selectedCard->getType() == "Enchantment") {
                             // if we use enchantments then t must be a minion
                             t -= 49;
-                            if (players[p]->getSummoned().size() <= t || t < 0) {
+                            Minion* target = players[p]->getSummonedMinion(t); // index t
+                            if (!target) {
                                 cout << "Target card is invalid. Try another command." << endl;
                                 continue;
                             }
                             Enchantment* e = dynamic_cast<Enchantment*>(players[curr]->removeHandCard(i));
-                            Minion* target = players[p]->getSummonedMinion(t); // index t
                             Minion* changedTarget = e->activate(target);
                             if (changedTarget != target) {
                                 players[curr]->changeMagic(-e->getCost());
