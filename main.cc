@@ -251,6 +251,7 @@ int main(int argc, char *argv[]) {
                         in->clear();
                         if (cur_minion->useAction()) {
                             cur_minion->attack(players[next]);
+                            cur_minion->useAction();
                             cout << "Attacked player " << players[next]->getName() << endl;
                             // change actions to 0
                             if (players[next]->getLife() <= 0) {
@@ -269,7 +270,7 @@ int main(int argc, char *argv[]) {
                             players[next]->setSummoned(j, cur_minion->attack(opp_minion));
                             players[curr]->setSummoned(i, opp_minion->attack(cur_minion));
                             cout << players[curr]->getName() << "'s " << i << "th minion attacked " << players[next]->getName() << "'s " << j << "th minion." << endl; // ~added getName()
-
+                            cur_minion->useAction();
                             // if minion is dead mv to graveyard, enchantments removed in moveToGraveyard()
                             if (players[next]->minionDead(opp_minion)) {
                                 players[next]->moveToGraveyard(j);
@@ -440,12 +441,18 @@ int main(int argc, char *argv[]) {
                         continue;
                     }
 
+                    if (selectedMinion->getAction() <= 0) {
+                        cout << "Your Minion has no actions. Please try another command." << endl;
+                        continue;
+                    }
+
                     int p;
                     ss >> p;
                     if (ss.fail()) {
                         if (spell->activate(players[curr], players[next], -1)) {
                             players[curr]->changeMagic(-spell->getCost());
-                            cout << "Activated ability of minion was used" << endl;
+                            selectedMinion->useAction();
+                            cout << "Activated ability of minion was used." << endl;
                         } else {
                             cout << "Cannot use ability." << endl;
                         }
@@ -458,6 +465,7 @@ int main(int argc, char *argv[]) {
                             if (spell->activate(players[0], players[1], t)) {
                                 players[curr]->changeMagic(-spell->getCost());
                                 cout << "Activated ability of minion was used" << endl;
+                                selectedMinion->useAction();
                             } else {
                                 cout << "Cannot use ability." << endl;
                             }
@@ -465,6 +473,7 @@ int main(int argc, char *argv[]) {
                             if (spell->activate(players[1], players[0], t)) {
                                 players[curr]->changeMagic(-spell->getCost());
                                 cout << "Activated ability of minion was used" << endl;
+                                selectedMinion->useAction();
                             }
                             else {
                                 cout << "Cannot use ability." << endl;
