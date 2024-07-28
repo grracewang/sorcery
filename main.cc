@@ -280,7 +280,7 @@ int main(int argc, char *argv[]) {
                                 players[curr]->moveToGraveyard(i);
                                 cout << "Minion " << cur_minion->getName() << " has died." << endl;
                             }
-                            
+
                         } else {
                             cout << "Minion " << i + 1 << " has no more actions this turn. " << endl;
                         }
@@ -358,7 +358,6 @@ int main(int argc, char *argv[]) {
                     } else {
                         char t; // t can only be 49, 50, 51, 52, 53, 114 (= r) (ascii)
                         ss >> t;
-                        p--;
 
                         if (selectedCard->getType() == "Enchantment") {
                             // if we use enchantments then t must be a minion
@@ -440,6 +439,7 @@ int main(int argc, char *argv[]) {
                         cout << "You don't have enough magic to use this card. Please try another command." << endl;
                         continue;
                     }
+
                     int p;
                     ss >> p;
                     if (ss.fail()) {
@@ -452,16 +452,16 @@ int main(int argc, char *argv[]) {
 
                     } else {
                         char t; // t can only be 49, 50, 51, 52, 53, 114 (= r)
-                        *in >> t;
+                        ss >> t;
                         p--;
-                        if (p == 1) {
+                        if (p == 0) {
                             if (spell->activate(players[0], players[1], t)) {
                                 players[curr]->changeMagic(-spell->getCost());
                                 cout << "Activated ability of minion was used" << endl;
                             } else {
                                 cout << "Cannot use ability." << endl;
                             }
-                        } else if (p == 2) {
+                        } else if (p == 1) {
                             if (spell->activate(players[1], players[0], t)) {
                                 players[curr]->changeMagic(-spell->getCost());
                                 cout << "Activated ability of minion was used" << endl;

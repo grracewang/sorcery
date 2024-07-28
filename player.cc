@@ -128,7 +128,6 @@ void Player::setRitual(Ritual *r) {
     if (ritual) {
         
         ritual->attach();
-        cout << "added ritual" << endl;
     }
 }
 
