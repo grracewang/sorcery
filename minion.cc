@@ -109,6 +109,11 @@ void Minion::removeAbilities() {
   }
 }
 
+// for checking if minion has died
+bool Minion::minionDead(Minion *m) {
+  return m->getDef() <= 0;
+}
+
 // for printing
 card_template_t Minion::display() const {
   if (getDescription() == "") {

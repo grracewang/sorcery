@@ -139,11 +139,6 @@ void Player::discard(size_t i) {
     } catch (out_of_range e) { cout << "Invalid index. Try again." << endl; }
  }
 
-bool Player::minionDead(Minion *m) {
-    if (m->getDef() <= 0) return true;
-    return false;
-}
-
 
 void Player::moveToGraveyard(size_t i) {
     try {

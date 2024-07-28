@@ -53,6 +53,9 @@ class Minion: public Card {
 		Minion *attack(Minion *enemy); // format in main: enemy = m.attack(enemy);
 		void attack(Player *enemy); // still need to implement
 
+		// for checking dead minion
+		static bool minionDead(Minion *m);
+
 		// for printing
 		card_template_t display() const override;
 

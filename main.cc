@@ -271,12 +271,12 @@ int main(int argc, char *argv[]) {
                             players[curr]->setSummoned(i, opp_minion->attack(cur_minion));
                             cout << players[curr]->getName() << "'s " << i + 1 << "th minion attacked " << players[next]->getName() << "'s " << j + 1 << "th minion." << endl; // ~added getName()
                             // if minion is dead mv to graveyard, enchantments removed in moveToGraveyard()
-                            if (players[next]->minionDead(opp_minion)) {
+                            if (Minion::minionDead(opp_minion)) {
                                 players[next]->moveToGraveyard(j);
                                 cout << "Minion " << opp_minion->getName() << " has died." << endl;
                             }
                             
-                            if (players[curr]->minionDead(cur_minion)) {
+                            if (Minion::minionDead(cur_minion)) {
                                 players[curr]->moveToGraveyard(i);
                                 cout << "Minion " << cur_minion->getName() << " has died." << endl;
                             }
@@ -331,16 +331,16 @@ int main(int argc, char *argv[]) {
                             
                             int idx = 0;
                             for (auto m: players[curr]->getSummoned()) {
-                                if (players[next]->minionDead(m)) {
-                                    players[next]->moveToGraveyard(idx);
+                                if (Minion::minionDead(m)) {
+                                    players[curr]->moveToGraveyard(idx);
                                     cout << "Minion " << m->getName() << " has died." << endl;
                                     idx++;
                                 }
                             }
                             
                             idx = 0;
-                            for (auto m: players[curr]->getSummoned()) {
-                                if (players[next]->minionDead(m)) {
+                            for (auto m: players[next]->getSummoned()) {
+                                if (Minion::minionDead(m)) {
                                     players[next]->moveToGraveyard(idx);
                                     cout << "Minion " << m->getName() << " has died." << endl;
                                     idx++;

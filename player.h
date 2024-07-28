@@ -64,7 +64,6 @@ class Player : public Subject{
 
 		void discard(size_t i); // discards i-th card, just trashes it, used in testing mode
 		void discard(Card*); // takes in a spell
-		bool minionDead(Minion *m);
 		void moveToGraveyard(size_t i);
 		
 
