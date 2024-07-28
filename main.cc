@@ -269,7 +269,7 @@ int main(int argc, char *argv[]) {
                             Minion *opp_minion = players[next]->getSummonedMinion(j);
                             players[next]->setSummoned(j, cur_minion->attack(opp_minion));
                             players[curr]->setSummoned(i, opp_minion->attack(cur_minion));
-                            cout << players[curr]->getName() << "'s " << i << "th minion attacked " << players[next]->getName() << "'s " << j << "th minion." << endl; // ~added getName()
+                            cout << players[curr]->getName() << "'s " << i + 1 << "th minion attacked " << players[next]->getName() << "'s " << j + 1 << "th minion." << endl; // ~added getName()
                             // if minion is dead mv to graveyard, enchantments removed in moveToGraveyard()
                             if (players[next]->minionDead(opp_minion)) {
                                 players[next]->moveToGraveyard(j);
