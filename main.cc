@@ -271,8 +271,16 @@ int main(int argc, char *argv[]) {
                             cout << players[curr]->getName() << "'s " << i << "th minion attacked " << players[next]->getName() << "'s " << j << "th minion." << endl; // added getName()
 
                             // if minion is dead mv to graveyard, enchantments removed in moveToGraveyard()
-                            if (players[next]->minionDead(opp_minion)) players[next]->moveToGraveyard(j);
-                            if (players[curr]->minionDead(cur_minion)) players[curr]->moveToGraveyard(i);
+                            if (players[next]->minionDead(opp_minion)) {
+                                players[next]->moveToGraveyard(j);
+                                cout << "Minion " << opp_minion->getName() << " has died." << endl;
+                            }
+                            
+                            if (players[curr]->minionDead(cur_minion)) {
+                                players[curr]->moveToGraveyard(i);
+                                cout << "Minion " << cur_minion->getName() << " has died." << endl;
+                            }
+                            
                         } else {
                             cout << "Minion " << i + 1 << " has no more actions this turn. " << endl;
                         }
@@ -306,7 +314,6 @@ int main(int argc, char *argv[]) {
                             players[curr]->setRitual(ritual); // automatically attaches (resource managed), error here
                             players[curr]->changeMagic(-ritual->getCost()); // subtract ritual cost
                             cout << "Played a ritual " << ritual->getName() << endl;
-                            ritual = nullptr;
 
                         } else if (selectedCard->getType() == "Spell") {
                             Spell* spell = dynamic_cast<Spell*>(selectedCard);
@@ -318,8 +325,25 @@ int main(int argc, char *argv[]) {
                             } else {
                                 cout << "Cannot play spell." << endl;
                             }
-                            spell = nullptr;
                             
+                            int idx = 0;
+                            for (auto m: players[curr]->getSummoned()) {
+                                if (players[next]->minionDead(m)) {
+                                    players[next]->moveToGraveyard(idx);
+                                    cout << "Minion " << m->getName() << " has died." << endl;
+                                    idx++;
+                                }
+                            }
+                            
+                            idx = 0;
+                            for (auto m: players[curr]->getSummoned()) {
+                                if (players[next]->minionDead(m)) {
+                                    players[next]->moveToGraveyard(idx);
+                                    cout << "Minion " << m->getName() << " has died." << endl;
+                                    idx++;
+                                }
+                            }
+
                         } else if (selectedCard->getType() == "Enchantment") {
                             cout << "You cannot use command play i for enchantments. Please try another command." << endl;
                             continue;
@@ -328,10 +352,7 @@ int main(int argc, char *argv[]) {
                             Minion* card = dynamic_cast<Minion*>(players[curr]->removeHandCard(i));
                             players[curr]->changeMagic(-card->getCost());
                             cout << "Player " << players[curr]->getName() << " summoned " << card->getName() << endl;
-                            players[curr]->addToSummoned(card, players[next]); // already notifies
-                            
-                            
-                            card = nullptr;
+                            players[curr]->addToSummoned(card, players[next]); // already notified
                         }
 
                     } else {
