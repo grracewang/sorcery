@@ -7,14 +7,22 @@
 class Unsummon: public Spell {
     public:
         Unsummon(): Spell{"Unsummon", "Return target minion to its owner’s hand ", 1} {}
-        bool activate(Player *owner, Player *enemy, size_t t) override {
-            if (enemy->getHand().size() == 5) {
+        bool activate(Player *target, Player *other, size_t t) override {
+            // target's hand is full
+            if (target->getHand().size() == 5) {
                 std::cout << "Players hand is full, cannot unsummon its minion." << std::endl;
                 return false;
             }
-            Card *target = enemy->removeSummonedMinion(t - 1);
-            enemy->addToHand(target);
-            return true;
+            t -= 49;
+            if (t >= 0 && t < target->getHand().size()) {
+                Minion *targetMinion = target->removeSummonedMinion(t);
+                target->addToHand(Minion::removeEnchantments(targetMinion));
+                return true;
+            }
+
+            // ~no minoin at this index or attempted to play unsummon on a ritual
+            cout << "You cannot unsummon this card. Try another command." << endl;
+            return false;
         }
 };
 

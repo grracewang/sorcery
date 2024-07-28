@@ -291,19 +291,22 @@ int main(int argc, char *argv[]) {
 
                 case Op::PLAY:
                 {
+                    // get arguments
                     string args;
                     getline(*in, args);
                     stringstream ss{args};
-                    int p; // t-th card owned by player
+                    int p;
                     ss >> i >> p;
-                    
                     i--;
+
                     Card *selectedCard = players[curr]->getHandCard(i);
                     // make sure card is value/index is in scope
                     if (!selectedCard) {
                         cout << "You do not have a card at this position in your hand. Please try another command." << endl;
                         continue;
-                    } else if (selectedCard->getCost() > players[curr]->getMagic()) {
+                    }
+                    // make sure you have enough magic to play the card
+                    if (selectedCard->getCost() > players[curr]->getMagic()) {
                         cout << "You don't have enough magic to use this card. Please try another command." << endl;
                         continue;
                     }
@@ -359,6 +362,7 @@ int main(int argc, char *argv[]) {
                     } else {
                         char t; // t can only be 49, 50, 51, 52, 53, 114 (= r) (ascii)
                         ss >> t;
+                        p--;
 
                         if (selectedCard->getType() == "Enchantment") {
                             // if we use enchantments then t must be a minion
@@ -378,7 +382,7 @@ int main(int argc, char *argv[]) {
                                 players[curr]->addToHand(e); // add back to hand if unusable
                             }
 
-                        } else if (players[curr]->getHandCard(i)->getType() == "Spell") {
+                        } else if (selectedCard->getType() == "Spell") {
                             Spell* spell = dynamic_cast<Spell*>(selectedCard);
                             if (p == 0) {
                                 if (spell->activate(players[0], players[1], t)) {
