@@ -312,7 +312,7 @@ int main(int argc, char *argv[]) {
 
                     if (ss.fail()) {
                         
-                        if (selectedCard->getType() == "Ritual") { 
+                        if (selectedCard->getType() == "Ritual") {
                             Ritual *ritual = dynamic_cast<Ritual*>(players[curr]->removeHandCard(i));
                             players[curr]->setRitual(ritual); // automatically attaches (resource managed), error here
                             players[curr]->changeMagic(-ritual->getCost()); // subtract ritual cost
