@@ -20,8 +20,8 @@ class Banish: public Spell {
                     std::cout << "This minion does not exist." << std::endl;
                     return false;
                 }
-                Minion* temp = target->removeSummonedMinion(t - 1);
-                delete temp;
+                Minion* temp = target->removeSummonedMinion(t);
+                if (temp) delete temp;
                 temp = nullptr;
             }
             return true;
