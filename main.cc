@@ -523,7 +523,7 @@ int main(int argc, char *argv[]) {
         // change active player
         players[curr]->changeState();
         players[next]->changeState();
-        swap(curr, next);
+        std::swap(curr, next);
 
         // force end game
         if (op == Op::QUIT || in->fail()) break;
