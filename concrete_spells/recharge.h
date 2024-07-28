@@ -16,7 +16,6 @@ class Recharge: public Spell {
                 return false;
             }
             r->changeCharges(3);
-            owner->setRitual(r);
             return true;
         }
 };
