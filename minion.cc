@@ -29,8 +29,11 @@ void Minion::resetAction() {
   actions = getBeginActions();
 }
 bool Minion::useAction() {
+  if (actions <= 0) {
+    return false;
+  }
   actions--;
-  return actions >= 0;
+  return true;
 }
 
 // added static functions
