@@ -268,7 +268,7 @@ int main(int argc, char *argv[]) {
                             Minion *opp_minion = players[next]->getSummonedMinion(j);
                             players[next]->setSummoned(j, cur_minion->attack(opp_minion));
                             players[curr]->setSummoned(i, opp_minion->attack(cur_minion));
-                            cout << players[curr]->getName() << "'s " << i << "th minion attacked " << players[next]->getName() << "'s " << j << "th minion." << endl; // added getName()
+                            cout << players[curr]->getName() << "'s " << i << "th minion attacked " << players[next]->getName() << "'s " << j << "th minion." << endl; // ~added getName()
 
                             // if minion is dead mv to graveyard, enchantments removed in moveToGraveyard()
                             if (players[next]->minionDead(opp_minion)) {
@@ -418,18 +418,25 @@ int main(int argc, char *argv[]) {
                     if (ss.fail()) {
                         cout << "Invalid parameters for use, try command again" << endl;
                         continue;
-                    } else if (i > players[curr]->getSummoned().size()) {
-                        cout << "Out of range input." << endl;
-                        continue;
                     }
 
                     i--;
-
-                    Spell *spell = players[curr]->getSummonedMinion(i)->getSpells()[0];
-                    if (!spell) {
-                        cout << "You do not have a card at this position in your hand. Please try another command." << endl;
+                    Minion *selectedMinion = players[curr]->getSummonedMinion(i);
+                    
+                    // ~prevent player from using a minion that they don't have on the board
+                    if (!selectedMinion) {
+                        cout << "You don't have a minion on the board at slot " << i + 1 << endl;
                         continue;
-                    } else if (spell->getCost() > players[curr]->getMagic()) {
+                    }
+
+                    // ~prevent player from using a minion that has no activated ability
+                    if (selectedMinion->getSpells().empty()) {
+                        cout << "This minion doesn't have an activated ability available. Try another command." << endl;
+                        continue;
+                    }
+
+                    Spell *spell = selectedMinion->getSpells()[0];
+                    if (spell->getCost() > players[curr]->getMagic()) {
                         cout << "You don't have enough magic to use this card. Please try another command." << endl;
                         continue;
                     }
