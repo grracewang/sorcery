@@ -162,7 +162,9 @@ int main(int argc, char *argv[]) {
         players[curr]->notifyPreTurn();
 
         players[curr]->changeMagic(1);
+
         players[curr]->draw();
+
         for (auto minion : players[curr]->getSummoned()) {
             minion->resetAction();
         }
@@ -250,7 +252,6 @@ int main(int argc, char *argv[]) {
                         in->clear();
                         if (cur_minion->useAction()) {
                             cur_minion->attack(players[next]);
-                            cur_minion->useAction();
                             cout << "Attacked player " << players[next]->getName() << endl;
                             // change actions to 0
                             if (players[next]->getLife() <= 0) {
@@ -269,7 +270,6 @@ int main(int argc, char *argv[]) {
                             players[next]->setSummoned(j, cur_minion->attack(opp_minion));
                             players[curr]->setSummoned(i, opp_minion->attack(cur_minion));
                             cout << players[curr]->getName() << "'s " << i << "th minion attacked " << players[next]->getName() << "'s " << j << "th minion." << endl; // ~added getName()
-                            cur_minion->useAction();
                             // if minion is dead mv to graveyard, enchantments removed in moveToGraveyard()
                             if (players[next]->minionDead(opp_minion)) {
                                 players[next]->moveToGraveyard(j);
