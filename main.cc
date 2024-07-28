@@ -379,7 +379,7 @@ int main(int argc, char *argv[]) {
 
                         } else if (players[curr]->getHandCard(i)->getType() == "Spell") {
                             Spell* spell = dynamic_cast<Spell*>(selectedCard);
-                            if (p == 1) {
+                            if (p == 0) {
                                 if (spell->activate(players[0], players[1], t)) {
                                     cout << "Player " << players[curr]->getName() << " played " << spell->getName() << endl;
                                     players[curr]->removeHandCard(i);
@@ -388,7 +388,7 @@ int main(int argc, char *argv[]) {
                                 } else {
                                     cout << "Cannot play spell." << endl;
                                 }
-                            } else if (p == 2) { // p = 1
+                            } else if (p == 1) { // p = 1
                                 if (spell->activate(players[1], players[0], t)) {
                                     cout << "Player " << players[curr]->getName() << " played " << spell->getName() << endl;
                                     players[curr]->removeHandCard(i);
