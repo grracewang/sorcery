@@ -246,7 +246,6 @@ int main(int argc, char *argv[]) {
                         continue;
                     }
                     // cur_minion->resetAction();
-                    cout << "Player " << players[curr]->getName() << " used " << cur_minion->getName() << endl;
                     if (ss.fail()) {
                         in->clear();
                         if (cur_minion->useAction()) {
@@ -515,6 +514,8 @@ int main(int argc, char *argv[]) {
                 } 
                 break;
             } // switch
+
+            if (op == Op::QUIT) break;
 
         } // while--turn loop (commands per turn)
 
