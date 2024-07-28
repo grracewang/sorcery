@@ -9,12 +9,12 @@ class Unsummon: public Spell {
         Unsummon(): Spell{"Unsummon", "Return target minion to its owner’s hand ", 1} {}
         bool activate(Player *target, Player *other, size_t t) override {
             // target's hand is full
-            if (target->getHand().size() == 5) {
+            if (target->getHand().size() >= 5) {
                 std::cout << "Players hand is full, cannot unsummon its minion." << std::endl;
                 return false;
             }
             t -= 49;
-            if (t >= 0 && t < target->getHand().size()) {
+            if (t >= 0 && t < target->getSummoned().size()) {
                 Minion *targetMinion = target->removeSummonedMinion(t);
                 target->addToHand(Minion::removeEnchantments(targetMinion));
                 return true;
